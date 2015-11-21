@@ -1,0 +1,20 @@
+USE [MuOnline]
+GO
+INSERT INTO DBHelper_ItemCategories
+VALUES 
+('Swords'),
+('Axes'),
+('Mace'),
+('Spears'),
+('Bows'),
+('Staffs'),
+('Shields'),
+('Helms'),
+('Armor'),
+('Pants'),
+('Gloves'),
+('Boots'),
+('Misc1'),
+('Misc2'),
+('Misc3'),
+('Scrolls')

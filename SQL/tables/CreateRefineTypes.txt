@@ -1,0 +1,9 @@
+USE [MuOnline]
+GO
+CREATE TABLE DBHelper_RefineTypes
+(
+	ID int IDENTITY(1, 1) NOT NULL PRIMARY KEY,
+	name varchar(MAX),
+	option1 varchar(MAX),
+	option2 varchar(MAX)
+)

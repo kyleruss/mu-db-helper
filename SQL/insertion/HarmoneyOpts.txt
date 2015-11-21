@@ -1,0 +1,4 @@
+USE [MuOnline]
+GO
+INSERT INTO DBHelper_HarmoneyOptions (name)
+VALUES ('no_option');

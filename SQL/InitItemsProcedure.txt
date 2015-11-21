@@ -1,0 +1,30 @@
+CREATE PROCEDURE DBHelper_InitItems
+(
+	@index INT,
+	@category INT,
+	@name VARCHAR(200),
+	@x INT,
+	@y INT,
+	@dur INT,
+	@slot INT,
+	@skill BIT,
+	@allow_opt BIT,
+	@allow_sock BIT
+)
+
+AS
+BEGIN
+
+	IF EXISTS(SELECT * FROM DBHelper_Items WHERE ID=@index AND category_ID=@category)
+	BEGIN
+		UPDATE SPK_Items
+		SET name=@name, width=@x, height=@y, durability=@dur, allow_socket=@allow_sock, allow_option=@allow_opt, skill=@skill, slot_id=@slot
+		WHERE ID=@index AND category_ID=@category;
+	END
+
+	ELSE
+	BEGIN
+		INSERT INTO DBHelper_Items (ID, category_ID, name, width, height, durability, slot_id, skill, allow_option, allow_socket) 
+		VALUES (@index, @category, @name, @x, @y, @dur, @slot, @skill, @allow_opt, @allow_sock);
+	END
+END

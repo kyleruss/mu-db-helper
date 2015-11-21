@@ -1,0 +1,13 @@
+USE [MuOnline]
+GO
+CREATE TABLE DBHelper_ExcTypes
+(
+	ID int IDENTITY(0, 1) NOT NULL PRIMARY KEY,
+	type_name varchar(MAX),
+	option1 varchar(MAX),
+	option2 varchar(MAX),
+	option3 varchar(MAX),
+	option4 varchar(MAX),
+	option5 varchar(MAX),
+	option6 varchar(MAX)
+)

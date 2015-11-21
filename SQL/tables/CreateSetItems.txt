@@ -1,0 +1,7 @@
+USE [MuOnline]
+GO
+CREATE TABLE DBHelper_SetItems
+(
+	ID int IDENTITY(-1, 1) NOT NULL PRIMARY KEY,
+	name varchar(MAX)
+)

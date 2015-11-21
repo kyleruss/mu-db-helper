@@ -53,7 +53,7 @@ namespace MUTools
 
                             else
                             {
-                                using (SqlCommand command = new SqlCommand("SPK_InitItems", conn))
+                                using (SqlCommand command = new SqlCommand("DBHelper_InitItems", conn))
                                 {
                                     command.CommandType = CommandType.StoredProcedure;
                                     item = Regex.Split(System.Text.RegularExpressions.Regex.Replace(current_line, @"\s+", " "), regex, RegexOptions.Multiline);
@@ -110,7 +110,8 @@ namespace MUTools
     public static string calcItemImage(int theid, int type, int ExclAnci, int lvl)
     {
         string tnpl =   "";
-        switch (ExclAnci) {
+        switch (ExclAnci) 
+        {
             case 1:
                 tnpl = "10";
                 break;
@@ -125,18 +126,23 @@ namespace MUTools
         int itype = type * 16;
         string nxt ="";
         string tipaj = "";
-        if (theid > 63) {
+        if (theid > 63) 
             nxt = Item.decToHex(theid);
-        } else if (theid > 31) {
+
+        else if (theid > 31) 
+        {
             nxt = "F9";
             theid -= 32;
-        } else {
+        } 
+        
+        else 
             nxt = "00";
-        }
     
-        if (itype < 128) {
+        if (itype < 128) 
             tipaj = "00";
-        } else {
+
+        else
+        {
             tipaj = "80";
             itype -= 128;
         }
@@ -145,10 +151,13 @@ namespace MUTools
         itype += theid;
         string itype_new = itype.ToString("X2");
         string output="";
+
         if (File.Exists("images/items/" + tnpl + itype_new + tipaj + nxt + ".gif"))
             output = "" + tnpl + itype_new + tipaj + nxt + ".gif";
+
         else if (File.Exists("images/items/00" + tnpl + itype_new + tipaj + nxt + ".gif"))
             output = "00" + tnpl + itype_new + tipaj + nxt + ".gif";
+
         else
             output = null;
 

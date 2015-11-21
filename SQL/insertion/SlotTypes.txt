@@ -1,0 +1,17 @@
+USE [MuOnline]
+GO
+INSERT INTO DBHelper_SlotTypes
+VALUES
+(-1, 'Default'),
+(0, 'Right-hand'),
+(1, 'Left-hand'),
+(2, 'Helm'),
+(3, 'Armor'),
+(4, 'Pants'),
+(5, 'Gloves'),
+(6, 'Boots'),
+(7, 'Wings'),
+(8, 'Pet'),
+(9, 'Neck'),
+(10, 'Ring'),
+(256, 'Pentagram')

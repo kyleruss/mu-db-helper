@@ -1,0 +1,7 @@
+USE [MuOnline]
+GO
+CREATE TABLE DBHelper_ItemCategories
+(
+	ID int NOT NULL IDENTITY(0, 1) PRIMARY KEY,
+	name varchar(MAX)
+)

@@ -1,0 +1,22 @@
+USE [MuOnline]
+GO
+CREATE TABLE DBHelper_HarmoneyOptions
+(
+	ID int IDENTITY(-1, 1) NOT NULL PRIMARY KEY,
+	name varchar(MAX),
+	level1 varchar(MAX),
+	level2 varchar(MAX),
+	level3 varchar(MAX),
+	level4 varchar(MAX),
+	level5 varchar(MAX),
+	level6 varchar(MAX),
+	level7 varchar(MAX),
+	level8 varchar(MAX),
+	level9 varchar(MAX),
+	level10 varchar(MAX),
+	level11 varchar(MAX),
+	level12 varchar(MAX),
+	level13 varchar(MAX),
+	level14 varchar(MAX),
+	level15 varchar(MAX),
+)

@@ -1,0 +1,9 @@
+USE [MuOnline]
+GO
+INSERT INTO DBHelper_ExcTypes
+VALUES
+('Non-Excellent', 'No option', 'No option', 'No option', 'No option', 'No option', 'No option'),
+('Weapon', 'MANA after hunting (MANA/8)', 'LIFE after hunting (LIFE/8)', 'WizarDry Speed +7',	'DMG +2%',	'DMG lvl/20',	'Exe DMG Rate +10%'),
+('Set', 'ZEN after hunting +40%', 'Defense RATE +10%', 'Reflect DMG +5%',	'Reduce DMG +4%', 	'MANA +4%', 'HP +4%'),
+('Wings', '115 HP', '115 MP', 	'Ignore Enemy defense 3%', '50 MAX STAMINA', 'WizarDry Speed +7', 'No option'),
+('Fenrir', 'RED - Damage', 'BLUE - Defense', 'GOLD - Illusion',	'No option', 'No option', 'No option')

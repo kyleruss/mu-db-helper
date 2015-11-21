@@ -1,0 +1,7 @@
+USE [MuOnline]
+GO
+CREATE TABLE DBHelper_SlotTypes
+(
+	ID int NOT NULL PRIMARY KEY,
+	name varchar(MAX)
+)
