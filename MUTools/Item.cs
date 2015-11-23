@@ -9,7 +9,7 @@ namespace MUTools
 {
     class Item
     {
-        public string EMPTY = "dasd"; //new string('F', 32);//"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF";
+        public string EMPTY = new string('F', 32);
         public string EMPTY_LARGE = new string('F', 64);
         public string def = new string('0', 22) + new string('F', 10);
         public const int length = 32;
@@ -51,7 +51,7 @@ namespace MUTools
             initExcOpts();
         }
                                                                                                 
-        public Item(int index, int category, Boolean skill, Boolean luck, int level, int addLevel, int durability, ExcOpts excellent_options)
+        public Item(int index, int category, bool skill, bool luck, int level, int addLevel, int durability, ExcOpts excellent_options)
         {
             item     = new char[32];
             this.hex = def;
@@ -95,7 +95,6 @@ namespace MUTools
                     dec -= 4;
                     exc_hex = decToHex(dec).Substring(1, 1) + exc_hex.Substring(1, 1);
                 }
-                Debug.WriteLine("EXC HEX : " + exc_hex);
                 excellent_options = (opts == null) ? new ExcOpts(exc_hex) : opts;
             }
         }

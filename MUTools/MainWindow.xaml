@@ -82,12 +82,23 @@
                     <ComboBox Text="Select account" x:Name="account_list" IsEditable="True" HorizontalAlignment="Left" Margin="16,3,0,0" VerticalAlignment="Top" Width="120" Grid.Row="1" Height="22" DropDownOpened="AccountListOnOpen" KeyUp="AccountSearchKeyUp"/>
                     <ComboBox Text="Select character" x:Name="character_list" IsEditable="True" Grid.Column="1" HorizontalAlignment="Left" Margin="16,3,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="22" DropDownOpened="CharacterListOnOpen" KeyUp="CharacterSearchKeyUp"/>
                     <ComboBox SelectedIndex="0" x:Name="storage_list" Grid.Column="2" HorizontalAlignment="Left" Margin="7,3,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="22">
+                        <ComboBoxItem Content="Person" />
                         <ComboBoxItem Content="Inventory"/>
                         <ComboBoxItem Content="Vault" />
+                        <ComboBoxItem Content="Personal shop" />
+                        <ComboBoxItem Content="Expanded Inventory" />
                     </ComboBox>
 
 
 
+                </Grid>
+                <Grid HorizontalAlignment="Left" Height="461" Margin="10,92,0,0" VerticalAlignment="Top" Width="429">
+                    <StackPanel>
+                        <Border BorderBrush="Black" BorderThickness="1" Height="375">
+                            <Image Margin="31,-1,36,-1" Source="images/interface/character.png"/>
+                        </Border>
+
+                    </StackPanel>
                 </Grid>
             </Grid>
             <Grid HorizontalAlignment="Left" Height="563" Margin="774,0,0,0" VerticalAlignment="Top" Width="326" Background="#CC000000">
@@ -103,6 +114,7 @@
                        " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="125" Foreground="White" Background="#FF8D8A8A" FontFamily="Segoe UI Light" FontSize="16" Height="33"/>
             </Grid>
         </Grid>
-        <Border BorderBrush="#FF878686" BorderThickness="1" HorizontalAlignment="Left" Height="655" VerticalAlignment="Top" Width="1100"/>
+        <Border BorderBrush="#FF878686" BorderThickness="1" HorizontalAlignment="Left" Height="655" VerticalAlignment="Top" Width="1100">
+        </Border>
     </Grid>
 </Window>

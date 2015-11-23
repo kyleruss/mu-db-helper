@@ -15,6 +15,8 @@ namespace MUTools
         public const int E5 = 16;
         public const int E6 = 32;
 
+        public const int MAX_OPTS = 63;
+
         public int[] opt_vals = { 1, 2, 4, 8, 16, 32 };
         public string[] opt_keys = { "C1", "C2", "C3", "C4", "C5", "C6" };
         private Dictionary<string, Boolean> options;

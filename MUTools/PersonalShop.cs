@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MUTools
 {
-    class Inventory : StorageSpace
+    class PersonalShop : StorageSpace
     {
         protected int space_size = 2048;
 
-        public Inventory() : base()
+        public PersonalShop() : base()
         {
 
         }
 
-        public Inventory(string hex) : base(hex)
+        public PersonalShop(string hex) : base(hex)
         {
 
         }

@@ -28,7 +28,12 @@ namespace MUTools
         {
             InitializeComponent();
             fill_categories();
-            //DBLoader.UpdateItemImages(true);
+            Inventory inven = new Inventory();
+            Item item = new Item(0, 4, true, true, 15, 4, 255, new ExcOpts(true, true, true, true, true, true));
+            inven.addItem(item, 0);
+            inven.buildInventoryHex();
+            string hex = inven.getCompleteInventory();
+            Debug.WriteLine("HEX: " + hex);
         }
 
         public void fill_categories()

@@ -55,6 +55,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DBAccount.cs" />
+    <Compile Include="ExpandedInventory.cs" />
+    <Compile Include="InventoryStorage.cs" />
+    <Compile Include="PersonalShop.cs" />
+    <Compile Include="Storage.cs" />
+    <Compile Include="StorageSpace.cs" />
     <Compile Include="Vault.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -111,6 +116,7 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\interface\character.png" />
     <Resource Include="images\items\00000000.gif" />
     <Resource Include="images\items\000000F9.gif" />
     <Resource Include="images\items\00008000.gif" />
