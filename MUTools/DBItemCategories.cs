@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MUTools
 {
-    [Table(Name="SPK_ItemCategories")]
+    [Table(Name="DBHelper_ItemCategories")]
     class DBItemCategories
     {
         [Column(IsPrimaryKey=true)]

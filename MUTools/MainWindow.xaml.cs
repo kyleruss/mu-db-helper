@@ -28,7 +28,7 @@ namespace MUTools
         {
             InitializeComponent();
             fill_categories();
-            DBLoader.buildDBItems("item.txt");
+            //DBLoader.UpdateItemImages(true);
         }
 
         public void fill_categories()
@@ -59,7 +59,7 @@ namespace MUTools
         }
 
 
-        private void items_list_selectChange(object sender, SelectionChangedEventArgs e)
+        private void ItemListOnSelect(object sender, SelectionChangedEventArgs e)
         {
             if (items_list.SelectedItem != null)
             {
@@ -73,7 +73,7 @@ namespace MUTools
 
                 else
                 {
-                    current_item = (DBItems)items_list.SelectedItems[0];
+                    current_item = (DBItems)items_list.SelectedItem;
                     item_image_name_label.Content = current_item.name;
                     current_item_image.Source = new BitmapImage(new Uri(@"/images/items/" + current_item.image_path, UriKind.Relative));
                 }
@@ -84,11 +84,76 @@ namespace MUTools
 
         }
 
-        private void category_goBack(object sender, RoutedEventArgs e)
+        private void CategoryBackOnClick(object sender, RoutedEventArgs e)
         {
             categoryBackButton.Visibility = Visibility.Hidden;
             current_category = null;
             fill_categories();
+        }
+
+        private void showAccounts()
+        {
+            using (DBConnection conn = new DBConnection())
+            {
+                var accounts = from x in conn.accounts
+                               select x.memb___id;
+
+                account_list.ItemsSource = accounts;
+            }
+        }
+
+        private void showCharacters(string searchCharacter)
+        {
+            using (DBConnection conn = new DBConnection())
+            {
+                if (account_list.SelectedItem == null)
+                {
+                    var list = conn.characters;
+
+                    if (searchCharacter != null)
+                        character_list.ItemsSource = list.Where(character => character.Name.Contains(searchCharacter)).Select(character => character.Name);
+                    else
+                        character_list.ItemsSource = list.Select(character => character.Name);
+                }
+
+                else
+                {
+                    if (searchCharacter != null)
+                    {
+                        character_list.ItemsSource = conn.characters
+                                                    .Where(character => character.AccountID == account_list.SelectedItem)
+                                                    .Where(character => character.Name.Contains(searchCharacter))
+                                                    .Select(character => character.Name);
+                    }
+
+                    else
+                    {
+                        character_list.ItemsSource = conn.characters
+                            .Where(character => character.AccountID == account_list.SelectedItem)
+                            .Select(character => character.Name);
+                    }
+                }
+            }
+        }
+
+        private void AccountListOnOpen(object sender, EventArgs e)
+        {
+            showAccounts();
+        }
+
+        private void CharacterListOnOpen(object sender, EventArgs e)
+        {
+            showCharacters(null);
+        }
+
+        private void AccountSearchKeyUp(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void CharacterSearchKeyUp(object sender, KeyEventArgs e)
+        {
+            showCharacters(character_list.Text);
         }
     }
 }

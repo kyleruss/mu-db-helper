@@ -14,9 +14,10 @@ namespace MUTools
 
         public Table<DBItemCategories> categories;
 
-        public DBConnection()  : base("Server=.\\SQLEXPRESS;Database=MuOnline;Integrated Security=true")
-        {
+        public Table<DBAccount> accounts;
 
-        }
+        public Table<DBCharacter> characters;
+
+        public DBConnection() : base("Server=.\\SQLEXPRESS;Database=MuOnline;Integrated Security=true") { }
     }
 }

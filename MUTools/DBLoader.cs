@@ -165,7 +165,7 @@ namespace MUTools
     }
 
 
-    public static void UpdateItemImages()
+    public static void UpdateItemImages(Boolean reset)
     {
         using (DBConnection conn = new DBConnection())
         {
@@ -173,13 +173,16 @@ namespace MUTools
                         select e;
             foreach (var item in items)
             {
-                DBItems item_temp = item;
-                string path = calcItemImage((int)item.ID, (int)item.category_ID, 0, 0);
-                if (path == null) continue;
-                else
+                if (item.image_path == null || item.image_path.Equals("default.gif") || reset)
                 {
-                    item_temp.image_path = path;
-                    conn.SubmitChanges();
+                    DBItems item_temp = item;
+                    string path = calcItemImage((int)item.ID, (int)item.category_ID, 0, 0);
+                    if (path == null) continue;
+                    else
+                    {
+                        item_temp.image_path = path;
+                        conn.SubmitChanges();
+                    }
                 }
             }
         }

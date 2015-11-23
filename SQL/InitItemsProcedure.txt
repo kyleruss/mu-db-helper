@@ -17,7 +17,7 @@ BEGIN
 
 	IF EXISTS(SELECT * FROM DBHelper_Items WHERE ID=@index AND category_ID=@category)
 	BEGIN
-		UPDATE SPK_Items
+		UPDATE DBHelper_Items
 		SET name=@name, width=@x, height=@y, durability=@dur, allow_socket=@allow_sock, allow_option=@allow_opt, skill=@skill, slot_id=@slot
 		WHERE ID=@index AND category_ID=@category;
 	END

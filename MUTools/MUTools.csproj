@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DBAccount.cs" />
     <Compile Include="Vault.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -63,7 +64,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Character.cs" />
+    <Compile Include="DBCharacter.cs" />
     <Compile Include="DBConnection.cs" />
     <Compile Include="DBItemCategories.cs" />
     <Compile Include="DBItems.cs" />
