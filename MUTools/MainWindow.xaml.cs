@@ -91,14 +91,16 @@ namespace MUTools
             fill_categories();
         }
 
-        private void showAccounts()
+        private void showAccounts(string searchAccount)
         {
             using (DBConnection conn = new DBConnection())
             {
-                var accounts = from x in conn.accounts
-                               select x.memb___id;
+                var accounts = conn.accounts;
 
-                account_list.ItemsSource = accounts;
+                if (searchAccount != null)
+                    account_list.ItemsSource = accounts.Where(account => account.memb___id.Contains(searchAccount)).Select(account => account.memb___id);
+                else
+                    account_list.ItemsSource = accounts.Select(account => account.memb___id);
             }
         }
 
@@ -138,7 +140,7 @@ namespace MUTools
 
         private void AccountListOnOpen(object sender, EventArgs e)
         {
-            showAccounts();
+            showAccounts(null);
         }
 
         private void CharacterListOnOpen(object sender, EventArgs e)
@@ -148,7 +150,7 @@ namespace MUTools
 
         private void AccountSearchKeyUp(object sender, KeyEventArgs e)
         {
-            
+            showAccounts(account_list.Text);
         }
 
         private void CharacterSearchKeyUp(object sender, KeyEventArgs e)
