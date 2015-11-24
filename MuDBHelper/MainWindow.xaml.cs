@@ -262,6 +262,10 @@ namespace MuDBHelper
         {
             if (current_item == null) return;
 
+            ImageBrush iBrush = new ImageBrush();
+            iBrush.ImageSource = new BitmapImage(new Uri(current_item_image.Source.ToString()));
+            ((Button) sender).Background = iBrush;
+
             int slotIndex = slot_indexes[sender];
 
            CharacterSpace inven = new CharacterSpace();

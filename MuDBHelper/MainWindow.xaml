@@ -99,7 +99,11 @@
                     <Border BorderBrush="Black" BorderThickness="1">
                         <Image Margin="31,-1,36,-1" Source="images/interface/character.png" />
                     </Border>
-                    <Button Content="Helm" x:Name="slot_helm" HorizontalAlignment="Left" Margin="176,119,0,0" VerticalAlignment="Top" Width="75" Height="63" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="16" Click="CharacterSlotOnClick"/>
+                    <Button Content="Helm" x:Name="slot_helm" HorizontalAlignment="Left" Margin="176,119,0,0" VerticalAlignment="Top" Width="75" Height="63" Foreground="White" FontWeight="Bold" FontSize="16" Background="{x:Null}" Click="CharacterSlotOnClick">
+                     <!--   <Button.Background>
+                            <ImageBrush ImageSource="images/items/00000000.gif" />
+                        </Button.Background>-->
+                    </Button>
                     <Button Content="Chest" x:Name="slot_chest" HorizontalAlignment="Left" Margin="176,187,0,0" VerticalAlignment="Top" Width="75" Height="95" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
                     <Button Content="LWeapon" x:Name="slot_lweapon" HorizontalAlignment="Left" Margin="50,187,0,0" VerticalAlignment="Top" Width="75" Height="95" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
                     <Button Content="RWeapon" x:Name="slot_rweapon" HorizontalAlignment="Left" Margin="297,187,0,0" VerticalAlignment="Top" Width="75" Height="95" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
