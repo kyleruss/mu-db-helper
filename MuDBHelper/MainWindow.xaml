@@ -5,6 +5,7 @@
         Title="MainWindow" Height="655" Width="1100"
         WindowStyle="None"
         ResizeMode="NoResize">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -131,19 +132,33 @@
                 </Grid>
                 <Label Content="Basic properties
                        " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="125" Foreground="White" Background="#FF8D8A8A" FontFamily="Segoe UI Light" FontSize="16" Height="33"/>
+
                 <Grid HorizontalAlignment="Left" Height="296" Margin="10,257,0,0" VerticalAlignment="Top" Width="306">
                     <Border BorderBrush="#FF8D8A8A" BorderThickness="1" HorizontalAlignment="Left" Height="296" VerticalAlignment="Top" Width="306"/>
                     <TabControl BorderThickness="0, 1, 0, 0" Height="234" Margin="10,52,10,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="#FFACACAC">
-                        <TabItem Header="Excellent" Background="{x:Null}" Foreground="Black">
+                        <TabItem Header="Excellent" Background="#FFACACAC" FontSize="14">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="0*"/>
+                                </Grid.ColumnDefinitions>
+                                <CheckBox x:Name="exc_opt1" Grid.Column="0" Foreground="#FF39BD24" Content="Option one" HorizontalAlignment="Left" Margin="13,17,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
+                                <CheckBox x:Name="exc_opt2" Grid.Column="0" Foreground="#FF39BD24" Content="Option two" HorizontalAlignment="Left" Margin="13,52,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
+                                <CheckBox x:Name="exc_opt3" Grid.Column="0" Foreground="#FF39BD24" Content="Option three" HorizontalAlignment="Left" Margin="13,84,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
+                                <CheckBox x:Name="exc_opt4" Grid.Column="0" Foreground="#FF39BD24" Content="Option four" HorizontalAlignment="Left" Margin="13,116,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
+                                <CheckBox x:Name="exc_opt5" Grid.Column="0" Foreground="#FF39BD24" Content="Option five" HorizontalAlignment="Left" Margin="13,148,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
+                                <CheckBox x:Name="exc_opt6" Grid.Column="0" Foreground="#FF39BD24" Content="Option six" HorizontalAlignment="Left" Margin="13,181,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
+
+
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Sockets" Background="#FFACACAC" FontSize="14">
                             <Grid/>
                         </TabItem>
-                        <TabItem Header="Sockets" Background="{x:Null}">
+                        <TabItem Header="Harmoney" Background="#FFACACAC" FontSize="14">
                             <Grid/>
                         </TabItem>
-                        <TabItem Header="Harmoney" Background="{x:Null}">
-                            <Grid/>
-                        </TabItem>
-                        <TabItem Header="Refine" Background="{x:Null}">
+                        <TabItem Header="Refine" Background="#FFACACAC" FontSize="14">
                             <Grid/>
                         </TabItem>
                     </TabControl>

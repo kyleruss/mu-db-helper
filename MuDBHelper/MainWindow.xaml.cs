@@ -87,6 +87,10 @@ namespace MuDBHelper
                     current_category =  (DBItemCategories)items_list.SelectedItems[0];
                     category_label.Content = current_category.name;
                     getItemList(current_category.ID);
+
+                    int excType = getExcType(current_category.ID, 0);
+                    showExcOptions(excType);
+
                     categoryBackButton.Visibility = Visibility.Visible;
                 }
 
@@ -175,6 +179,41 @@ namespace MuDBHelper
         private void CharacterSearchKeyUp(object sender, KeyEventArgs e)
         {
             showCharacters(character_list.Text);
+        }
+
+        private void showExcOptions(int type)
+        {
+            using (DBConnection conn = new DBConnection())
+            {
+                var opts = from e in conn.excOptions
+                           where e.ID == type
+                           select new 
+                           { 
+                               opt1 = e.option1, 
+                               opt2 = e.option2,
+                               opt3 = e.option3,
+                               opt4 = e.option4,
+                               opt5 = e.option5,
+                               opt6 = e.option6
+                           };
+
+                var excOption = opts.First();
+                exc_opt1.Content = excOption.opt1;
+                exc_opt2.Content = excOption.opt2;
+                exc_opt3.Content = excOption.opt3;
+                exc_opt4.Content = excOption.opt4;
+                exc_opt5.Content = excOption.opt5;
+                exc_opt6.Content = excOption.opt6;
+            }
+        }
+
+        private int getExcType(int category, int index)
+        {
+            if (category >= 0 && category < 6) return 1;
+
+            else if (category >= 6 && category < 12) return 2;
+
+            else return 0;
         }
 
         private void CharacterHelmOnClick(object sender, RoutedEventArgs e)

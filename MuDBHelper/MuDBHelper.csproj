@@ -59,6 +59,7 @@
     </ApplicationDefinition>
     <Compile Include="CharacterSpace.cs" />
     <Compile Include="DBAccount.cs" />
+    <Compile Include="DBExcOpts.cs" />
     <Compile Include="ExpInventorySpace.cs" />
     <Compile Include="InventoryStorage.cs" />
     <Compile Include="PShopSpace.cs" />

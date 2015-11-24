@@ -18,6 +18,8 @@ namespace MuDBHelper
 
         public Table<DBCharacter> characters;
 
+        public Table<DBExcOpts> excOptions;
+
         public DBConnection() : base("Server=.\\SQLEXPRESS;Database=MuOnline;Integrated Security=true") { }
     }
 }
