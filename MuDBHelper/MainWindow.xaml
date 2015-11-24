@@ -131,6 +131,27 @@
                 </Grid>
                 <Label Content="Basic properties
                        " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="125" Foreground="White" Background="#FF8D8A8A" FontFamily="Segoe UI Light" FontSize="16" Height="33"/>
+                <Grid HorizontalAlignment="Left" Height="296" Margin="10,257,0,0" VerticalAlignment="Top" Width="306">
+                    <Border BorderBrush="#FF8D8A8A" BorderThickness="1" HorizontalAlignment="Left" Height="296" VerticalAlignment="Top" Width="306"/>
+                    <TabControl BorderThickness="0, 1, 0, 0" Height="234" Margin="10,52,10,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="#FFACACAC">
+                        <TabItem Header="Excellent" Background="{x:Null}" Foreground="Black">
+                            <Grid/>
+                        </TabItem>
+                        <TabItem Header="Sockets" Background="{x:Null}">
+                            <Grid/>
+                        </TabItem>
+                        <TabItem Header="Harmoney" Background="{x:Null}">
+                            <Grid/>
+                        </TabItem>
+                        <TabItem Header="Refine" Background="{x:Null}">
+                            <Grid/>
+                        </TabItem>
+                    </TabControl>
+
+                </Grid>
+
+                <Label Content="Advanced properties
+                       " HorizontalAlignment="Left" Margin="10,257,0,0" VerticalAlignment="Top" Width="155" Foreground="White" Background="#FF8D8A8A" FontFamily="Segoe UI Light" FontSize="16" Height="33"/>
             </Grid>
         </Grid>
         <Border BorderBrush="#FF878686" BorderThickness="1" HorizontalAlignment="Left" Height="655" VerticalAlignment="Top" Width="1100">
