@@ -8,12 +8,23 @@ namespace MuDBHelper
 {
     class CharacterSpace : StorageSpace
     {
+
         public override int SpaceSize
         {
             get
             {
                 return Storage.CHARACTER_SLOTS * Storage.ITEM_SIZE;
             }
+        }
+
+        public CharacterSpace() : base()
+        {
+
+        }
+
+        public CharacterSpace(string hex) : base(hex)
+        {
+
         }
     }
 }

@@ -14,7 +14,7 @@ namespace MuDBHelper
         }
 
         protected char[] hexContainer;
-        protected Item[] items;
+        public Item[] items { get; set; }
         protected string hex;
 
         public StorageSpace()

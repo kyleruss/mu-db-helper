@@ -386,5 +386,13 @@ namespace MuDBHelper
                 hex_code += index;
             return hex_code;
         }
+
+        public string getImagePath()
+        {
+            string path = DBLoader.calcItemImage(index, category, 0, 0);
+            if(path == null) path = "default.gif";
+
+            return path;
+        }
     }
 }

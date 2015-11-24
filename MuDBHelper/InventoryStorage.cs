@@ -19,10 +19,55 @@ namespace MuDBHelper
 
         public InventoryStorage()
         {
-            inventory       =   new InventorySpace();
-            pShop           =   new PShopSpace();
-            expInventory    =   new ExpInventorySpace();
-            character       =   new CharacterSpace();
+            initDefaultSpaces();
+        }
+
+        public InventoryStorage(string hex)
+        {
+            if (hex.Length >= 7584 && hex.Length <= 7586)
+            {
+                int currentIndex, currentFinishIndex;
+                if(string.Equals(hex.Substring(0, 2), "0x", StringComparison.OrdinalIgnoreCase))
+                {
+                    currentIndex = 2;
+                    currentFinishIndex = 386;
+                }
+
+                else
+                {
+                    currentIndex = 0;
+                    currentFinishIndex = 384;
+                }
+
+                string characterHex = hex.Substring(currentIndex, currentFinishIndex);
+                character = new CharacterSpace();
+                currentIndex += currentFinishIndex + 1;
+                currentFinishIndex =  2048;
+
+                string inventoryHex = hex.Substring(currentIndex, currentFinishIndex);
+                inventory = new InventorySpace(inventoryHex);
+                currentIndex += currentFinishIndex + 1;
+                currentFinishIndex = 1024;
+
+                string shopHex = hex.Substring(currentIndex, currentFinishIndex);
+                pShop = new PShopSpace(shopHex);
+                currentIndex += currentFinishIndex + 1;
+                currentFinishIndex = 2048;
+
+                string expInventoryHex = hex.Substring(currentIndex, currentFinishIndex);
+                expInventory = new ExpInventorySpace();
+
+            }
+
+            else initDefaultSpaces();
+        }
+
+        private void initDefaultSpaces()
+        {
+            inventory = new InventorySpace();
+            pShop = new PShopSpace();
+            expInventory = new ExpInventorySpace();
+            character = new CharacterSpace();
         }
 
         public void buildHex()

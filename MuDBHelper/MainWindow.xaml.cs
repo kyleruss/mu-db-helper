@@ -22,6 +22,9 @@ namespace MuDBHelper
         private DBItems current_item;
         private DBItemCategories current_category;
         private Dictionary<object, int> slot_indexes;
+        private DBCharacter currentCharacter;
+        private DBAccount currentAccount;
+        private InventoryStorage currentInventory;
 
         public MainWindow()
         {
@@ -258,13 +261,22 @@ namespace MuDBHelper
             }
         }
 
+        private void changeSlotBackground(Uri path, Button slot)
+        {
+            Debug.WriteLine("path: " + path);
+            ImageBrush iBrush = new ImageBrush();
+            iBrush.ImageSource = new BitmapImage(path);
+            slot.Background = iBrush;
+        }
+
         private void CharacterSlotOnClick(object sender, RoutedEventArgs e)
         {
             if (current_item == null) return;
 
-            ImageBrush iBrush = new ImageBrush();
+            changeSlotBackground(new Uri(current_item_image.Source.ToString()), (Button)sender);
+            /*ImageBrush iBrush = new ImageBrush();
             iBrush.ImageSource = new BitmapImage(new Uri(current_item_image.Source.ToString()));
-            ((Button) sender).Background = iBrush;
+            ((Button) sender).Background = iBrush; */
 
             int slotIndex = slot_indexes[sender];
 
@@ -276,6 +288,38 @@ namespace MuDBHelper
             storage.character = inven;
             string user = (string) character_list.SelectedItem;
             storage.saveCharacterInventory(user); 
+        }
+
+        private void initCharacterDisplay()
+        {
+            CharacterSpace characterItems = currentInventory.character;
+            foreach(var slot in slot_indexes)
+            {
+                Button slotButton = (Button) slot.Key;
+                int index = slot.Value;
+                Item item = characterItems.items[index];
+
+                string imagePath = item.getImagePath();
+                changeSlotBackground(new Uri(@"images/items/" + imagePath, UriKind.Relative), slotButton);
+            }
+        }
+
+        private void initCharacter(string characterName)
+        {
+            using(DBConnection conn = new DBConnection())
+            {
+                currentCharacter = conn.characters.Single(c => c.Name == characterName);
+                string hex = BitConverter.ToString(currentCharacter.Inventory).Replace("-", "");                
+                currentInventory = new InventoryStorage(hex);
+                initCharacterDisplay();
+            }
+        }
+
+        private void CharacterListOnSelect(object sender, SelectionChangedEventArgs e)
+        {
+            string usernameSelected = (string) character_list.SelectedItem;
+            Debug.WriteLine("selected");
+            initCharacter(usernameSelected);
         }
     }
 }
