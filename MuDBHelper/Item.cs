@@ -95,6 +95,7 @@ namespace MuDBHelper
                     dec -= 4;
                     exc_hex = decToHex(dec).Substring(1, 1) + exc_hex.Substring(1, 1);
                 }
+
                 excellent_options = (opts == null) ? new ExcOpts(exc_hex) : opts;
             }
         }

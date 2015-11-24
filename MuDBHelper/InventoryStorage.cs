@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace MuDBHelper
 {
@@ -39,6 +40,25 @@ namespace MuDBHelper
             int maxLen = 7584;
             string padding = new string('F', maxLen - combinedLen);
             return "0x" + hexCombined + padding;
+        }
+
+        public void saveCharacterInventory(string characterName)
+        {
+            string inventoryHex = getBuiltHex();
+            Debug.WriteLine(inventoryHex);
+            using(DBConnection conn = new DBConnection())
+            {
+                try
+                {
+                    string sql = String.Format("UPDATE Character SET Inventory={0} WHERE Name='{1}'", inventoryHex, characterName);
+                    conn.ExecuteCommand(sql);
+                }
+
+                catch(Exception e)
+                {
+                    Debug.WriteLine("sql excp: " + e.Message);
+                }
+            }
         }
     }
 }

@@ -46,8 +46,8 @@ namespace MuDBHelper
             for(int i = 0; i < 16; i++)
                 levels.Add("Level " + i);
 
-            level_opt_list.ItemsSource = levels;
-            level_opt_list.SelectedIndex = 0;
+            level_field.ItemsSource = levels;
+            level_field.SelectedIndex = 0;
         }
 
         private void fillAddLevelList()
@@ -56,15 +56,14 @@ namespace MuDBHelper
             for (int i = 0; i <= 28; i += 4)
                 addLevels.Add("Level " + i);
 
-            add_level_opt_list.ItemsSource = addLevels;
-            add_level_opt_list.SelectedIndex = 0;
+            add_level_field.ItemsSource = addLevels;
+            add_level_field.SelectedIndex = 0;
         }
 
         public void getItemList(int category_id)
         {
             using (DBConnection conn = new DBConnection())
             {
-               // Debug.WriteLine("CATEGORY: " + category_id);
                 var items = from e in conn.items
                             where e.category_ID == category_id
                             select e;
@@ -73,7 +72,6 @@ namespace MuDBHelper
                                     select e;
 
                 items_list.ItemsSource = items.ToList();
-               // current_category = category.First();
             }
         }
 
@@ -103,8 +101,7 @@ namespace MuDBHelper
             }
 
             if(current_category == null) items_list.UnselectAll();
-            
-
+           
         }
 
         private void CategoryBackOnClick(object sender, RoutedEventArgs e)
@@ -112,6 +109,7 @@ namespace MuDBHelper
             categoryBackButton.Visibility = Visibility.Hidden;
             current_category = null;
             fillCategories();
+            showExcOptions(0);
         }
 
         private void showAccounts(string searchAccount)
@@ -216,16 +214,42 @@ namespace MuDBHelper
             else return 0;
         }
 
+        private ExcOpts getExcOpts()
+        {
+            return new ExcOpts((bool) exc_opt1.IsChecked, (bool) exc_opt2.IsChecked, (bool) exc_opt3.IsChecked, 
+                               (bool) exc_opt4.IsChecked, (bool) exc_opt5.IsChecked, (bool) exc_opt6.IsChecked);
+        }
+
+        private Item getItem()
+        {
+            if (current_item == null) return null;
+            else
+            {
+                int category = (int) current_item.category_ID;
+                int index = (int) current_item.ID;
+                int level = level_field.SelectedIndex;
+                int add_level = add_level_field.SelectedIndex;
+                int dur = int.Parse(dur_field.Text);
+                bool luck = (bool) luck_field.IsChecked;
+                bool skill = (bool) skill_field.IsChecked;
+                ExcOpts excOpts = getExcOpts();
+
+                return new Item(index, category, skill, luck, level, add_level, dur, excOpts);
+            }
+        }
+
         private void CharacterHelmOnClick(object sender, RoutedEventArgs e)
         {
-            InventorySpace inven = new InventorySpace();
-            Item item = new Item(4, 7, false, true, 15, 4, 255, new ExcOpts(true, true, true, true, true, true));
-            inven.addItem(item, 0);
+            if (current_item == null) return;
+
+            CharacterSpace inven = new CharacterSpace();
+            Item item = getItem();//new Item(4, 7, false, true, 15, 4, 255, new ExcOpts(true, true, true, true, true, true));
+            inven.addItem(item, 2);
             inven.buildSpaceHex();
             InventoryStorage storage = new InventoryStorage();
-            storage.inventory = inven;
-            storage.buildHex();
-            Debug.WriteLine("HEX: " + storage.getBuiltHex());
+            storage.character = inven;
+            string user = (string) character_list.SelectedItem;
+            storage.saveCharacterInventory(user);
         }
     }
 }

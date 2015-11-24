@@ -20,7 +20,7 @@ namespace MuDBHelper
         public int cLevel { get; set; }
 
         [Column]
-        public short Class { get; set; }
+        public byte Class { get; set; }
 
         [Column]
         public long Experience { get; set; }
@@ -39,29 +39,32 @@ namespace MuDBHelper
 
         [Column]
         public int Leadership { get; set; }
-
+        
         [Column]
         public int Money { get; set; }
 
         [Column]
-        public long Life { get; set; }
+        public Byte[] Inventory { get; set; }
+
+       [Column]
+        public Single Life { get; set; }
 
         [Column]
-        public long MaxLife { get; set; }
+        public Single MaxLife { get; set; }
 
         [Column]
-        public long Mana { get; set; }
+        public Single Mana { get; set; }
 
         [Column]
-        public long MaxMana { get; set; }
+        public Single MaxMana { get; set; }
 
         [Column]
-        public short MapNumber { get; set; }
+        public Int16 MapNumber { get; set; }
 
         [Column]
         public int Resets { get; set; }
 
         [Column]
-        public int GrandResets { get; set; }
+        public int GrandResets { get; set; }  
     }
 }

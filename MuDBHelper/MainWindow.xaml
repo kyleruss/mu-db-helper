@@ -112,19 +112,19 @@
                     <Border BorderBrush="#FF8D8A8A" BorderThickness="1" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top" Width="306" Grid.ColumnSpan="2"/>
 
                     <Label Grid.Column="0" Content="Item level" HorizontalAlignment="Left" Margin="27,45,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
-                    <ComboBox x:Name="level_opt_list" Grid.Column="1" HorizontalAlignment="Left" Margin="15,47,0,0" VerticalAlignment="Top" Width="120" Background="#FF39383C" Foreground="Black" BorderBrush="#FF918F8F" Height="22"/>
+                    <ComboBox x:Name="level_field" Grid.Column="1" HorizontalAlignment="Left" Margin="15,47,0,0" VerticalAlignment="Top" Width="120" Background="#FF39383C" Foreground="Black" BorderBrush="#FF918F8F" Height="22"/>
 
                     <Label Grid.Column="0" Content="Additional level" HorizontalAlignment="Left" Margin="27,81,0,0" VerticalAlignment="Top" Foreground="White"  FontSize="14"/>
-                    <ComboBox x:Name="add_level_opt_list" Grid.Column="1" HorizontalAlignment="Left" Margin="15,85,0,0" VerticalAlignment="Top" Width="120" Height="22" Foreground="Black"/>
+                    <ComboBox x:Name="add_level_field" Grid.Column="1" HorizontalAlignment="Left" Margin="15,85,0,0" VerticalAlignment="Top" Width="120" Height="22" Foreground="Black"/>
 
                     <Label Content="Durability" HorizontalAlignment="Left" Margin="27,121,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
-                    <xctk:IntegerUpDown Margin="15,125,34,80" Grid.Column="1" Text="255"/>
+                    <xctk:IntegerUpDown x:Name="dur_field" Margin="15,125,34,80" Grid.Column="1" Text="255"/>
 
                     <Label Content="Add Luck" Grid.Column="0" HorizontalAlignment="Left" Margin="27,156,0,0" VerticalAlignment="Top" FontSize="14" Foreground="White"/>
-                    <CheckBox Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="15,163,0,0" VerticalAlignment="Top" Foreground="White"/>
+                    <CheckBox x:Name="luck_field" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="15,163,0,0" VerticalAlignment="Top" Foreground="White"/>
 
                     <Label Grid.Column="0" Content="Add Skill" HorizontalAlignment="Left" Margin="27,187,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
-                    <CheckBox Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="15,193,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.638,0.633"/>
+                    <CheckBox x:Name="skill_field" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="15,193,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.638,0.633"/>
 
 
 
