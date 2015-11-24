@@ -21,6 +21,7 @@ namespace MuDBHelper
     {
         private DBItems current_item;
         private DBItemCategories current_category;
+        private Dictionary<object, int> slot_indexes;
 
         public MainWindow()
         {
@@ -28,6 +29,7 @@ namespace MuDBHelper
             fillCategories();
             fillLevelList();
             fillAddLevelList();
+            initSlotIndexes();
         }
 
         private void fillCategories()
@@ -50,6 +52,7 @@ namespace MuDBHelper
             level_field.SelectedIndex = 0;
         }
 
+
         private void fillAddLevelList()
         {
             List<string> addLevels = new List<string>();
@@ -58,6 +61,23 @@ namespace MuDBHelper
 
             add_level_field.ItemsSource = addLevels;
             add_level_field.SelectedIndex = 0;
+        }
+
+        private void initSlotIndexes()
+        {
+            slot_indexes = new Dictionary<object, int>();
+            slot_indexes.Add(slot_lweapon, 0);
+            slot_indexes.Add(slot_rweapon, 1);
+            slot_indexes.Add(slot_helm, 2);
+            slot_indexes.Add(slot_chest, 3);
+            slot_indexes.Add(slot_legs, 4);
+            slot_indexes.Add(slot_gloves, 5);
+            slot_indexes.Add(slot_boots, 6);
+            slot_indexes.Add(slot_wings, 7);
+            slot_indexes.Add(slot_pet, 8);
+            slot_indexes.Add(slot_pen, 9);
+            slot_indexes.Add(slot_lring, 10);
+            slot_indexes.Add(slot_rring, 11);
         }
 
         public void getItemList(int category_id)
@@ -238,18 +258,20 @@ namespace MuDBHelper
             }
         }
 
-        private void CharacterHelmOnClick(object sender, RoutedEventArgs e)
+        private void CharacterSlotOnClick(object sender, RoutedEventArgs e)
         {
             if (current_item == null) return;
 
-            CharacterSpace inven = new CharacterSpace();
-            Item item = getItem();//new Item(4, 7, false, true, 15, 4, 255, new ExcOpts(true, true, true, true, true, true));
-            inven.addItem(item, 2);
+            int slotIndex = slot_indexes[sender];
+
+           CharacterSpace inven = new CharacterSpace();
+            Item item = getItem();
+            inven.addItem(item, slotIndex);
             inven.buildSpaceHex();
             InventoryStorage storage = new InventoryStorage();
             storage.character = inven;
             string user = (string) character_list.SelectedItem;
-            storage.saveCharacterInventory(user);
+            storage.saveCharacterInventory(user); 
         }
     }
 }
