@@ -161,5 +161,17 @@ namespace MuDBHelper
         {
             showCharacters(character_list.Text);
         }
+
+        private void CharacterHelmOnClick(object sender, RoutedEventArgs e)
+        {
+            InventorySpace inven = new InventorySpace();
+            Item item = new Item(4, 7, false, true, 15, 4, 255, new ExcOpts(true, true, true, true, true, true));
+            inven.addItem(item, 0);
+            inven.buildSpaceHex();
+            InventoryStorage storage = new InventoryStorage();
+            storage.inventory = inven;
+            storage.buildHex();
+            Debug.WriteLine("HEX: " + storage.getBuiltHex());
+        }
     }
 }

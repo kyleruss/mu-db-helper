@@ -16,6 +16,6 @@ namespace MuDBHelper
 
         public const int EXP_INVENTORY_SLOTS = 64;
 
-        public const int CHARACTER_SLOTS = 13;
+        public const int CHARACTER_SLOTS = 12;
     }
 }

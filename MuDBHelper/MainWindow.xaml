@@ -93,12 +93,11 @@
 
                 </Grid>
                 <Grid HorizontalAlignment="Left" Height="461" Margin="10,92,0,0" VerticalAlignment="Top" Width="429">
-                    <StackPanel>
-                        <Border BorderBrush="Black" BorderThickness="1" Height="375">
-                            <Image Margin="31,-1,36,-1" Source="images/interface/character.png"/>
-                        </Border>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <Image Margin="31,-1,36,-1" Source="images/interface/character.png" />
+                    </Border>
+                    <Button Content="Helm" HorizontalAlignment="Left" Margin="176,119,0,0" VerticalAlignment="Top" Width="75" Height="63" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="16" Click="CharacterHelmOnClick"/>
 
-                    </StackPanel>
                 </Grid>
             </Grid>
             <Grid HorizontalAlignment="Left" Height="563" Margin="774,0,0,0" VerticalAlignment="Top" Width="326" Background="#CC000000">
