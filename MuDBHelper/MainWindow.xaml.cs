@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit;
 
 namespace MuDBHelper
 {
@@ -24,18 +25,12 @@ namespace MuDBHelper
         public MainWindow()
         {
             InitializeComponent();
-            fill_categories();
-            InventorySpace inven = new InventorySpace();
-            Item item = new Item(0, 4, true, true, 15, 4, 255, new ExcOpts(true, true, true, true, true, true));
-            inven.addItem(item, 0);
-            inven.buildSpaceHex();
-            InventoryStorage storage = new InventoryStorage();
-            storage.inventory = inven;
-            storage.buildHex();
-            Debug.WriteLine("HEX: " + storage.getBuiltHex());
+            fillCategories();
+            fillLevelList();
+            fillAddLevelList();
         }
 
-        public void fill_categories()
+        private void fillCategories()
         {
             using (DBConnection conn = new DBConnection())
             {
@@ -43,6 +38,26 @@ namespace MuDBHelper
                                  select e;
                 items_list.ItemsSource = categories.ToList();
             }
+        }
+
+        private void fillLevelList()
+        {
+            List<string> levels = new List<string>();
+            for(int i = 0; i < 16; i++)
+                levels.Add("Level " + i);
+
+            level_opt_list.ItemsSource = levels;
+            level_opt_list.SelectedIndex = 0;
+        }
+
+        private void fillAddLevelList()
+        {
+            List<string> addLevels = new List<string>();
+            for (int i = 0; i <= 28; i += 4)
+                addLevels.Add("Level " + i);
+
+            add_level_opt_list.ItemsSource = addLevels;
+            add_level_opt_list.SelectedIndex = 0;
         }
 
         public void getItemList(int category_id)
@@ -92,7 +107,7 @@ namespace MuDBHelper
         {
             categoryBackButton.Visibility = Visibility.Hidden;
             current_category = null;
-            fill_categories();
+            fillCategories();
         }
 
         private void showAccounts(string searchAccount)
