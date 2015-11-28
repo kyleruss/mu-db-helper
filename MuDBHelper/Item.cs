@@ -287,6 +287,11 @@ namespace MuDBHelper
             }
         }
 
+        public bool isItemEmpty()
+        {
+            return hex.Substring(0, 2).ToLower().Equals("ff") && hex.Substring(17, 2).ToLower().Equals("ff");
+        }
+
 
         //--------------------------------------------------------------
         //Skill, level, luck and additional damge properties calculated
@@ -296,13 +301,16 @@ namespace MuDBHelper
             if (hex == null) return;
             else
             {
+                index = (int)hexToDec(hex.Substring(0, 2));
+                category = (int)hexToDec(hex.Substring(17, 2));
                 int[] temp = { (int)hexToDec(hex.Substring(2, 1)), (int)hexToDec(hex.Substring(3, 1)) };
                 int addOpt = (int)hexToDec(hex.Substring(14, 1));
                 bool is_opt = false;
 
                 //add opts adds +4 @ pos 14 if opts are >= +16
                 if (addOpt >= 4) is_opt = true;
-                //Determining +skill:
+
+                //Determining +skill
                 if (temp[0] > 7)
                 {
                     skill = true;
@@ -389,6 +397,7 @@ namespace MuDBHelper
 
         public string getImagePath()
         {
+            Debug.WriteLine("index: " + index + " category " + category);
             string path = DBLoader.calcItemImage(index, category, 0, 0);
             if(path == null) path = "default.gif";
 

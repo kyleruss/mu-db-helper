@@ -263,7 +263,6 @@ namespace MuDBHelper
 
         private void changeSlotBackground(Uri path, Button slot)
         {
-            Debug.WriteLine("path: " + path);
             ImageBrush iBrush = new ImageBrush();
             iBrush.ImageSource = new BitmapImage(path);
             slot.Background = iBrush;
@@ -274,9 +273,6 @@ namespace MuDBHelper
             if (current_item == null) return;
 
             changeSlotBackground(new Uri(current_item_image.Source.ToString()), (Button)sender);
-            /*ImageBrush iBrush = new ImageBrush();
-            iBrush.ImageSource = new BitmapImage(new Uri(current_item_image.Source.ToString()));
-            ((Button) sender).Background = iBrush; */
 
             int slotIndex = slot_indexes[sender];
 
@@ -293,14 +289,18 @@ namespace MuDBHelper
         private void initCharacterDisplay()
         {
             CharacterSpace characterItems = currentInventory.character;
+            
             foreach(var slot in slot_indexes)
             {
                 Button slotButton = (Button) slot.Key;
                 int index = slot.Value;
                 Item item = characterItems.items[index];
 
-                string imagePath = item.getImagePath();
-                changeSlotBackground(new Uri(@"images/items/" + imagePath, UriKind.Relative), slotButton);
+                if (!item.isItemEmpty())
+                {
+                    string imagePath = item.getImagePath();
+                    changeSlotBackground(new Uri(@"images/items/" + imagePath, UriKind.Relative), slotButton);
+                }
             }
         }
 
@@ -309,8 +309,9 @@ namespace MuDBHelper
             using(DBConnection conn = new DBConnection())
             {
                 currentCharacter = conn.characters.Single(c => c.Name == characterName);
-                string hex = BitConverter.ToString(currentCharacter.Inventory).Replace("-", "");                
+                string hex = BitConverter.ToString(currentCharacter.Inventory).Replace("-", "");
                 currentInventory = new InventoryStorage(hex);
+                Debug.WriteLine(currentInventory.character.getHex());
                 initCharacterDisplay();
             }
         }

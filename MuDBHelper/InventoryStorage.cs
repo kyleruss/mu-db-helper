@@ -40,7 +40,7 @@ namespace MuDBHelper
                 }
 
                 string characterHex = hex.Substring(currentIndex, currentFinishIndex);
-                character = new CharacterSpace();
+                character = new CharacterSpace(characterHex);
                 currentIndex += currentFinishIndex + 1;
                 currentFinishIndex =  2048;
 
