@@ -57,12 +57,12 @@
                     </ListBox.ItemContainerStyle>
                 </ListBox>
             </Grid>
-            
+
             <!-- CURRENT ITEM IMAGE PANEL -->
             <Grid HorizontalAlignment="Left" Height="223" VerticalAlignment="Top" Width="325" Background="#FFDFF2FF">
                 <Border BorderBrush="Black" BorderThickness="0,0,1,1" HorizontalAlignment="Left" Height="223" VerticalAlignment="Top" Width="325"/>
                 <Grid HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Width="325" Background="#CC000000"/>
-                
+
                 <!-- CURRENT ITEM NAME -->
                 <Label x:Name="item_image_name_label" Content="No item selected" HorizontalAlignment="Left" Margin="91,4,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Light" FontSize="18" Foreground="White"/>
                 <Grid HorizontalAlignment="Left" Height="100" Margin="101,92,0,0" VerticalAlignment="Top" Width="131">
@@ -83,13 +83,13 @@
                         <RowDefinition Height="29*"/>
                         <RowDefinition Height="36*"/>
                     </Grid.RowDefinitions>
-                    
+
                     <!-- USER STORAGE  CONTAINER -->
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="65" VerticalAlignment="Top" Width="429" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
                     <Label Content="Username" FontFamily="Segoe UI Light" FontSize="12pt" HorizontalAlignment="Left" Margin="40,1,0,0" VerticalAlignment="Top" Height="29" Width="81" Grid.RowSpan="2"/>
                     <Label Content="Character" FontFamily="Segoe UI Light" FontSize="12pt" Grid.Column="1" HorizontalAlignment="Left" Margin="40,1,0,0" VerticalAlignment="Top" Height="29" Width="96" Grid.RowSpan="2"/>
                     <Label Content="Storage" FontFamily="Segoe UI Light" FontSize="12pt" Grid.Column="2" HorizontalAlignment="Left" Margin="38,1,0,0" VerticalAlignment="Top" Height="33" Width="73" Grid.RowSpan="2"/>
-                    
+
                     <!-- ACCOUNT LIST -->
                     <ComboBox Text="Select account" x:Name="account_list" IsEditable="True" HorizontalAlignment="Left" Margin="16,3,0,0" VerticalAlignment="Top" Width="120" Grid.Row="1" Height="22" DropDownOpened="AccountListOnOpen" KeyUp="AccountSearchKeyUp"/>
                     <!-- CHARACTER LIST -->
@@ -106,7 +106,24 @@
 
 
                 </Grid>
-                <Grid HorizontalAlignment="Left" Height="461" Margin="10,92,0,0" VerticalAlignment="Top" Width="429">
+                <Grid Name="inventory_storage_container" HorizontalAlignment="Left" Height="461" Margin="10,92,0,0" VerticalAlignment="Top" Width="429">
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <Grid Name="inventory_grid" HorizontalAlignment="Left" Height="282" Margin="9,9,0,0" VerticalAlignment="Top" Width="409">
+                           <!-- <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="66*"/>
+                                <ColumnDefinition Width="94*"/>
+                                <ColumnDefinition Width="103*"/>
+                                <ColumnDefinition Width="147*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Grid.ColumnSpan="2" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
+                            <Button Grid.ColumnSpan="2" Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="39,60,0,0" VerticalAlignment="Top" Width="75"/>-->
+
+                        </Grid>
+
+                    </Border>
+                </Grid>
+
+                <Grid Name="character_storage_container" Visibility="Hidden" HorizontalAlignment="Left" Height="461" Margin="10,92,0,0" VerticalAlignment="Top" Width="429">
                     <Border BorderBrush="Black" BorderThickness="1">
                         <Image Margin="31,-1,36,-1" Source="images/interface/character.png" />
                     </Border>

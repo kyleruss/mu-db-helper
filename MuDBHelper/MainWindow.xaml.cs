@@ -33,6 +33,7 @@ namespace MuDBHelper
             fillLevelList();
             fillAddLevelList();
             initSlotIndexes();
+            createInventoryGrid();
         }
 
         private void fillCategories()
@@ -289,6 +290,55 @@ namespace MuDBHelper
             currentInventory.saveCharacterInventory(currentCharacter.Name); 
         }
 
+        private void createInventoryGrid()
+        {
+            int numRows = 8;
+            int numCols = 8;
+            int colWidth = 35;
+            int rowHeight = 35;
+
+            for (int row = 0; row < numRows; row++)
+            {
+                RowDefinition rowDef = new RowDefinition();
+                rowDef.Height = new GridLength(1, GridUnitType.Auto);
+                inventory_grid.RowDefinitions.Add(rowDef);
+
+                for(int col = 0; col < numCols; col++)
+                {
+                    ColumnDefinition colDef = new ColumnDefinition();
+                    colDef.Width = new GridLength(1, GridUnitType.Auto);
+                    inventory_grid.ColumnDefinitions.Add(colDef);
+
+
+                    int leftThick = 1;
+                    int topThick = 1;
+
+                    if (col > 0)
+                        leftThick = 0;
+
+                    if (row > 0)
+                        topThick = 0;
+
+                    Button inventorySlot = new Button();
+                    inventorySlot.BorderThickness = new Thickness(leftThick, topThick, 1, 1);
+                    inventorySlot.BorderBrush = Brushes.Black;
+                    inventorySlot.HorizontalAlignment = HorizontalAlignment.Left;
+                    inventorySlot.VerticalAlignment = VerticalAlignment.Top;
+                    inventorySlot.Width = colWidth;
+                    inventorySlot.Height = rowHeight;
+
+                    inventorySlot.Background = Brushes.Transparent;
+                    inventorySlot.Click += new RoutedEventHandler(inventorySlotOnClick);
+
+
+
+                    inventory_grid.Children.Add(inventorySlot);
+                    Grid.SetRow(inventorySlot, row);
+                    Grid.SetColumn(inventorySlot, col);
+                }
+            }
+        }
+
         private void initCharacterDisplay()
         {
             CharacterSpace characterItems = currentInventory.character;
@@ -319,6 +369,35 @@ namespace MuDBHelper
                 currentInventory = new InventoryStorage(hex);
                 initCharacterDisplay();
             }
+        }
+
+        public void inventorySlotOnClick(object sender, RoutedEventArgs e)
+        {
+            if (current_item == null) return;
+
+            int col = Grid.GetColumn((Button) sender);
+            int row = Grid.GetRow((Button)sender);
+            int width = (int)current_item.width - 1;
+            int height = (int) current_item.height - 1;
+            int cellDim = 35;
+
+            if (width > 0 || height > 0)
+            {
+                foreach (Button button in inventory_grid.Children.Cast<UIElement>()
+                    .Where(c => (Grid.GetColumn(c) >= col  && Grid.GetColumn(c) <= col + width)
+                    && (Grid.GetRow(c) >= row && Grid.GetRow(c) <= row + height)))
+                {
+                    button.Visibility = Visibility.Hidden;
+                }
+
+                ((Button) sender).Visibility = Visibility.Visible;
+            }
+
+            ((Button)sender).Width = (width + 1) * cellDim;
+            ((Button)sender).Height = (height + 1) * cellDim;
+            Grid.SetColumnSpan((Button)sender, width + 1);
+            Grid.SetRowSpan((Button)sender, 20);
+            changeSlotBackground(new Uri(@"images/items/" + current_item.image_path, UriKind.Relative), (Button) sender);
         }
 
         private void CharacterListOnSelect(object sender, SelectionChangedEventArgs e)
