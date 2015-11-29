@@ -371,33 +371,58 @@ namespace MuDBHelper
             }
         }
 
-        public void inventorySlotOnClick(object sender, RoutedEventArgs e)
+        private void displayItemInInventory(DBItems item, Button slot)
         {
-            if (current_item == null) return;
-
-            int col = Grid.GetColumn((Button) sender);
-            int row = Grid.GetRow((Button)sender);
-            int width = (int)current_item.width - 1;
-            int height = (int) current_item.height - 1;
+            int col = Grid.GetColumn((Button)slot);
+            int row = Grid.GetRow((Button)slot);
+            int width = (int)item.width - 1;
+            int height = (int)item.height - 1;
             int cellDim = 35;
 
             if (width > 0 || height > 0)
             {
-                foreach (Button button in inventory_grid.Children.Cast<UIElement>()
-                    .Where(c => (Grid.GetColumn(c) >= col  && Grid.GetColumn(c) <= col + width)
+                foreach (Button current in inventory_grid.Children.Cast<UIElement>()
+                    .Where(c => (Grid.GetColumn(c) >= col && Grid.GetColumn(c) <= col + width)
                     && (Grid.GetRow(c) >= row && Grid.GetRow(c) <= row + height)))
                 {
-                    button.Visibility = Visibility.Hidden;
+                    current.Visibility = Visibility.Hidden;
                 }
 
-                ((Button) sender).Visibility = Visibility.Visible;
+                ((Button)slot).Visibility = Visibility.Visible;
             }
 
-            ((Button)sender).Width = (width + 1) * cellDim;
-            ((Button)sender).Height = (height + 1) * cellDim;
-            Grid.SetColumnSpan((Button)sender, width + 1);
-            Grid.SetRowSpan((Button)sender, 20);
-            changeSlotBackground(new Uri(@"images/items/" + current_item.image_path, UriKind.Relative), (Button) sender);
+            ((Button)slot).Width = (width + 1) * cellDim;
+            ((Button)slot).Height = (height + 1) * cellDim;
+            Grid.SetColumnSpan((Button)slot, width + 1);
+            Grid.SetRowSpan((Button)slot, height + 1);
+            changeSlotBackground(new Uri(@"images/items/" + current_item.image_path, UriKind.Relative), (Button)slot);
+        }
+
+        public void inventorySlotOnClick(object sender, RoutedEventArgs e)
+        {
+            if (current_item == null) return;
+
+            displayItemInInventory(current_item, (Button) sender);
+        }
+
+        private void initInventoryDisplay()
+        {
+            if (currentInventory == null) return;
+
+            InventorySpace inventory = currentInventory.inventory;
+            int storageIndex = 0;
+
+            foreach(Button slot in inventory_grid.Children.Cast<UIElement>())
+            {
+                Item current = inventory.items[storageIndex];
+                storageIndex++;
+
+                if (current.isItemEmpty() || slot.Visibility == Visibility.Hidden) continue;
+
+                DBItems storedItem = DBItems.findItem(current.category, current.index);
+                displayItemInInventory(storedItem, slot);                
+            }
+            
         }
 
         private void CharacterListOnSelect(object sender, SelectionChangedEventArgs e)
