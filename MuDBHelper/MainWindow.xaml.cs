@@ -427,7 +427,6 @@ namespace MuDBHelper
                 current.Height = 35;
                 current.Visibility = Visibility.Visible;
             }
-
         }
 
         private bool isInsideBoundaries(DBItems item, Button slot)
@@ -481,7 +480,7 @@ namespace MuDBHelper
             {
                 current_item_index = index;
                 initItemOptions(storage_items[(Button)sender]);
-                toggleStorageControls(Visibility.Visible);
+                storage_ctrls_container.Visibility = Visibility.Visible;
             }
 
             else
@@ -528,22 +527,17 @@ namespace MuDBHelper
             string usernameSelected = (string) character_list.SelectedItem;
             initCharacter(usernameSelected);
         }
-
-        private void toggleStorageControls(Visibility visibile)
-        {
-            storage_ctrl_remove.Visibility = visibile;
-            storage_ctrl_save.Visibility = visibile;
-        }
+        
 
         private void OnStorageSaveClick(object sender, RoutedEventArgs e)
         {
-
+            updateSpace(current_item_index, currentInventory.inventory);
         }
 
         private void OnStorageRemoveClick(object sender, RoutedEventArgs e)
         {
             removeFromSpace(current_item_index, currentInventory.inventory);
-            toggleStorageControls(Visibility.Hidden);
+            storage_ctrls_container.Visibility = Visibility.Hidden;
         }
     }
 }

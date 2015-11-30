@@ -136,7 +136,7 @@
                 </Grid>
 
                 <!-- STORAGE CONTROLS -->
-                <Grid HorizontalAlignment="Left" Height="69" Margin="10,484,0,0" VerticalAlignment="Top" Width="429">
+                <Grid x:Name="storage_ctrls_container" HorizontalAlignment="Left" Height="69" Margin="10,484,0,0" VerticalAlignment="Top" Width="429" Visibility="Hidden">
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="69" VerticalAlignment="Top" Width="429"/>
                     <Button x:Name="storage_ctrl_remove" Content="Remove" HorizontalAlignment="Left" Margin="121,19,0,0" VerticalAlignment="Top" Width="75" Height="38" Click="OnStorageRemoveClick"/>
                     <Button x:Name="storage_ctrl_save" Content="Save" HorizontalAlignment="Left" Margin="228,19,0,0" VerticalAlignment="Top" Width="75" Height="38" Click="OnStorageSaveClick"/>
