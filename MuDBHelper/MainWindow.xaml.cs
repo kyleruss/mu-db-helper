@@ -23,6 +23,7 @@ namespace MuDBHelper
         private DBItemCategories current_category;
         private Dictionary<object, int> slot_indexes;
         private Dictionary<Button, Item> storage_items;
+        private int current_item_index;
         private DBCharacter currentCharacter;
         private DBAccount currentAccount;
         private InventoryStorage currentInventory;
@@ -316,17 +317,20 @@ namespace MuDBHelper
 
             int slotIndex = slot_indexes[sender];
 
-           /* CharacterSpace inven = currentInventory.character;
-            inven.addItem(getItem(), slotIndex);
-            currentInventory.saveCharacterInventory(currentCharacter.Name); */
-
             updateSpace(slotIndex, currentInventory.character);
         }
 
         private void updateSpace(int index, StorageSpace space)
         {
-            space.addItem(getItem(), index);
+            space.saveItem(getItem(), index);
             currentInventory.saveCharacterInventory(currentCharacter.Name); 
+        }
+
+        private void removeFromSpace(int index, StorageSpace space)
+        {
+            space.removeItem(index);
+            currentInventory.saveCharacterInventory(currentCharacter.Name);
+            initInventoryDisplay();
         }
 
         private void createInventoryGrid()
@@ -413,6 +417,8 @@ namespace MuDBHelper
 
         private void resetInventory()
         {
+            storage_items.Clear();
+
             foreach (Button current in inventory_grid.Children.Cast<UIElement>())
             {
                 Grid.SetRowSpan(current, 1);
@@ -472,11 +478,15 @@ namespace MuDBHelper
             int index = (Grid.GetRow((Button) sender) * numCols) + Grid.GetColumn((Button) sender);
 
             if (storage_items.ContainsKey((Button)sender))
+            {
+                current_item_index = index;
                 initItemOptions(storage_items[(Button)sender]);
+                toggleStorageControls(Visibility.Visible);
+            }
 
             else
             {
-                if (current_item != null && isInsideBoundaries(current_item, (Button) sender))
+                if (current_item != null && isInsideBoundaries(current_item, (Button)sender))
                 {
                     displayItemInInventory(current_item, (Button)sender);
                     updateSpace(index, currentInventory.inventory);
@@ -506,7 +516,7 @@ namespace MuDBHelper
                 DBItems storedItem = DBItems.findItem(current.category, current.index);
 
                 if (storedItem != null)
-                {
+                {                    
                     storage_items.Add(slot, current);
                     displayItemInInventory(storedItem, slot);
                 }
@@ -517,6 +527,23 @@ namespace MuDBHelper
         {
             string usernameSelected = (string) character_list.SelectedItem;
             initCharacter(usernameSelected);
+        }
+
+        private void toggleStorageControls(Visibility visibile)
+        {
+            storage_ctrl_remove.Visibility = visibile;
+            storage_ctrl_save.Visibility = visibile;
+        }
+
+        private void OnStorageSaveClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OnStorageRemoveClick(object sender, RoutedEventArgs e)
+        {
+            removeFromSpace(current_item_index, currentInventory.inventory);
+            toggleStorageControls(Visibility.Hidden);
         }
     }
 }

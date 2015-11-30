@@ -54,17 +54,16 @@ namespace MuDBHelper
             hex = hex_temp;
         }
 
-        public void addItem(Item item, int index)
+        public void saveItem(Item item, int index)
         {
-            Item temp = items[index];
-            if (!temp.isEmpty())
-                return;
+            items[index] = item;
+            buildSpaceHex();
+        }
 
-            else
-            {
-                items[index] = item;
-                buildSpaceHex();
-            }
+        public void removeItem(int index)
+        {
+            items[index] = new Item();
+            buildSpaceHex();
         }
 
         public void initEmptyItems()
