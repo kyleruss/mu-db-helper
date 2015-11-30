@@ -261,6 +261,26 @@ namespace MuDBHelper
             }
         }
 
+        private void initBasicOptions(Item item)
+        {
+            level_field.SelectedIndex = item.level;
+            add_level_field.SelectedIndex = item.addLevel;
+            dur_field.Value = item.durability;
+            luck_field.IsChecked = item.luck;
+            skill_field.IsChecked = item.skill;
+        }
+
+        private void initExcOptions(Item item)
+        {
+            ExcOpts excOpts = item.excellent_options;
+            exc_opt1.IsChecked = excOpts.isExcellent(0);
+            exc_opt2.IsChecked = excOpts.isExcellent(1);
+            exc_opt3.IsChecked = excOpts.isExcellent(2);
+            exc_opt4.IsChecked = excOpts.isExcellent(3);
+            exc_opt5.IsChecked = excOpts.isExcellent(4);
+            exc_opt6.IsChecked = excOpts.isExcellent(5);
+        }
+
         private void initItemOptions(Item item)
         {
             if (item == null) return;
@@ -270,6 +290,10 @@ namespace MuDBHelper
 
             getItemList(item.category);
             items_list.SelectedIndex = item.index;
+            items_list.ScrollIntoView(items_list.SelectedIndex);
+
+            initBasicOptions(item);
+            initExcOptions(item);
         }
 
         private void changeSlotBackground(Uri path, Button slot)

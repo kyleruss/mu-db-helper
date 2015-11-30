@@ -54,6 +54,12 @@ namespace MuDBHelper
             return options;
         }
 
+        public bool isExcellent(int index)
+        {
+            if (index < 0 || index > opt_keys.Length) return false;
+            else return options[opt_keys[index]];
+        }
+
         public long[] calculateOptions()
         {
             long dec = Item.hexToDec(code);
