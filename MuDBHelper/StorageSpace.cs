@@ -57,11 +57,14 @@ namespace MuDBHelper
         public void addItem(Item item, int index)
         {
             Item temp = items[index];
-            if (!temp.isEmpty()) 
+            if (!temp.isEmpty())
                 return;
 
             else
+            {
                 items[index] = item;
+                buildSpaceHex();
+            }
         }
 
         public void initEmptyItems()

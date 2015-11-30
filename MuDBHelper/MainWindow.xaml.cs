@@ -316,11 +316,16 @@ namespace MuDBHelper
 
             int slotIndex = slot_indexes[sender];
 
-            CharacterSpace inven = currentInventory.character;
-            Item item = getItem();
-            inven.addItem(item, slotIndex);
-            inven.buildSpaceHex();
-            currentInventory.character = inven;
+           /* CharacterSpace inven = currentInventory.character;
+            inven.addItem(getItem(), slotIndex);
+            currentInventory.saveCharacterInventory(currentCharacter.Name); */
+
+            updateSpace(slotIndex, currentInventory.character);
+        }
+
+        private void updateSpace(int index, StorageSpace space)
+        {
+            space.addItem(getItem(), index);
             currentInventory.saveCharacterInventory(currentCharacter.Name); 
         }
 
@@ -403,7 +408,6 @@ namespace MuDBHelper
                 currentInventory = new InventoryStorage(hex);
                 initCharacterDisplay();
                 initInventoryDisplay();
-                
             }
         }
 
@@ -420,7 +424,7 @@ namespace MuDBHelper
 
         }
 
-        private void displayItemInInventory(DBItems item, Button slot)
+        private bool isInsideBoundaries(DBItems item, Button slot)
         {
             int col = Grid.GetColumn((Button)slot);
             int row = Grid.GetRow((Button)slot);
@@ -428,7 +432,17 @@ namespace MuDBHelper
             int height = (int)item.height - 1;
 
             if ((col + width) >= inventory_grid.ColumnDefinitions.Count || (row + height) >= inventory_grid.RowDefinitions.Count)
-                return;
+                return false;
+            else
+                return true;
+        }
+
+        private void displayItemInInventory(DBItems item, Button slot)
+        {
+            int col = Grid.GetColumn((Button)slot);
+            int row = Grid.GetRow((Button)slot);
+            int width = (int)item.width - 1;
+            int height = (int)item.height - 1;
 
             int cellDim = 35;
 
@@ -454,13 +468,19 @@ namespace MuDBHelper
 
         public void inventorySlotOnClick(object sender, RoutedEventArgs e)
         {
+            int numCols = inventory_grid.ColumnDefinitions.Count;
+            int index = (Grid.GetRow((Button) sender) * numCols) + Grid.GetColumn((Button) sender);
+
             if (storage_items.ContainsKey((Button)sender))
                 initItemOptions(storage_items[(Button)sender]);
 
             else
             {
-                if (current_item != null)
+                if (current_item != null && isInsideBoundaries(current_item, (Button) sender))
+                {
                     displayItemInInventory(current_item, (Button)sender);
+                    updateSpace(index, currentInventory.inventory);
+                }
             }
         }
 

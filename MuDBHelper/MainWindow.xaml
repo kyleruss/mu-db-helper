@@ -106,22 +106,16 @@
 
 
                 </Grid>
-                <Grid Name="inventory_storage_container" HorizontalAlignment="Left" Height="461" Margin="10,92,0,0" VerticalAlignment="Top" Width="429">
+                <Grid Name="inventory_storage_container" HorizontalAlignment="Left" Height="374" Margin="10,92,0,0" VerticalAlignment="Top" Width="429">
                     <Border BorderBrush="Black" BorderThickness="1">
                         <Grid Name="inventory_grid" HorizontalAlignment="Left" Height="282" Margin="9,9,0,0" VerticalAlignment="Top" Width="409">
-                           <!-- <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="66*"/>
-                                <ColumnDefinition Width="94*"/>
-                                <ColumnDefinition Width="103*"/>
-                                <ColumnDefinition Width="147*"/>
-                            </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" Grid.ColumnSpan="2" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
-                            <Button Grid.ColumnSpan="2" Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="39,60,0,0" VerticalAlignment="Top" Width="75"/>-->
 
                         </Grid>
 
                     </Border>
                 </Grid>
+
+
 
                 <Grid Name="character_storage_container" Visibility="Hidden" HorizontalAlignment="Left" Height="461" Margin="10,92,0,0" VerticalAlignment="Top" Width="429">
                     <Border BorderBrush="Black" BorderThickness="1">
@@ -140,6 +134,15 @@
                     <Button Content="Pen" x:Name="slot_pen" HorizontalAlignment="Left" Margin="130,144,0,0" VerticalAlignment="Top" Width="41" Height="38" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
                     <Button Content="Pet" x:Name="slot_pet" HorizontalAlignment="Left" Margin="55,120,0,0" VerticalAlignment="Top" Width="70" Height="62" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
                 </Grid>
+
+                <!-- STORAGE CONTROLS -->
+                <Grid HorizontalAlignment="Left" Height="69" Margin="10,484,0,0" VerticalAlignment="Top" Width="429">
+                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="69" VerticalAlignment="Top" Width="429"/>
+                    
+                    
+                </Grid>
+
+
             </Grid>
             <Grid HorizontalAlignment="Left" Height="563" Margin="774,0,0,0" VerticalAlignment="Top" Width="326" Background="#CC000000">
                 <Grid HorizontalAlignment="Left" Height="227" Margin="10,10,0,0" VerticalAlignment="Top" Width="306">
@@ -156,16 +159,13 @@
                     <ComboBox x:Name="add_level_field" Grid.Column="1" HorizontalAlignment="Left" Margin="15,85,0,0" VerticalAlignment="Top" Width="120" Height="22" Foreground="Black"/>
 
                     <Label Content="Durability" HorizontalAlignment="Left" Margin="27,121,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
-                    <xctk:IntegerUpDown x:Name="dur_field" Margin="15,125,34,80" Grid.Column="1" Text="255"/>
+                    <xctk:IntegerUpDown x:Name="dur_field" Margin="15,125,34,80" Grid.Column="1" Text="255" Maximum="255" Minimum="0"/>
 
                     <Label Content="Add Luck" Grid.Column="0" HorizontalAlignment="Left" Margin="27,156,0,0" VerticalAlignment="Top" FontSize="14" Foreground="White"/>
                     <CheckBox x:Name="luck_field" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="15,163,0,0" VerticalAlignment="Top" Foreground="White"/>
 
                     <Label Grid.Column="0" Content="Add Skill" HorizontalAlignment="Left" Margin="27,187,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
                     <CheckBox x:Name="skill_field" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="15,193,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.638,0.633"/>
-
-
-
 
                 </Grid>
                 <Label Content="Basic properties
