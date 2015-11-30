@@ -368,6 +368,8 @@ namespace MuDBHelper
                 string hex = BitConverter.ToString(currentCharacter.Inventory).Replace("-", "");
                 currentInventory = new InventoryStorage(hex);
                 initCharacterDisplay();
+                initInventoryDisplay();
+                
             }
         }
 
@@ -395,7 +397,7 @@ namespace MuDBHelper
             ((Button)slot).Height = (height + 1) * cellDim;
             Grid.SetColumnSpan((Button)slot, width + 1);
             Grid.SetRowSpan((Button)slot, height + 1);
-            changeSlotBackground(new Uri(@"images/items/" + current_item.image_path, UriKind.Relative), (Button)slot);
+            changeSlotBackground(new Uri(@"images/items/" + item.image_path, UriKind.Relative), (Button)slot);
         }
 
         public void inventorySlotOnClick(object sender, RoutedEventArgs e)
@@ -420,7 +422,9 @@ namespace MuDBHelper
                 if (current.isItemEmpty() || slot.Visibility == Visibility.Hidden) continue;
 
                 DBItems storedItem = DBItems.findItem(current.category, current.index);
-                displayItemInInventory(storedItem, slot);                
+
+                if(storedItem != null)
+                    displayItemInInventory(storedItem, slot);                
             }
             
         }
@@ -428,7 +432,6 @@ namespace MuDBHelper
         private void CharacterListOnSelect(object sender, SelectionChangedEventArgs e)
         {
             string usernameSelected = (string) character_list.SelectedItem;
-            Debug.WriteLine("selected");
             initCharacter(usernameSelected);
         }
     }

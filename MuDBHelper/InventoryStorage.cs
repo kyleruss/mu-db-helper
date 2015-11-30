@@ -41,17 +41,17 @@ namespace MuDBHelper
 
                 string characterHex = hex.Substring(currentIndex, currentFinishIndex);
                 character = new CharacterSpace(characterHex);
-                currentIndex += currentFinishIndex + 1;
+                currentIndex += currentFinishIndex;
                 currentFinishIndex =  2048;
 
                 string inventoryHex = hex.Substring(currentIndex, currentFinishIndex);
                 inventory = new InventorySpace(inventoryHex);
-                currentIndex += currentFinishIndex + 1;
+                currentIndex += currentFinishIndex;
                 currentFinishIndex = 1024;
 
                 string shopHex = hex.Substring(currentIndex, currentFinishIndex);
                 pShop = new PShopSpace(shopHex);
-                currentIndex += currentFinishIndex + 1;
+                currentIndex += currentFinishIndex;
                 currentFinishIndex = 2048;
 
                 string expInventoryHex = hex.Substring(currentIndex, currentFinishIndex);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace MuDBHelper
 {
@@ -42,7 +43,6 @@ namespace MuDBHelper
                     string item = hex.Substring(i * 32, 32);
                     items[i] = (item.Equals(new string('F', 32))) ? new Item() : new Item(item);
                 }
-
             }
         }
 
