@@ -333,17 +333,17 @@ namespace MuDBHelper
 
             for (int row = 0; row < numRows; row++)
             {
+                GridLength gridLength = new GridLength(1, GridUnitType.Auto);
                 RowDefinition rowDef = new RowDefinition();
-                rowDef.Height = new GridLength(1, GridUnitType.Auto);
+                rowDef.Height = gridLength;
                 inventory_grid.RowDefinitions.Add(rowDef);
 
-                for(int col = 0; col < numCols; col++)
+                ColumnDefinition colDef = new ColumnDefinition();
+                colDef.Width = gridLength;
+                inventory_grid.ColumnDefinitions.Add(colDef);
+
+                for (int col = 0; col < numCols; col++)
                 {
-                    ColumnDefinition colDef = new ColumnDefinition();
-                    colDef.Width = new GridLength(1, GridUnitType.Auto);
-                    inventory_grid.ColumnDefinitions.Add(colDef);
-
-
                     int leftThick = 1;
                     int topThick = 1;
 
@@ -426,6 +426,10 @@ namespace MuDBHelper
             int row = Grid.GetRow((Button)slot);
             int width = (int)item.width - 1;
             int height = (int)item.height - 1;
+
+            if ((col + width) >= inventory_grid.ColumnDefinitions.Count || (row + height) >= inventory_grid.RowDefinitions.Count)
+                return;
+
             int cellDim = 35;
 
             if (width > 0 || height > 0)
