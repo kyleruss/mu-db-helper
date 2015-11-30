@@ -22,6 +22,7 @@ namespace MuDBHelper
         private DBItems current_item;
         private DBItemCategories current_category;
         private Dictionary<object, int> slot_indexes;
+        private Dictionary<Button, Item> storage_items;
         private DBCharacter currentCharacter;
         private DBAccount currentAccount;
         private InventoryStorage currentInventory;
@@ -34,6 +35,8 @@ namespace MuDBHelper
             fillAddLevelList();
             initSlotIndexes();
             createInventoryGrid();
+
+            storage_items = new Dictionary<Button, Item>();
         }
 
         private void fillCategories()
@@ -91,9 +94,6 @@ namespace MuDBHelper
                 var items = from e in conn.items
                             where e.category_ID == category_id
                             select e;
-                var category    =   from e in conn.categories
-                                    where e.ID == category_id
-                                    select e;
 
                 items_list.ItemsSource = items.ToList();
             }
@@ -123,9 +123,8 @@ namespace MuDBHelper
                     current_item_image.Source = new BitmapImage(new Uri(@"/images/items/" + current_item.image_path, UriKind.Relative));
                 }
             }
-
-            if(current_category == null) items_list.UnselectAll();
            
+            if(current_category == null) items_list.UnselectAll();           
         }
 
         private void CategoryBackOnClick(object sender, RoutedEventArgs e)
@@ -260,6 +259,17 @@ namespace MuDBHelper
 
                 return new Item(index, category, skill, luck, level, add_level, dur, excOpts);
             }
+        }
+
+        private void initItemOptions(Item item)
+        {
+            if (item == null) return;
+
+            current_category = DBItemCategories.findCategory(item.category);
+            current_item = DBItems.findItem(item.category, item.index);
+
+            getItemList(item.category);
+            items_list.SelectedIndex = item.index;
         }
 
         private void changeSlotBackground(Uri path, Button slot)
@@ -416,9 +426,14 @@ namespace MuDBHelper
 
         public void inventorySlotOnClick(object sender, RoutedEventArgs e)
         {
-            if (current_item == null) return;
+            if (storage_items.ContainsKey((Button)sender))
+                initItemOptions(storage_items[(Button)sender]);
 
-            displayItemInInventory(current_item, (Button) sender);
+            else
+            {
+                if (current_item != null)
+                    displayItemInInventory(current_item, (Button)sender);
+            }
         }
 
         private void initInventoryDisplay()
@@ -442,10 +457,12 @@ namespace MuDBHelper
 
                 DBItems storedItem = DBItems.findItem(current.category, current.index);
 
-                if(storedItem != null)
+                if (storedItem != null)
+                {
+                    storage_items.Add(slot, current);
                     displayItemInInventory(storedItem, slot);
-            }
-            
+                }
+            }            
         }
 
         private void CharacterListOnSelect(object sender, SelectionChangedEventArgs e)

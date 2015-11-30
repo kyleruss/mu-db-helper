@@ -21,6 +21,13 @@ namespace MuDBHelper
             return name;
         }
 
+        public static DBItemCategories findCategory(int categoryID)
+        {
+            using(DBConnection conn = new DBConnection())
+            {
+                return conn.categories.Where(c => c.ID == categoryID).FirstOrDefault();
+            }
+        }
     }
 
 }

@@ -70,8 +70,7 @@ namespace MuDBHelper
         {
             using(DBConnection conn = new DBConnection())
             {
-                DBItems item = conn.items.Where(i => i.category_ID == category && i.ID == index).FirstOrDefault();
-                return item;
+                return conn.items.Where(i => i.category_ID == category && i.ID == index).FirstOrDefault();
             }
         }
     }
