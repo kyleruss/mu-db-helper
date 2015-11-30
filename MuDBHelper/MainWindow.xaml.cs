@@ -131,6 +131,7 @@ namespace MuDBHelper
         private void CategoryBackOnClick(object sender, RoutedEventArgs e)
         {
             categoryBackButton.Visibility = Visibility.Hidden;
+            category_label.Content = "Categories";
             current_category = null;
             fillCategories();
             showExcOptions(0);
@@ -481,6 +482,10 @@ namespace MuDBHelper
                 current_item_index = index;
                 initItemOptions(storage_items[(Button)sender]);
                 storage_ctrls_container.Visibility = Visibility.Visible;
+                int excType = getExcType((int) current_item.category_ID, (int) current_item.ID);
+                showExcOptions(excType);
+                category_label.Content = current_category.name;
+                categoryBackButton.Visibility = Visibility.Visible;
             }
 
             else
