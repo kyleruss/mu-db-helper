@@ -373,6 +373,19 @@ namespace MuDBHelper
             }
         }
 
+        private void resetInventory()
+        {
+            foreach (Button current in inventory_grid.Children.Cast<UIElement>())
+            {
+                Grid.SetRowSpan(current, 1);
+                Grid.SetColumnSpan(current, 1);
+                current.Width = 35;
+                current.Height = 35;
+                current.Visibility = Visibility.Visible;
+            }
+
+        }
+
         private void displayItemInInventory(DBItems item, Button slot)
         {
             int col = Grid.GetColumn((Button)slot);
@@ -397,6 +410,7 @@ namespace MuDBHelper
             ((Button)slot).Height = (height + 1) * cellDim;
             Grid.SetColumnSpan((Button)slot, width + 1);
             Grid.SetRowSpan((Button)slot, height + 1);
+
             changeSlotBackground(new Uri(@"images/items/" + item.image_path, UriKind.Relative), (Button)slot);
         }
 
@@ -413,18 +427,23 @@ namespace MuDBHelper
 
             InventorySpace inventory = currentInventory.inventory;
             int storageIndex = 0;
+            resetInventory();
 
             foreach(Button slot in inventory_grid.Children.Cast<UIElement>())
             {
                 Item current = inventory.items[storageIndex];
                 storageIndex++;
 
-                if (current.isItemEmpty() || slot.Visibility == Visibility.Hidden) continue;
+                if (current.isItemEmpty() || slot.Visibility == Visibility.Hidden)
+                {
+                    changeSlotBackground(null, slot);
+                    continue;
+                }
 
                 DBItems storedItem = DBItems.findItem(current.category, current.index);
 
                 if(storedItem != null)
-                    displayItemInInventory(storedItem, slot);                
+                    displayItemInInventory(storedItem, slot);
             }
             
         }
