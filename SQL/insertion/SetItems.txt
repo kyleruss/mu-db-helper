@@ -1,4 +1,4 @@
 USE [MuOnline]
 GO
-INSERT INTO DBHelper_SetItems
+INSERT INTO DBHelper_Sets
 VALUES ('No set')

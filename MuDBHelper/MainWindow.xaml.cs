@@ -30,12 +30,16 @@ namespace MuDBHelper
 
         public MainWindow()
         {
+          //  DBLoader.buildDBItems("Item.txt");
+            //DBLoader.UpdateItemImages(false);
+
             InitializeComponent();
             fillCategories();
             fillLevelList();
             fillAddLevelList();
             initSlotIndexes();
             createInventoryGrid();
+            displayExcOptions();
 
             storage_items = new Dictionary<Button, Item>();
         }
@@ -111,8 +115,9 @@ namespace MuDBHelper
                     category_label.Content = current_category.name;
                     getItemList(current_category.ID);
 
-                    int excType = getExcType(current_category.ID, 0);
-                    showExcOptions(excType);
+                   /* int excType = getExcType(current_category.ID, 0);
+                    showExcOptions(excType); */
+                    displayExcOptions();
 
                     categoryBackButton.Visibility = Visibility.Visible;
                 }
@@ -237,6 +242,42 @@ namespace MuDBHelper
             else if (category >= 6 && category < 12) return 2;
 
             else return 0;
+        }
+
+        private void displayExcOptions()
+        {
+            if (current_category == null)
+            {
+                exc_opts_grid.Visibility = Visibility.Hidden;
+                no_exc_label.Visibility = Visibility.Visible;
+            }
+
+            else
+            {
+
+                int excType = getExcType((int)current_item.category_ID, 0);
+
+                if (excType != 0)
+                {
+                    no_exc_label.Visibility = Visibility.Hidden;
+                    showExcOptions(excType);
+                    exc_opts_grid.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
+        private void displayAncientOptions()
+        {
+            if(current_item == null || (current_item.set1 == null && current_item.set2 == null))
+            {
+                anc_grid.Visibility = Visibility.Hidden;
+                set_unavailable_label.Visibility = Visibility.Visible;
+            }
+
+            else
+            {
+                            
+            }
         }
 
         private ExcOpts getExcOpts()
@@ -482,8 +523,7 @@ namespace MuDBHelper
                 current_item_index = index;
                 initItemOptions(storage_items[(Button)sender]);
                 storage_ctrls_container.Visibility = Visibility.Visible;
-                int excType = getExcType((int) current_item.category_ID, (int) current_item.ID);
-                showExcOptions(excType);
+                displayExcOptions();
                 category_label.Content = current_category.name;
                 categoryBackButton.Visibility = Visibility.Visible;
             }
@@ -492,7 +532,8 @@ namespace MuDBHelper
             {
                 if (current_item != null && isInsideBoundaries(current_item, (Button)sender))
                 {
-                    displayItemInInventory(current_item, (Button)sender);
+                    storage_items.Add((Button)sender, getItem());
+                    displayItemInInventory(current_item, (Button)sender);                                        
                     updateSpace(index, currentInventory.inventory);
                 }
             }
@@ -543,6 +584,18 @@ namespace MuDBHelper
         {
             removeFromSpace(current_item_index, currentInventory.inventory);
             storage_ctrls_container.Visibility = Visibility.Hidden;
+        }
+
+        private void OnAdvancedPropertiesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TabItem item = sender as TabItem;
+
+            if (item == tab_exc)
+                displayExcOptions();
+
+            else if (item == tab_anc)
+                displayAncientOptions();
+             
         }
     }
 }

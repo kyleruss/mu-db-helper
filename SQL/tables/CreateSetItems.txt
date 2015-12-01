@@ -2,6 +2,8 @@ USE [MuOnline]
 GO
 CREATE TABLE DBHelper_SetItems
 (
-	ID int IDENTITY(-1, 1) NOT NULL PRIMARY KEY,
-	name varchar(MAX)
-)
+	set_ID int FOREIGN KEY REFERENCES DBHelper_Sets(ID) ON DELETE CASCADE,
+	category_ID int FOREIGN KEY REFERENCES DBHelper_ItemCategories(ID) ON DELETE CASCADE,
+	item_ID int FOREIGN KEY REFERENCES DBHelper_Items(ID) ON DELETE CASCADE,
+	PRIMARY KEY(set_ID, category_ID, item_ID)
+);
