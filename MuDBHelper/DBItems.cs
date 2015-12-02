@@ -48,6 +48,9 @@ namespace MuDBHelper
         public int? set2 { get; set; }
 
         [Column]
+        public int? set3 { get; set; }
+
+        [Column]
         public bool allow_socket { get; set; }
 
         [Column]

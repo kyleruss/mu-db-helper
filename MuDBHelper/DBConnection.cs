@@ -20,6 +20,8 @@ namespace MuDBHelper
 
         public Table<DBExcOpts> excOptions;
 
+        public Table<DBSets> ancSets;
+
         public DBConnection() : base("Server=.\\SQLEXPRESS;Database=MuOnline;Integrated Security=true") { }
     }
 }

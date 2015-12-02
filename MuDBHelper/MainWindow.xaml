@@ -183,7 +183,7 @@
                                     <ColumnDefinition Width="0*"/>
                                 </Grid.ColumnDefinitions>
                                 
-                                <Grid x:Name="exc_opts_grid">
+                                <Grid x:Name="exc_opts_grid" Visibility="Visible"> 
                                 <CheckBox x:Name="exc_opt1" Grid.Column="0" Foreground="#FF39BD24" Content="Option one" HorizontalAlignment="Left" Margin="13,17,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
                                 <CheckBox x:Name="exc_opt2" Grid.Column="0" Foreground="#FF39BD24" Content="Option two" HorizontalAlignment="Left" Margin="13,52,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
                                 <CheckBox x:Name="exc_opt3" Grid.Column="0" Foreground="#FF39BD24" Content="Option three" HorizontalAlignment="Left" Margin="13,84,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
@@ -192,7 +192,7 @@
                                 <CheckBox x:Name="exc_opt6" Grid.Column="0" Foreground="#FF39BD24" Content="Option six" HorizontalAlignment="Left" Margin="13,181,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
                                 </Grid>
                                 
-                                <Label Visibility="Hidden" x:Name="no_exc_label" Content="No excellent options available" HorizontalAlignment="Left" Margin="31,92,0,0" VerticalAlignment="Top" FontSize="16" Foreground="White"/>
+                                <Label Visibility="Hidden" x:Name="no_exc_label" Content="No excellent options available" HorizontalAlignment="Left" Margin="18,76,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
                             </Grid>
                         </TabItem>
                         <TabItem x:Name="tab_sock" Header="Socket" Background="#FFACACAC" FontSize="12">
@@ -206,13 +206,13 @@
                         </TabItem>
                         <TabItem x:Name="tab_anc" Header="Ancient" Background="#FFACACAC" FontSize="12">
                             <Grid>
-                                <Grid x:Name="anc_grid">
+                                <Grid x:Name="anc_grid" Visibility="Visible">
                                     <RadioButton Name="anc_set0" GroupName="anc_sets" Content="No set" FontSize="16" Foreground="White" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top"/>
                                     <RadioButton Name="anc_set1" Content="Set1" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" FontSize="16" Foreground="White"/>
                                     <RadioButton Name="anc_set2" Content="Set2" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top" FontSize="16" Foreground="White"/>
                                     <RadioButton Name="anc_set3" Content="Set3" HorizontalAlignment="Left" Margin="10,144,0,0" VerticalAlignment="Top" FontSize="16" Foreground="White" RenderTransformOrigin="0.505,3.025"/>
                                 </Grid>
-                                <Label x:Name="set_unavailable_label" Visibility="Hidden" Content="No ancient sets available" HorizontalAlignment="Left" Margin="44,94,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
+                                <Label x:Name="set_unavailable_label" Visibility="Hidden" Content="No ancient sets available" HorizontalAlignment="Left" Margin="40,59,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
 
                             </Grid>
                         </TabItem>

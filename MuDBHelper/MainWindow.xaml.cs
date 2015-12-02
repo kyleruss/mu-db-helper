@@ -40,6 +40,7 @@ namespace MuDBHelper
             initSlotIndexes();
             createInventoryGrid();
             displayExcOptions();
+            displayAncientOptions();
 
             storage_items = new Dictionary<Button, Item>();
         }
@@ -123,7 +124,7 @@ namespace MuDBHelper
                 }
 
                 else
-                {
+                {                    
                     current_item = (DBItems)items_list.SelectedItem;
                     item_image_name_label.Content = current_item.name;
                     current_item_image.Source = new BitmapImage(new Uri(@"/images/items/" + current_item.image_path, UriKind.Relative));
@@ -255,7 +256,7 @@ namespace MuDBHelper
             else
             {
 
-                int excType = getExcType((int)current_item.category_ID, 0);
+                int excType = getExcType((int)current_category.ID, 0);
 
                 if (excType != 0)
                 {
@@ -268,17 +269,33 @@ namespace MuDBHelper
 
         private void displayAncientOptions()
         {
-            if(current_item == null || (current_item.set1 == null && current_item.set2 == null))
+            if (current_item == null || (current_item.set1 == -1 && current_item.set2 == -1 && current_item.set3 == -1))
             {
                 anc_grid.Visibility = Visibility.Hidden;
-                set_unavailable_label.Visibility = Visibility.Visible;
+                set_unavailable_label.Visibility = Visibility.Visible;                
             }
 
             else
             {
-                            
+                Debug.WriteLine("test");
+
+                using(DBConnection conn = new DBConnection())
+                {
+                    if (current_item.set1 >= 0)
+                        anc_set1.Content = conn.ancSets.FirstOrDefault(c => c.ID == current_item.set1).name;
+
+                    if (current_item.set2 >= 0)
+                        anc_set2.Content = conn.ancSets.FirstOrDefault(c => c.ID == current_item.set2).name;
+
+                    if (current_item.set3 >= 0)
+                        anc_set3.Content = conn.ancSets.FirstOrDefault(c => c.ID == current_item.set3).name;
+                }
+                
+                set_unavailable_label.Visibility = Visibility.Hidden;
+                anc_grid.Visibility = Visibility.Visible;
             }
         }
+
 
         private ExcOpts getExcOpts()
         {
@@ -590,10 +607,10 @@ namespace MuDBHelper
         {
             TabItem item = sender as TabItem;
 
-            if (item == tab_exc)
+            if (tab_exc.IsSelected)
                 displayExcOptions();
 
-            else if (item == tab_anc)
+            else if (tab_anc.IsSelected)
                 displayAncientOptions();
              
         }
