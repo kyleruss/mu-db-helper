@@ -282,13 +282,29 @@ namespace MuDBHelper
                 using(DBConnection conn = new DBConnection())
                 {
                     if (current_item.set1 >= 0)
-                        anc_set1.Content = conn.ancSets.FirstOrDefault(c => c.ID == current_item.set1).name;
+                    {
+                        anc_set1.Content = conn.ancSets.FirstOrDefault(c => c.ID == current_item.set1);
+                        anc_set1.Visibility = Visibility.Visible;
+                    }
+
+                    else anc_set1.Visibility = Visibility.Hidden;
 
                     if (current_item.set2 >= 0)
-                        anc_set2.Content = conn.ancSets.FirstOrDefault(c => c.ID == current_item.set2).name;
+                    {
+                        anc_set2.Content = conn.ancSets.FirstOrDefault(c => c.ID == current_item.set2);
+                        anc_set2.Visibility = Visibility.Visible;
+                    }
+
+                    else anc_set2.Visibility = Visibility.Hidden;
 
                     if (current_item.set3 >= 0)
-                        anc_set3.Content = conn.ancSets.FirstOrDefault(c => c.ID == current_item.set3).name;
+                    {
+                        anc_set3.Content = conn.ancSets.FirstOrDefault(c => c.ID == current_item.set3);
+                        anc_set3.Visibility = Visibility.Visible;
+                    }
+
+                    else anc_set3.Visibility = Visibility.Hidden;
+
                 }
                 
                 set_unavailable_label.Visibility = Visibility.Hidden;
