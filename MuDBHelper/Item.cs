@@ -29,6 +29,8 @@ namespace MuDBHelper
         public int index { get; private set; }
         public int category { get; private set; }
 
+        public int ancientID { get; set; }
+
         public Item()
         {
             hex = new string('F', 32);
@@ -51,13 +53,14 @@ namespace MuDBHelper
             initExcOpts();
         }
                                                                                                 
-        public Item(int index, int category, bool skill, bool luck, int level, int addLevel, int durability, ExcOpts excellent_options)
+        public Item(int index, int category, bool skill, bool luck, int level, int addLevel, int durability, int ancID, ExcOpts excellent_options)
         {
             item     = new char[32];
             this.hex = def;
             initItem();
             changeIndex(index);
             changeCategory(category);
+            changeAncient(ancID);
             changeLevel(level);
             changeSkill(skill);
             changeLuck(luck);
@@ -167,10 +170,18 @@ namespace MuDBHelper
             else
             {
                 string cat_hex = decToHex(category_change);
-                item[17] = char.Parse(cat_hex.Substring(0, 1));
-                item[18] = char.Parse(cat_hex.Substring(1, 1));
+                item[18] = char.Parse(cat_hex.Substring(0, 1));
+                item[19] = char.Parse(cat_hex.Substring(1, 1));
                 category = category_change;
             }
+        }
+
+        public void changeAncient(int ancient_id)
+        {
+            string anc_hex = decToHex(ancient_id);
+            item[16] = char.Parse(anc_hex.Substring(0, 1));
+            item[17] = char.Parse(anc_hex.Substring(1, 1));
+            ancientID = ancient_id;
         }
 
         public void changeLuck(Boolean luck_changed)
@@ -303,6 +314,8 @@ namespace MuDBHelper
             {
                 index = (int)hexToDec(hex.Substring(0, 2));
                 category = (int)hexToDec(hex.Substring(17, 2));
+                ancientID = (int)hexToDec(hex.Substring(16, 2));
+
                 int[] temp = { (int)hexToDec(hex.Substring(2, 1)), (int)hexToDec(hex.Substring(3, 1)) };
                 int addOpt = (int)hexToDec(hex.Substring(14, 1));
                 bool is_opt = false;

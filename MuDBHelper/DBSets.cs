@@ -15,5 +15,10 @@ namespace MuDBHelper
 
         [Column]
         public string name { get; set; }
+
+        public string toString()
+        {
+            return name;
+        }
     }
 }

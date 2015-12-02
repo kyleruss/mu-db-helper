@@ -315,9 +315,11 @@ namespace MuDBHelper
                 int dur = int.Parse(dur_field.Text);
                 bool luck = (bool) luck_field.IsChecked;
                 bool skill = (bool) skill_field.IsChecked;
+                DBSets set = getSelectedAncient();
+                int setID = (set != null)? (int) set.ID : -1;
                 ExcOpts excOpts = getExcOpts();
 
-                return new Item(index, category, skill, luck, level, add_level, dur, excOpts);
+                return new Item(index, category, skill, luck, level, add_level, dur, setID, excOpts);
             }
         }
 
@@ -354,6 +356,17 @@ namespace MuDBHelper
 
             initBasicOptions(item);
             initExcOptions(item);
+        }
+
+        private DBSets getSelectedAncient()
+        {
+            foreach(RadioButton button in anc_grid.Children.Cast<RadioButton>())
+            {
+                if (button.IsChecked == true)
+                    return (DBSets) button.Content;
+            }
+
+            return null;
         }
 
         private void changeSlotBackground(Uri path, Button slot)
