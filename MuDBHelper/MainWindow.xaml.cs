@@ -333,6 +333,7 @@ namespace MuDBHelper
                 bool skill = (bool) skill_field.IsChecked;
                 DBSets set = getSelectedAncient();
                 int setID = (set != null)? (int) set.ID : -1;
+                Debug.WriteLine("Set: " + setID);
                 ExcOpts excOpts = getExcOpts();
 
                 return new Item(index, category, skill, luck, level, add_level, dur, setID, excOpts);

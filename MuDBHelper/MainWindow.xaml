@@ -196,7 +196,33 @@
                             </Grid>
                         </TabItem>
                         <TabItem x:Name="tab_sock" Header="Socket" Background="#FFACACAC" FontSize="12">
-                            <Grid/>
+                            <Grid>
+                                <Grid x:Name="sock_grid" Visibility="Hidden">
+                                    <!-- SOCKET ONE-->
+                                    <ComboBox x:Name="sock1_list" HorizontalAlignment="Left" Margin="23,22,0,0" VerticalAlignment="Top" Width="181"/>
+                                    <xctk:IntegerUpDown x:Name="sock1_lvl" Margin="222,22,10,163" Minimum="0" Maximum="5"/>
+
+                                    <!-- SOCKET TWO -->
+                                    <ComboBox x:Name="sock2_list" HorizontalAlignment="Left" Margin="23,53,0,0" VerticalAlignment="Top" Width="181"/>
+                                    <xctk:IntegerUpDown x:Name="sock2_lvl" Margin="222,53,10,132" Minimum="0" Maximum="5"/>
+                                    
+                                    <!-- SOCKET THREE -->
+                                    <ComboBox x:Name="sock3_list" HorizontalAlignment="Left" Margin="23,85,0,0" VerticalAlignment="Top" Width="181"/>
+                                    <xctk:IntegerUpDown x:Name="sock3_lvl" Margin="222,85,10,100" Minimum="0" Maximum="5"/>
+                                    
+                                    <!-- SOCKET FOUR -->
+                                    <ComboBox x:Name="sock4_list" HorizontalAlignment="Left" Margin="23,117,0,0" VerticalAlignment="Top" Width="181"/>
+                                    <xctk:IntegerUpDown x:Name="sock4_lvl" Margin="222,117,10,68" Minimum="0" Maximum="5"/>
+                                    
+                                    <!-- SOCKET FIVE -->
+                                    <ComboBox x:Name="sock5_list" HorizontalAlignment="Left" Margin="23,151,0,0" VerticalAlignment="Top" Width="181"/>
+                                    <xctk:IntegerUpDown x:Name="sock5_lvl" Margin="222,151,10,34" Minimum="0" Maximum="5"/>
+                                </Grid>
+                                <Label x:Name="no_socks_avail" Content="No socket options available" HorizontalAlignment="Left" Margin="26,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
+
+
+
+                            </Grid>
                         </TabItem>
                         <TabItem x:Name="tab_harm" Header="Harmoney" Background="#FFACACAC" FontSize="12">
                             <Grid/>
