@@ -2,6 +2,6 @@ USE [MuOnline]
 GO
 CREATE TABLE DBHelper_Sets
 (
-	ID int IDENTITY(-1, 1) NOT NULL PRIMARY KEY,
+	ID int NOT NULL PRIMARY KEY,
 	name varchar(MAX)
 )
