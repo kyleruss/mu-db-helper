@@ -59,7 +59,7 @@ namespace MuDBHelper
             initExcOpts();
         }
                                                                                                 
-        public Item(int index, int category, bool skill, bool luck, int level, int addLevel, int durability, int ancID, ExcOpts excellent_options)
+        public Item(int index, int category, bool skill, bool luck, int level, int addLevel, int durability, int ancID, int harm_opt, int harm_lvl, ExcOpts excellent_options)
         {
             item     = new char[32];
             this.hex = def;
@@ -74,6 +74,8 @@ namespace MuDBHelper
             setDurability(durability);
             initExcOptsFromObject(excellent_options.getCode(), excellent_options);
             initExcOptsToItem();
+            changeHarmoneyOption(harm_opt);
+            changeHarmoneyLevel(harm_lvl);
             updateHex();
         }
 

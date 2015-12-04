@@ -333,10 +333,12 @@ namespace MuDBHelper
                 bool skill = (bool) skill_field.IsChecked;
                 DBSets set = getSelectedAncient();
                 int setID = (set != null)? (int) set.ID : -1;
-                Debug.WriteLine("Set: " + setID);
+                int harm_opt = harm_opt_list.SelectedIndex;
+                int harm_lvl = (int) harm_opt_lvl.Value;
+
                 ExcOpts excOpts = getExcOpts();
 
-                return new Item(index, category, skill, luck, level, add_level, dur, setID, excOpts);
+                return new Item(index, category, skill, luck, level, add_level, dur, setID, harm_opt, harm_lvl, excOpts);
             }
         }
 
