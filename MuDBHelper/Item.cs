@@ -31,6 +31,12 @@ namespace MuDBHelper
 
         public int ancientID { get; set; }
 
+        public Dictionary<int, int> sockets { get; set; }
+
+        private int harmoney_opt;
+
+        private int harmoney_lvl;
+
         public Item()
         {
             hex = new string('F', 32);
@@ -196,6 +202,18 @@ namespace MuDBHelper
             }
         }
 
+        public void changeHarmoneyOption(int harmoneyID)
+        {
+            harmoney_opt = harmoneyID;
+            item[20] = char.Parse(decToHex(harmoneyID));
+        }
+
+        public void changeHarmoneyLevel(int harm_level)
+        {
+            harmoney_lvl = harm_level;
+            item[21] = char.Parse(decToHex(harm_level));
+        }
+
         public void changeSkill(Boolean skill_changed)
         {
             if (skill_changed == skill) return;
@@ -315,6 +333,8 @@ namespace MuDBHelper
                 index = (int)hexToDec(hex.Substring(0, 2));
                 category = (int)hexToDec(hex.Substring(17, 2));
                 ancientID = (int)hexToDec(hex.Substring(16, 2));
+                harmoney_opt = (int)hexToDec(hex.Substring(20, 1));
+                harmoney_lvl = (int)hexToDec(hex.Substring(21, 1));
 
                 int[] temp = { (int)hexToDec(hex.Substring(2, 1)), (int)hexToDec(hex.Substring(3, 1)) };
                 int addOpt = (int)hexToDec(hex.Substring(14, 1));

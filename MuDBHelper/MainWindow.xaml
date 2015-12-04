@@ -115,8 +115,6 @@
                     </Border>
                 </Grid>
 
-
-
                 <Grid Name="character_storage_container" Visibility="Hidden" HorizontalAlignment="Left" Height="461" Margin="10,92,0,0" VerticalAlignment="Top" Width="429">
                     <Border BorderBrush="Black" BorderThickness="1">
                         <Image Margin="31,-1,36,-1" Source="images/interface/character.png" />
@@ -182,16 +180,16 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition Width="0*"/>
                                 </Grid.ColumnDefinitions>
-                                
-                                <Grid x:Name="exc_opts_grid" Visibility="Visible"> 
-                                <CheckBox x:Name="exc_opt1" Grid.Column="0" Foreground="#FF39BD24" Content="Option one" HorizontalAlignment="Left" Margin="13,17,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
-                                <CheckBox x:Name="exc_opt2" Grid.Column="0" Foreground="#FF39BD24" Content="Option two" HorizontalAlignment="Left" Margin="13,52,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
-                                <CheckBox x:Name="exc_opt3" Grid.Column="0" Foreground="#FF39BD24" Content="Option three" HorizontalAlignment="Left" Margin="13,84,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
-                                <CheckBox x:Name="exc_opt4" Grid.Column="0" Foreground="#FF39BD24" Content="Option four" HorizontalAlignment="Left" Margin="13,116,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
-                                <CheckBox x:Name="exc_opt5" Grid.Column="0" Foreground="#FF39BD24" Content="Option five" HorizontalAlignment="Left" Margin="13,148,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
-                                <CheckBox x:Name="exc_opt6" Grid.Column="0" Foreground="#FF39BD24" Content="Option six" HorizontalAlignment="Left" Margin="13,181,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
+
+                                <Grid x:Name="exc_opts_grid" Visibility="Visible">
+                                    <CheckBox x:Name="exc_opt1" Grid.Column="0" Foreground="#FF39BD24" Content="Option one" HorizontalAlignment="Left" Margin="13,17,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
+                                    <CheckBox x:Name="exc_opt2" Grid.Column="0" Foreground="#FF39BD24" Content="Option two" HorizontalAlignment="Left" Margin="13,52,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
+                                    <CheckBox x:Name="exc_opt3" Grid.Column="0" Foreground="#FF39BD24" Content="Option three" HorizontalAlignment="Left" Margin="13,84,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
+                                    <CheckBox x:Name="exc_opt4" Grid.Column="0" Foreground="#FF39BD24" Content="Option four" HorizontalAlignment="Left" Margin="13,116,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
+                                    <CheckBox x:Name="exc_opt5" Grid.Column="0" Foreground="#FF39BD24" Content="Option five" HorizontalAlignment="Left" Margin="13,148,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
+                                    <CheckBox x:Name="exc_opt6" Grid.Column="0" Foreground="#FF39BD24" Content="Option six" HorizontalAlignment="Left" Margin="13,181,0,0" VerticalAlignment="Top" Height="18" Width="242"/>
                                 </Grid>
-                                
+
                                 <Label Visibility="Hidden" x:Name="no_exc_label" Content="No excellent options available" HorizontalAlignment="Left" Margin="18,76,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
                             </Grid>
                         </TabItem>
@@ -205,15 +203,15 @@
                                     <!-- SOCKET TWO -->
                                     <ComboBox x:Name="sock2_list" HorizontalAlignment="Left" Margin="23,53,0,0" VerticalAlignment="Top" Width="181"/>
                                     <xctk:IntegerUpDown x:Name="sock2_lvl" Margin="222,53,10,132" Minimum="0" Maximum="5"/>
-                                    
+
                                     <!-- SOCKET THREE -->
                                     <ComboBox x:Name="sock3_list" HorizontalAlignment="Left" Margin="23,85,0,0" VerticalAlignment="Top" Width="181"/>
                                     <xctk:IntegerUpDown x:Name="sock3_lvl" Margin="222,85,10,100" Minimum="0" Maximum="5"/>
-                                    
+
                                     <!-- SOCKET FOUR -->
                                     <ComboBox x:Name="sock4_list" HorizontalAlignment="Left" Margin="23,117,0,0" VerticalAlignment="Top" Width="181"/>
                                     <xctk:IntegerUpDown x:Name="sock4_lvl" Margin="222,117,10,68" Minimum="0" Maximum="5"/>
-                                    
+
                                     <!-- SOCKET FIVE -->
                                     <ComboBox x:Name="sock5_list" HorizontalAlignment="Left" Margin="23,151,0,0" VerticalAlignment="Top" Width="181"/>
                                     <xctk:IntegerUpDown x:Name="sock5_lvl" Margin="222,151,10,34" Minimum="0" Maximum="5"/>
@@ -225,7 +223,15 @@
                             </Grid>
                         </TabItem>
                         <TabItem x:Name="tab_harm" Header="Harmoney" Background="#FFACACAC" FontSize="12">
-                            <Grid/>
+                            <Grid>
+                                <Grid x:Name="harm_grid">
+                                    <ComboBox x:Name="harm_opt_list" HorizontalAlignment="Left" Margin="108,34,0,0" VerticalAlignment="Top" Width="164"/>
+                                    <Label Content="Option" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18" RenderTransformOrigin="0.542,0.044"/>
+                                    <Label Content="Level" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
+                                    <xctk:IntegerUpDown x:Name="harm_opt_lvl" Margin="108,84,101,101" Minimum="1" Maximum="15"/>
+                                </Grid>
+                                <Label Visibility="Hidden" x:Name="no_harm_label" Content="No Harmoney options available" HorizontalAlignment="Left" Margin="11,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
+                            </Grid>
                         </TabItem>
                         <TabItem x:Name="tab_ref" Header="Refine" Background="#FFACACAC" FontSize="12">
                             <Grid/>
