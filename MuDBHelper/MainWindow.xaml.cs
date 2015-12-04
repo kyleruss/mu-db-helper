@@ -30,7 +30,7 @@ namespace MuDBHelper
 
         public MainWindow()
         {
-          //  DBLoader.buildDBItems("Item.txt");
+            //DBLoader.buildDBItems("Item.txt");
             //DBLoader.UpdateItemImages(false);
 
             InitializeComponent();
@@ -116,8 +116,6 @@ namespace MuDBHelper
                     category_label.Content = current_category.name;
                     getItemList(current_category.ID);
 
-                   /* int excType = getExcType(current_category.ID, 0);
-                    showExcOptions(excType); */
                     displayExcOptions();
 
                     categoryBackButton.Visibility = Visibility.Visible;

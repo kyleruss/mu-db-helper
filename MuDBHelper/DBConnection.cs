@@ -24,6 +24,8 @@ namespace MuDBHelper
 
         public Table<DBHarmoneyOpts> harmOpts;
 
+        public Table<DBRefineOpts> refineOpts;
+
         public DBConnection() : base("Server=.\\SQLEXPRESS;Database=MuOnline;Integrated Security=true") { }
     }
 }

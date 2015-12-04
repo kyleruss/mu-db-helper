@@ -228,7 +228,7 @@
                                     <ComboBox x:Name="harm_opt_list" HorizontalAlignment="Left" Margin="108,34,0,0" VerticalAlignment="Top" Width="164"/>
                                     <Label Content="Option" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18" RenderTransformOrigin="0.542,0.044"/>
                                     <Label Content="Level" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
-                                    <xctk:IntegerUpDown x:Name="harm_opt_lvl" Margin="108,84,101,101" Minimum="1" Maximum="15"/>
+                                    <xctk:IntegerUpDown Value="0" x:Name="harm_opt_lvl" Margin="108,84,101,101" Minimum="1" Maximum="15"/>
                                 </Grid>
                                 <Label Visibility="Hidden" x:Name="no_harm_label" Content="No Harmoney options available" HorizontalAlignment="Left" Margin="11,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
                             </Grid>
