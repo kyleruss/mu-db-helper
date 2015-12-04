@@ -33,18 +33,24 @@ namespace MuDBHelper
                         do
                         {
                             line_number++;
-                            //ignore commented and abnormal lines 
-                            if (current_line.Length >= 2 && current_line.Substring(0, 2).Equals("//") || (current_line.Length >= 3 && (current_line.Substring(0, 3).Equals("end", StringComparison.InvariantCultureIgnoreCase))) || current_line.Equals("") || current_line.Equals(" "))
-                                current_line = reader.ReadLine();
 
+                            //ignore commented and abnormal lines 
+                            //-----------------------------------------------------------------------------------------------------------------------------
+                            if (current_line.Length >= 2 && current_line.Substring(0, 2).Equals("//") ||
+                                (current_line.Length >= 3 && (current_line.Substring(0, 3).Equals("end", StringComparison.InvariantCultureIgnoreCase))) ||
+                                current_line.Equals("") || current_line.Equals(" "))
+                            {
+                                current_line = reader.ReadLine();
+                            }
+                            //-----------------------------------------------------------------------------------------------------------------------------
 
                             else if (current_line.Length < 3)
                             {
-                                try  { int.TryParse(current_line.Substring(0, (current_line.Length == 2) ? 2 : 1), out current_category); }
-                                catch(Exception e)
+                                try { int.TryParse(current_line.Substring(0, (current_line.Length == 2) ? 2 : 1), out current_category); }
+                                catch (Exception e)
                                 {
                                     error_count++;
-                                    error_str += "[FORMAT ERROR] \nON LINE (" + line_number +  "): " + current_line;
+                                    error_str += "[FORMAT ERROR] \nON LINE (" + line_number + "): " + current_line;
                                 }
 
                                 current_line = reader.ReadLine();
@@ -60,13 +66,15 @@ namespace MuDBHelper
                                     Debug.WriteLine("LINE: " + current_line);
                                     try
                                     {
-                                        command.Parameters.Add("@index", SqlDbType.Int).Value = int.Parse(item[0]);
+                                        int index = int.Parse(item[0]);
+                                        command.Parameters.Add("@index", SqlDbType.Int).Value = index;
                                         command.Parameters.Add("@category", SqlDbType.Int).Value = current_category;
                                         command.Parameters.Add("@name", SqlDbType.VarChar).Value = item[8].Replace("\"", "");
                                         command.Parameters.Add("@x", SqlDbType.Int).Value = int.Parse(item[3]);
                                         command.Parameters.Add("@y", SqlDbType.Int).Value = int.Parse(item[4]);
                                         command.Parameters.Add("@dur", SqlDbType.Int).Value = (current_category == 14) ? 1 : int.Parse(item[13]);
                                         command.Parameters.Add("@slot", SqlDbType.Int).Value = int.Parse(item[1]);
+                                        command.Parameters.Add("@item_type", SqlDbType.Int).Value = getItemType(current_category, index);
                                         command.Parameters.Add("@skill", SqlDbType.Bit).Value = (int.Parse(item[2]) != 0) ? 1 : 0;
                                         command.Parameters.Add("@allow_opt", SqlDbType.Bit).Value = int.Parse(item[6]);
                                         command.Parameters.Add("@allow_sock", SqlDbType.Bit).Value = 0;
@@ -75,7 +83,7 @@ namespace MuDBHelper
                                     catch (IndexOutOfRangeException e)
                                     {
                                         error_count++;
-                                        error_str += "[FORMAT ERROR] \nON LINE (" + line_number +  "): " + current_line;
+                                        error_str += "[FORMAT ERROR] \nON LINE (" + line_number + "): " + current_line;
                                     }
 
                                     try { command.ExecuteNonQuery(); }
@@ -83,8 +91,8 @@ namespace MuDBHelper
                                     {
                                         error_count++;
                                         Debug.WriteLine(e.Message);
-                                        error_str += "[SQL ERROR] \n--STACK TRACE: " + e.StackTrace + "\nON LINE (" + line_number +  "): " + current_line;
-                                    } 
+                                        error_str += "[SQL ERROR] \n--STACK TRACE: " + e.StackTrace + "\nON LINE (" + line_number + "): " + current_line;
+                                    }
 
                                     current_line = reader.ReadLine();
                                 }
@@ -107,106 +115,128 @@ namespace MuDBHelper
             }
         }
 
-    public static string calcItemImage(int theid, int type, int ExclAnci, int lvl)
-    {
-        string tnpl =   "";
-        switch (ExclAnci) 
+        public static int getItemType(int category, int index)
         {
-            case 1:
-                tnpl = "10";
-                break;
-            case 2:
-                tnpl = "01";
-                break;
-            default:
-                tnpl = "00";
-                break;
+            //misc or invalid item
+            if (category < 0 || category > 16) return 4;
+
+            //weapons
+            else if (category < 7) return 0;
+
+            //armour
+            else if (category < 12) return 1;
+
+            //wings
+            else if (category == 12 && (index < 7 || (index >= 36 && index <= 43) || (index >= 49 && index <= 50) || (index >= 130 && index <= 135) || (index >= 262 && index <= 267)))
+                return 2;
+
+            //scrolls
+            else if (category == 15)
+                return 3;
+
+            //misc
+            else
+                return 4;
         }
 
-        int itype = type * 16;
-        string nxt ="";
-        string tipaj = "";
-        if (theid > 63) 
-            nxt = Item.decToHex(theid);
-
-        else if (theid > 31) 
+        public static string calcItemImage(int theid, int type, int ExclAnci, int lvl)
         {
-            nxt = "F9";
-            theid -= 32;
-        } 
-        
-        else 
-            nxt = "00";
-    
-        if (itype < 128) 
-            tipaj = "00";
-
-        else
-        {
-            tipaj = "80";
-            itype -= 128;
-        }
-    
-        theid += itype;
-        itype += theid;
-        string itype_new = itype.ToString("X2");
-        string output="";
-
-        if (File.Exists("images/items/" + tnpl + itype_new + tipaj + nxt + ".gif"))
-            output = "" + tnpl + itype_new + tipaj + nxt + ".gif";
-
-        else if (File.Exists("images/items/00" + tnpl + itype_new + tipaj + nxt + ".gif"))
-            output = "00" + tnpl + itype_new + tipaj + nxt + ".gif";
-
-        else
-            output = null;
-
-        return output;
-    }
-
-
-    public static void UpdateItemImages(Boolean reset)
-    {
-        using (DBConnection conn = new DBConnection())
-        {
-            var items = from e in conn.items
-                        select e;
-            foreach (var item in items)
+            string tnpl =   "";
+            switch (ExclAnci) 
             {
-                if (item.image_path == null || item.image_path.Equals("default.gif") || reset)
+                case 1:
+                    tnpl = "10";
+                    break;
+                case 2:
+                    tnpl = "01";
+                    break;
+                default:
+                    tnpl = "00";
+                    break;
+            }
+
+            int itype = type * 16;
+            string nxt ="";
+            string tipaj = "";
+            if (theid > 63) 
+                nxt = Item.decToHex(theid);
+
+            else if (theid > 31) 
+            {
+                nxt = "F9";
+                theid -= 32;
+            } 
+        
+            else 
+                nxt = "00";
+    
+            if (itype < 128) 
+                tipaj = "00";
+
+            else
+            {
+                tipaj = "80";
+                itype -= 128;
+            }
+    
+            theid += itype;
+            itype += theid;
+            string itype_new = itype.ToString("X2");
+            string output="";
+
+            if (File.Exists("images/items/" + tnpl + itype_new + tipaj + nxt + ".gif"))
+                output = "" + tnpl + itype_new + tipaj + nxt + ".gif";
+
+            else if (File.Exists("images/items/00" + tnpl + itype_new + tipaj + nxt + ".gif"))
+                output = "00" + tnpl + itype_new + tipaj + nxt + ".gif";
+
+            else
+                output = null;
+
+            return output;
+        }
+
+
+        public static void UpdateItemImages(Boolean reset)
+        {
+            using (DBConnection conn = new DBConnection())
+            {
+                var items = from e in conn.items
+                            select e;
+                foreach (var item in items)
                 {
-                    DBItems item_temp = item;
-                    string path = calcItemImage((int)item.ID, (int)item.category_ID, 0, 0);
-                    if (path == null) continue;
-                    else
+                    if (item.image_path == null || item.image_path.Equals("default.gif") || reset)
                     {
-                        item_temp.image_path = path;
-                        conn.SubmitChanges();
+                        DBItems item_temp = item;
+                        string path = calcItemImage((int)item.ID, (int)item.category_ID, 0, 0);
+                        if (path == null) continue;
+                        else
+                        {
+                            item_temp.image_path = path;
+                            conn.SubmitChanges();
+                        }
                     }
                 }
             }
         }
-    }
 
-    public static void updateSingleItemImage(int item_id, int category_id, string path)
-    {
-        using (DBConnection conn = new DBConnection())
+        public static void updateSingleItemImage(int item_id, int category_id, string path)
         {
-            var item = from e in conn.items
-                       where e.ID == item_id && e.category_ID == category_id
-                       select e;
-            
-            DBItems item_temp = item.First();
-            if (File.Exists("images/items/" + path))
+            using (DBConnection conn = new DBConnection())
             {
-                item_temp.image_path = path;
-                conn.SubmitChanges();
+                var item = from e in conn.items
+                           where e.ID == item_id && e.category_ID == category_id
+                           select e;
+            
+                DBItems item_temp = item.First();
+                if (File.Exists("images/items/" + path))
+                {
+                    item_temp.image_path = path;
+                    conn.SubmitChanges();
+                }
+
             }
-
         }
-    }
-
-
 
         public void printItems(string[] item_arr)
         {

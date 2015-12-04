@@ -7,6 +7,7 @@ CREATE PROCEDURE DBHelper_InitItems
 	@y INT,
 	@dur INT,
 	@slot INT,
+	@item_type INT,
 	@skill BIT,
 	@allow_opt BIT,
 	@allow_sock BIT
@@ -18,13 +19,13 @@ BEGIN
 	IF EXISTS(SELECT * FROM DBHelper_Items WHERE ID=@index AND category_ID=@category)
 	BEGIN
 		UPDATE DBHelper_Items
-		SET name=@name, width=@x, height=@y, durability=@dur, allow_socket=@allow_sock, allow_option=@allow_opt, skill=@skill, slot_id=@slot
+		SET name=@name, width=@x, height=@y, durability=@dur, allow_socket=@allow_sock, allow_option=@allow_opt, skill=@skill, slot_id=@slot, itemType=@item_type
 		WHERE ID=@index AND category_ID=@category;
 	END
 
 	ELSE
 	BEGIN
-		INSERT INTO DBHelper_Items (ID, category_ID, name, width, height, durability, slot_id, skill, allow_option, allow_socket) 
-		VALUES (@index, @category, @name, @x, @y, @dur, @slot, @skill, @allow_opt, @allow_sock);
+		INSERT INTO DBHelper_Items (ID, category_ID, name, width, height, durability, slot_id, skill, allow_option, allow_socket, itemType) 
+		VALUES (@index, @category, @name, @x, @y, @dur, @slot, @skill, @allow_opt, @allow_sock, @item_type);
 	END
 END

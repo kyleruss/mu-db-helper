@@ -1,0 +1,8 @@
+USE [MuOnline]
+GO
+CREATE TABLE DBHelper_ItemTypes
+(
+	ID int NOT NULL PRIMARY KEY IDENTITY(0, 1),
+	name varchar(30),
+	description varchar(60)	
+);

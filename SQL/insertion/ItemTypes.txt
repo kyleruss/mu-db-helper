@@ -1,0 +1,8 @@
+USE [MuOnline]
+GO
+INSERT INTO DBHelper_ItemTypes VALUES
+('Weapon', 'Swords, Axes, Staffs etc.'),
+('Armor', 'Set items, Gloves, Pants, Helms etc.'),
+('Wings', 'Wing items'),
+('Scrolls', 'Spell learning items'),
+('Misc', 'Uknown or miscellaneous items')
