@@ -277,10 +277,10 @@ namespace MuDBHelper
 
             else
             {
-                Debug.WriteLine("test");
-
                 using(DBConnection conn = new DBConnection())
                 {
+                    //Set one
+                    //----------------------------------------------------------------------------------
                     if (current_item.set1 >= 0)
                     {
                         anc_set1.Content = conn.ancSets.FirstOrDefault(c => c.ID == current_item.set1);
@@ -288,7 +288,11 @@ namespace MuDBHelper
                     }
 
                     else anc_set1.Visibility = Visibility.Hidden;
+                    //----------------------------------------------------------------------------------
 
+
+                    //Set two
+                    //----------------------------------------------------------------------------------
                     if (current_item.set2 >= 0)
                     {
                         anc_set2.Content = conn.ancSets.FirstOrDefault(c => c.ID == current_item.set2);
@@ -296,7 +300,11 @@ namespace MuDBHelper
                     }
 
                     else anc_set2.Visibility = Visibility.Hidden;
+                    //----------------------------------------------------------------------------------
 
+
+                    //Set three
+                    //----------------------------------------------------------------------------------
                     if (current_item.set3 >= 0)
                     {
                         anc_set3.Content = conn.ancSets.FirstOrDefault(c => c.ID == current_item.set3);
@@ -304,7 +312,7 @@ namespace MuDBHelper
                     }
 
                     else anc_set3.Visibility = Visibility.Hidden;
-
+                    //----------------------------------------------------------------------------------
                 }
                 
                 set_unavailable_label.Visibility = Visibility.Hidden;
@@ -333,7 +341,7 @@ namespace MuDBHelper
                 bool skill = (bool) skill_field.IsChecked;
                 DBSets set = getSelectedAncient();
                 int setID = (set != null)? (int) set.ID : -1;
-                int harm_opt = harm_opt_list.SelectedIndex;
+                int harm_opt = ((DBHarmoneyOpts)harm_opt_list.SelectedValue).ID;
                 int harm_lvl = (int) harm_opt_lvl.Value;
 
                 ExcOpts excOpts = getExcOpts();
@@ -617,6 +625,33 @@ namespace MuDBHelper
             }            
         }
 
+        private void showHarmoneyOptions()
+        {
+            if(current_category == null || current_category.ID > 11)
+            {
+                harm_grid.Visibility = Visibility.Hidden;
+                no_harm_label.Visibility = Visibility.Visible;
+            }
+
+            else
+            {
+                int type;
+                if (current_category.ID < 7)
+                    type = 1;
+
+                else
+                    type = 2;
+
+                using(DBConnection conn = new DBConnection())
+                {
+                    harm_opt_list.ItemsSource = conn.harmOpts.Where(h => h.type == type);                   
+                }
+
+                no_harm_label.Visibility = Visibility.Hidden;
+                harm_grid.Visibility = Visibility.Visible;                
+            }
+        }
+
         private void CharacterListOnSelect(object sender, SelectionChangedEventArgs e)
         {
             string usernameSelected = (string) character_list.SelectedItem;
@@ -644,6 +679,9 @@ namespace MuDBHelper
 
             else if (tab_anc.IsSelected)
                 displayAncientOptions();
+
+            else if (tab_harm.IsSelected)
+                showHarmoneyOptions();
              
         }
     }

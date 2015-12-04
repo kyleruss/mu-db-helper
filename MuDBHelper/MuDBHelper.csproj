@@ -58,6 +58,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CharacterSpace.cs" />
+    <Compile Include="DBHarmoneyOpts.cs" />
     <Compile Include="DBAccount.cs" />
     <Compile Include="DBExcOpts.cs" />
     <Compile Include="DBSets.cs" />

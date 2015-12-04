@@ -4,6 +4,7 @@ CREATE TABLE DBHelper_HarmoneyOptions
 (
 	ID int IDENTITY(-1, 1) NOT NULL PRIMARY KEY,
 	name varchar(MAX),
+	type int DEFAULT 0,
 	level1 varchar(MAX),
 	level2 varchar(MAX),
 	level3 varchar(MAX),
