@@ -183,7 +183,6 @@ namespace MuDBHelper
             else
             {
                 string cat_hex = decToHex(category_change);
-                Debug.WriteLine("CATEGORY: " + cat_hex);
                 item[18] = char.Parse(cat_hex.Substring(1, 1));
                 //item[19] = char.Parse(cat_hex.Substring(1, 1));
                 category = category_change;

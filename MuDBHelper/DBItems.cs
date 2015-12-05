@@ -77,7 +77,6 @@ namespace MuDBHelper
         {
             using(DBConnection conn = new DBConnection())
             {
-                Debug.WriteLine("category: " + category);
                 return conn.items.Where(i => i.category_ID == category && i.ID == index).FirstOrDefault();
             }
         }

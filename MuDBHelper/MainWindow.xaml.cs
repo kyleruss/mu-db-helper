@@ -620,7 +620,15 @@ namespace MuDBHelper
                 displaySelectedTabOptions();
                 category_label.Content = current_category.name;
                 categoryBackButton.Visibility = Visibility.Visible;
-                ((Button)sender).BorderBrush = Brushes.Blue;
+
+                foreach(Button btn in inventory_grid.Children.Cast<UIElement>().Where(c => Grid.GetColumn(c) > 0 && Grid.GetRow(c) > 0))
+                {
+                    btn.BorderThickness = new Thickness(0, 0, 1, 1);
+                    btn.BorderBrush = Brushes.Black;
+                }
+
+                ((Button)sender).BorderThickness = new Thickness(1, 1, 1, 1);
+                ((Button)sender).BorderBrush = Brushes.White;
             }
 
             else
