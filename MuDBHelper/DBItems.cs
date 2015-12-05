@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,6 +77,7 @@ namespace MuDBHelper
         {
             using(DBConnection conn = new DBConnection())
             {
+                Debug.WriteLine("category: " + category);
                 return conn.items.Where(i => i.category_ID == category && i.ID == index).FirstOrDefault();
             }
         }

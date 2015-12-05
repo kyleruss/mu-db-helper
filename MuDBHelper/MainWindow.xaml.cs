@@ -30,8 +30,8 @@ namespace MuDBHelper
 
         public MainWindow()
         {
-          //  DBLoader.buildDBItems("Item.txt");
-           // DBLoader.UpdateItemImages(false);
+            //DBLoader.buildDBItems("Item.txt");
+            //DBLoader.UpdateItemImages(false);
 
             InitializeComponent();
             fillCategories();
@@ -40,11 +40,6 @@ namespace MuDBHelper
             initSlotIndexes();
             createInventoryGrid();
             displayExcOptions();
-            //displayAncientOptions();
-
-            int cat = 7;
-            string hexz = Item.decToHex(cat);
-            Debug.WriteLine("-- HEX: " + hexz.Substring(1, 1));
 
             storage_items = new Dictionary<Button, Item>();
         }
@@ -622,9 +617,10 @@ namespace MuDBHelper
                 current_item_index = index;
                 initItemOptions(storage_items[(Button)sender]);
                 storage_ctrls_container.Visibility = Visibility.Visible;
-                displayExcOptions();
+                displaySelectedTabOptions();
                 category_label.Content = current_category.name;
                 categoryBackButton.Visibility = Visibility.Visible;
+                ((Button)sender).BorderBrush = Brushes.Blue;
             }
 
             else
@@ -712,14 +708,9 @@ namespace MuDBHelper
             storage_ctrls_container.Visibility = Visibility.Hidden;
         }
 
-        private void OnAdvancedPropertiesChanged(object sender, SelectionChangedEventArgs e)
+        private void displaySelectedTabOptions()
         {
-            TabItem item = sender as TabItem;
-
-            if (tab_exc.IsSelected)
-                displayExcOptions();
-
-            else if (tab_anc.IsSelected)
+            if (tab_anc.IsSelected)
                 displayAncientOptions();
 
             else if (tab_harm.IsSelected)
@@ -727,7 +718,11 @@ namespace MuDBHelper
 
             else if (tab_ref.IsSelected)
                 displayRefineOptions();
-             
+        }
+
+        private void OnAdvancedPropertiesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            displaySelectedTabOptions();
         }
     }
 }

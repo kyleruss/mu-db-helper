@@ -18,7 +18,7 @@ CREATE TABLE DBHelper_Items
 	set3 int FOREIGN KEY REFERENCES DBHelper_Sets(ID) ON DELETE NO ACTION NULL DEFAULT -1 ,
 	allow_socket BIT DEFAULT 0,
 	harmoney_type int FOREIGN KEY REFERENCES DBHelper_HarmoneyOptions(ID) ON DELETE SET NULL DEFAULT -1,
-	refine_type int FOREIGN KEY REFERENCES DBHelper_RefineTypes(ID) ON DELETE SET NULL DEFAULT 1,
+	refine_type int FOREIGN KEY REFERENCES DBHelper_RefineTypes(ID) ON DELETE SET NULL DEFAULT 0,
 	image_path varchar(300) DEFAULT 'default.gif'
 	PRIMARY KEY(ID, category_ID)
 )
