@@ -30,8 +30,8 @@ namespace MuDBHelper
 
         public MainWindow()
         {
-            //DBLoader.buildDBItems("Item.txt");
-            //DBLoader.UpdateItemImages(false);
+          //  DBLoader.buildDBItems("Item.txt");
+           // DBLoader.UpdateItemImages(false);
 
             InitializeComponent();
             fillCategories();
@@ -40,7 +40,7 @@ namespace MuDBHelper
             initSlotIndexes();
             createInventoryGrid();
             displayExcOptions();
-            displayAncientOptions();
+            //displayAncientOptions();
 
             storage_items = new Dictionary<Button, Item>();
         }
@@ -271,6 +271,26 @@ namespace MuDBHelper
             {
                 ref_grid.Visibility = Visibility.Hidden;
                 no_ref_label.Visibility = Visibility.Visible;
+            }
+
+            else
+            {
+                using(DBConnection conn = new DBConnection())
+                {
+                    var refineOpt = conn.refineOpts.Where(x => x.typeID == current_item.itemType).FirstOrDefault();
+                    if (refineOpt != null)
+                    {
+                        ref_opt_check.Content = refineOpt.name;
+                        no_ref_label.Visibility = Visibility.Hidden;
+                        ref_grid.Visibility = Visibility.Visible;
+                    }
+
+                    else
+                    {
+                        ref_grid.Visibility = Visibility.Hidden; ;
+                        no_ref_label.Visibility = Visibility.Visible;
+                    }
+                }
             }
         }
 
@@ -689,6 +709,9 @@ namespace MuDBHelper
 
             else if (tab_harm.IsSelected)
                 showHarmoneyOptions();
+
+            else if (tab_ref.IsSelected)
+                displayRefineOptions();
              
         }
     }
