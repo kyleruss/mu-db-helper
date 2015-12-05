@@ -471,8 +471,21 @@ namespace MuDBHelper
 
         private void createInventoryGrid()
         {
-            int numRows = 8;
-            int numCols = 8;
+            createGrid(8, 8, inventory_grid);
+        }
+
+        private void createVaultGrid()
+        {
+            createGrid(15, 8, vault_storage_container);
+        }
+
+        private void createStoreGrid()
+        {
+
+        }
+
+        private void createGrid(int numRows, int numCols, Grid container)
+        {
             int colWidth = 35;
             int rowHeight = 35;
 
@@ -508,8 +521,6 @@ namespace MuDBHelper
 
                     inventorySlot.Background = Brushes.Transparent;
                     inventorySlot.Click += new RoutedEventHandler(inventorySlotOnClick);
-
-
 
                     inventory_grid.Children.Add(inventorySlot);
                     Grid.SetRow(inventorySlot, row);
