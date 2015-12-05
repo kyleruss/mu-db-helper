@@ -4,5 +4,7 @@ CREATE TABLE DBHelper_RefineTypes
 (
 	ID int IDENTITY(1, 1) NOT NULL PRIMARY KEY,
 	name varchar(MAX),
-	typeID int FOREIGN KEY REFERENCES DBHelper_ItemTypes(ID) ON DELETE SET NULL
+	typeID int FOREIGN KEY REFERENCES DBHelper_ItemTypes(ID) ON DELETE SET NULL,
+	option1 varchar(20),
+	option2 varchar(20)
 )

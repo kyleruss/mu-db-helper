@@ -19,5 +19,11 @@ namespace MuDBHelper
 
         [Column]
         public int typeID { get; set; }
+
+        [Column]
+        public string option1 { get; set; }
+
+        [Column]
+        public string option2 { get; set; }
     }
 }
