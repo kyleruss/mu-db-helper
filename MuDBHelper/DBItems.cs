@@ -62,6 +62,9 @@ namespace MuDBHelper
         [Column]
         public string image_path { get; set; }
 
+        [Column]
+        public int? itemType { get; set; }
+
 
         public string toString()
         {

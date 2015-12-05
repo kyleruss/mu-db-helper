@@ -7,17 +7,16 @@ using System.Data.Linq.Mapping;
 
 namespace MuDBHelper
 {
-    
-    [Table(Name="DBHelper_RefineTypes")]
-    class DBRefineOpts
+    [Table(Name = "DBHelper_ItemTypes")]
+    class DBItemType
     {
-        [Column(IsPrimaryKey=true, IsDbGenerated=true)]
+        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         public int ID { get; set; }
 
         [Column]
         public string name { get; set; }
 
         [Column]
-        public int typeID { get; set; }
+        public string description { get; set; }
     }
 }

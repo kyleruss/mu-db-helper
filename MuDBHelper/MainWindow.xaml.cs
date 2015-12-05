@@ -265,6 +265,15 @@ namespace MuDBHelper
             }
         }
 
+        private void displayRefineOptions()
+        {
+            if(current_item == null || current_item.itemType == null || current_item.itemType > 1)
+            {
+                ref_grid.Visibility = Visibility.Hidden;
+                no_ref_label.Visibility = Visibility.Visible;
+            }
+        }
+
         private void displayAncientOptions()
         {
             if (current_item == null || (current_item.set1 == -1 && current_item.set2 == -1 && current_item.set3 == -1))

@@ -26,6 +26,8 @@ namespace MuDBHelper
 
         public Table<DBRefineOpts> refineOpts;
 
+        public Table<DBItemType> itemTypes;
+
         public DBConnection() : base("Server=.\\SQLEXPRESS;Database=MuOnline;Integrated Security=true") { }
     }
 }

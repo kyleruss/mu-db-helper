@@ -234,7 +234,13 @@
                             </Grid>
                         </TabItem>
                         <TabItem x:Name="tab_ref" Header="Refine" Background="#FFACACAC" FontSize="12">
-                            <Grid/>
+                            <Grid>
+                                <Grid x:Name="ref_grid">
+                                    <CheckBox x:Name="ref_opt_check" Content="Default option" HorizontalAlignment="Left" Margin="20,70,0,0" VerticalAlignment="Top" Foreground="#FFC535FB" FontSize="18" Height="65" Width="240"/>
+                                </Grid>
+                                <Label Visibility="Hidden" x:Name="no_ref_label" Content="No refine options available" HorizontalAlignment="Left" Margin="28,67,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
+
+                            </Grid>
                         </TabItem>
                         <TabItem x:Name="tab_anc" Header="Ancient" Background="#FFACACAC" FontSize="12">
                             <Grid>
