@@ -42,6 +42,10 @@ namespace MuDBHelper
             displayExcOptions();
             //displayAncientOptions();
 
+            int cat = 7;
+            string hexz = Item.decToHex(cat);
+            Debug.WriteLine("-- HEX: " + hexz.Substring(1, 1));
+
             storage_items = new Dictionary<Button, Item>();
         }
 
@@ -280,6 +284,7 @@ namespace MuDBHelper
                     var refineOpt = conn.refineOpts.Where(x => x.typeID == current_item.itemType).FirstOrDefault();
                     if (refineOpt != null)
                     {
+                        ref_opt_check.Content = refineOpt;
                         if (refineOpt.option1 != null)
                             ref_opt1.Content = "+ " + refineOpt.option1;
                         else
@@ -379,10 +384,11 @@ namespace MuDBHelper
                 int setID = (set != null)? (int) set.ID : -1;
                 int harm_opt = ((DBHarmoneyOpts)harm_opt_list.SelectedValue).ID;
                 int harm_lvl = (int) harm_opt_lvl.Value;
+                int refID = ((DBRefineOpts)ref_opt_check.Content).ID;
 
                 ExcOpts excOpts = getExcOpts();
 
-                return new Item(index, category, skill, luck, level, add_level, dur, setID, harm_opt, harm_lvl, excOpts);
+                return new Item(index, category, skill, luck, level, add_level, dur, setID, harm_opt, harm_lvl, refID, excOpts);
             }
         }
 

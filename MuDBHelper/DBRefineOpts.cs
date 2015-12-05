@@ -25,5 +25,10 @@ namespace MuDBHelper
 
         [Column]
         public string option2 { get; set; }
+
+        public override string ToString()
+        {
+            return "";
+        }
     }
 }

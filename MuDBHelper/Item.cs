@@ -33,9 +33,13 @@ namespace MuDBHelper
 
         public Dictionary<int, int> sockets { get; set; }
 
-        private int harmoney_opt;
+        public int harmoney_opt { get; set; }
 
-        private int harmoney_lvl;
+        public int harmoney_lvl { get; set; }
+
+        public int refineID { get; set; }
+
+       
 
         public Item()
         {
@@ -59,7 +63,7 @@ namespace MuDBHelper
             initExcOpts();
         }
                                                                                                 
-        public Item(int index, int category, bool skill, bool luck, int level, int addLevel, int durability, int ancID, int harm_opt, int harm_lvl, ExcOpts excellent_options)
+        public Item(int index, int category, bool skill, bool luck, int level, int addLevel, int durability, int ancID, int harm_opt, int harm_lvl, int refine_id, ExcOpts excellent_options)
         {
             item     = new char[32];
             this.hex = def;
@@ -76,6 +80,7 @@ namespace MuDBHelper
             initExcOptsToItem();
             changeHarmoneyOption(harm_opt);
             changeHarmoneyLevel(harm_lvl);
+            changeRefine(refine_id);
             updateHex();
         }
 
@@ -178,10 +183,23 @@ namespace MuDBHelper
             else
             {
                 string cat_hex = decToHex(category_change);
-                item[18] = char.Parse(cat_hex.Substring(0, 1));
-                item[19] = char.Parse(cat_hex.Substring(1, 1));
+                Debug.WriteLine("CATEGORY: " + cat_hex);
+                item[18] = char.Parse(cat_hex.Substring(1, 1));
+                //item[19] = char.Parse(cat_hex.Substring(1, 1));
                 category = category_change;
             }
+        }
+
+        public void changeRefine(int refine_id)
+        {
+            if (refine_id < 0) return;
+
+            refineID = refine_id;
+
+            if (refine_id != 0)
+                item[19] = '8';
+            else
+                item[19] = '0';
         }
 
         public void changeAncient(int ancient_id)
@@ -337,6 +355,7 @@ namespace MuDBHelper
                 ancientID = (int)hexToDec(hex.Substring(16, 2));
                 harmoney_opt = (int)hexToDec(hex.Substring(20, 1));
                 harmoney_lvl = (int)hexToDec(hex.Substring(21, 1));
+                refineID = (int)hexToDec(hex.Substring(19, 1));
 
                 int[] temp = { (int)hexToDec(hex.Substring(2, 1)), (int)hexToDec(hex.Substring(3, 1)) };
                 int addOpt = (int)hexToDec(hex.Substring(14, 1));
