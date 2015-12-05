@@ -236,7 +236,9 @@
                         <TabItem x:Name="tab_ref" Header="Refine" Background="#FFACACAC" FontSize="12">
                             <Grid>
                                 <Grid x:Name="ref_grid">
-                                    <CheckBox x:Name="ref_opt_check" Content="Default option" HorizontalAlignment="Left" Margin="20,70,0,0" VerticalAlignment="Top" Foreground="#FFC535FB" FontSize="18" Height="65" Width="240"/>
+                                    <CheckBox x:Name="ref_opt_check" Content="" HorizontalAlignment="Left" Margin="20,70,0,0" VerticalAlignment="Top" Foreground="#FFC535FB" FontSize="18" Height="65" Width="240"/>
+                                    <Label x:Name="ref_opt1" Content="Default option one" HorizontalAlignment="Left" Margin="49,61,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF5AE64C"/>
+                                    <Label x:Name="ref_opt2" Content="Default option one" HorizontalAlignment="Left" Margin="49,100,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF5AE64C"/>
                                 </Grid>
                                 <Label Visibility="Hidden" x:Name="no_ref_label" Content="No refine options available" HorizontalAlignment="Left" Margin="28,67,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
 

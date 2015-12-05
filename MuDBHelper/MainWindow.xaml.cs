@@ -280,7 +280,16 @@ namespace MuDBHelper
                     var refineOpt = conn.refineOpts.Where(x => x.typeID == current_item.itemType).FirstOrDefault();
                     if (refineOpt != null)
                     {
-                        ref_opt_check.Content = refineOpt.name;
+                        if (refineOpt.option1 != null)
+                            ref_opt1.Content = "+ " + refineOpt.option1;
+                        else
+                            ref_opt1.Visibility = Visibility.Hidden;
+
+                        if (refineOpt.option2 != null)
+                            ref_opt2.Content = "+ " + refineOpt.option2;
+                        else
+                            ref_opt2.Visibility = Visibility.Hidden;
+
                         no_ref_label.Visibility = Visibility.Hidden;
                         ref_grid.Visibility = Visibility.Visible;
                     }
