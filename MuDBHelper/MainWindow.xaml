@@ -95,7 +95,7 @@
                     <!-- CHARACTER LIST -->
                     <ComboBox Text="Select character" x:Name="character_list" IsEditable="True" Grid.Column="1" HorizontalAlignment="Left" Margin="16,3,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="22" DropDownOpened="CharacterListOnOpen" KeyUp="CharacterSearchKeyUp" SelectionChanged="CharacterListOnSelect"/>
                     <!-- STORAGE LIST -->
-                    <ComboBox SelectedIndex="0" x:Name="storage_list" Grid.Column="2" HorizontalAlignment="Left" Margin="7,3,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="22" SelectionChanged="OnStorageChange">
+                    <ComboBox Text="Select storage" SelectedIndex="0" x:Name="storage_list" Grid.Column="2" HorizontalAlignment="Left" Margin="7,3,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="22" SelectionChanged="OnStorageChange" >
                         <ComboBoxItem Content="Person" />
                         <ComboBoxItem Content="Inventory"/>
                         <ComboBoxItem Content="Vault" />

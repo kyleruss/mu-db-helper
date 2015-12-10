@@ -491,10 +491,10 @@ namespace MuDBHelper
 
         private void displayStorageContainer(Grid container)
         {
-            foreach(Grid other in storage_containers.Children.Cast<UIElement>().Where(x => x != container))            
+            foreach(var other in storage_containers.Children.Cast<UIElement>().Where(x => x != container))            
                 other.Visibility = Visibility.Hidden;
 
-            container.Visibility = Visibility.Visible;
+            container.Visibility = Visibility.Visible; 
         }
 
         private void createGrid(int numRows, int numCols, Grid container)
@@ -759,6 +759,8 @@ namespace MuDBHelper
 
         private void OnStorageChange(object sender, SelectionChangedEventArgs e)
         {
+            if (storage_containers == null) return;
+
             switch(storage_list.SelectedIndex)
             {
                 case 0:
@@ -775,7 +777,7 @@ namespace MuDBHelper
                     break;
                 case 4:
                     displayStorageContainer(e_inv_storage_container);
-                    break;
+                    break;                    
             }
         }
     }
