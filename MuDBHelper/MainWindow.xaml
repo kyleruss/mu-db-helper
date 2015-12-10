@@ -106,7 +106,7 @@
 
 
                 </Grid>
-                
+
                 <Grid Name="storage_containers">
                     <!-- INVENTORY CONTAINER -->
                     <Grid Name="inventory_storage_container" HorizontalAlignment="Left" Height="374" Margin="10,92,0,0" VerticalAlignment="Top" Width="429" Visibility="Hidden">
@@ -119,16 +119,16 @@
                     <Grid Name="vault_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="552" Width="429" Margin="10,92,0,0" Visibility="Hidden">
                         <Border BorderThickness="1" BorderBrush="Black">
                             <Grid Name="vault_grid" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                        </Border>                        
+                        </Border>
                     </Grid>
-                
+
                     <!-- PERSONAL STORE CONTAINER -->
                     <Grid Name="store_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="300" Width="429" Margin="10,92,0,0" Visibility="Hidden">
                         <Border BorderBrush="Black" BorderThickness="1">
                             <Grid Name="store_grid" HorizontalAlignment="Left" VerticalAlignment="Top" />
                         </Border>
                     </Grid>
-                
+
                     <!-- EXTRA INVENTORY CONTAINER -->
                     <Grid Name="e_inv_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="374" Width="429" Margin="10,105,0,0" Visibility="Hidden">
                         <Border BorderBrush="Black" BorderThickness="1">
@@ -194,7 +194,7 @@
                 <Label Content="Basic properties
                        " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="125" Foreground="White" Background="#FF8D8A8A" FontFamily="Segoe UI Light" FontSize="16" Height="33"/>
 
-                <Grid HorizontalAlignment="Left" Height="296" Margin="10,337,0,0" VerticalAlignment="Top" Width="306">
+                <Grid HorizontalAlignment="Left" Height="296" Margin="10,258,0,0" VerticalAlignment="Top" Width="306">
                     <Border BorderBrush="#FF8D8A8A" BorderThickness="1" HorizontalAlignment="Left" Height="296" VerticalAlignment="Top" Width="306"/>
                     <TabControl BorderThickness="0, 1, 0, 0" Height="234" Margin="10,52,10,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="#FFACACAC" SelectionChanged="OnAdvancedPropertiesChanged">
                         <TabItem x:Name="tab_exc" Header="Excellent" Background="#FFACACAC" FontSize="12">
@@ -284,7 +284,16 @@
                 </Grid>
 
                 <Label Content="Advanced properties
-                       " HorizontalAlignment="Left" Margin="10,337,0,0" VerticalAlignment="Top" Width="155" Foreground="White" Background="#FF8D8A8A" FontFamily="Segoe UI Light" FontSize="16" Height="33"/>
+                       " HorizontalAlignment="Left" Margin="10,258,0,0" VerticalAlignment="Top" Width="155" Foreground="White" Background="#FF8D8A8A" FontFamily="Segoe UI Light" FontSize="16" Height="33"/>
+
+
+                <Grid HorizontalAlignment="Left" Height="117" Margin="10,581,0,0" VerticalAlignment="Top" Width="306">
+                    <Border BorderBrush="#FF8D8A8A" BorderThickness="1" HorizontalAlignment="Left" Height="117" VerticalAlignment="Top" Width="306"/>
+                </Grid>
+
+                <Label Content="Extras/Settings
+                       " HorizontalAlignment="Left" Margin="10,581,0,0" VerticalAlignment="Top" Width="155" Foreground="White" Background="#FF8D8A8A" FontFamily="Segoe UI Light" FontSize="16" Height="33"/>
+
             </Grid>
         </Grid>
         <Border BorderBrush="#FF878686" BorderThickness="1" HorizontalAlignment="Left" Height="800" VerticalAlignment="Top" Width="1100">
