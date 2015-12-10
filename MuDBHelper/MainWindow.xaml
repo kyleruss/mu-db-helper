@@ -117,17 +117,23 @@
 
                     <!-- VAULT CONTAINER -->
                     <Grid Name="vault_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="552" Width="429" Margin="10,92,0,0" Visibility="Hidden">
-                        <Border BorderThickness="1" BorderBrush="Black" />
+                        <Border BorderThickness="1" BorderBrush="Black">
+                            <Grid Name="vault_grid" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        </Border>                        
                     </Grid>
                 
                     <!-- PERSONAL STORE CONTAINER -->
                     <Grid Name="store_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="300" Width="429" Margin="10,92,0,0" Visibility="Hidden">
-                        <Border BorderBrush="Black" BorderThickness="1" />
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <Grid Name="store_grid" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        </Border>
                     </Grid>
                 
                     <!-- EXTRA INVENTORY CONTAINER -->
                     <Grid Name="e_inv_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="374" Width="429" Margin="10,105,0,0" Visibility="Hidden">
-                        <Border BorderBrush="Black" BorderThickness="1" />
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <Grid Name="e_inv_grid" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        </Border>
                     </Grid>
 
                     <!-- CHARACTER STORAGE CONTAINER -->
