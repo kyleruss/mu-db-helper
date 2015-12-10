@@ -498,7 +498,7 @@ namespace MuDBHelper
         }
 
         private void createGrid(int numRows, int numCols, Grid container)
-        {
+        {            
             int colWidth = 35;
             int rowHeight = 35;
 
@@ -507,11 +507,11 @@ namespace MuDBHelper
                 GridLength gridLength = new GridLength(1, GridUnitType.Auto);
                 RowDefinition rowDef = new RowDefinition();
                 rowDef.Height = gridLength;
-                inventory_grid.RowDefinitions.Add(rowDef);
+                container.RowDefinitions.Add(rowDef);
 
                 ColumnDefinition colDef = new ColumnDefinition();
                 colDef.Width = gridLength;
-                inventory_grid.ColumnDefinitions.Add(colDef);
+                container.ColumnDefinitions.Add(colDef);
 
                 for (int col = 0; col < numCols; col++)
                 {
@@ -535,7 +535,7 @@ namespace MuDBHelper
                     inventorySlot.Background = Brushes.Transparent;
                     inventorySlot.Click += new RoutedEventHandler(inventorySlotOnClick);
 
-                    inventory_grid.Children.Add(inventorySlot);
+                    container.Children.Add(inventorySlot);
                     Grid.SetRow(inventorySlot, row);
                     Grid.SetColumn(inventorySlot, col);
                 }
@@ -764,19 +764,23 @@ namespace MuDBHelper
             switch(storage_list.SelectedIndex)
             {
                 case 0:
-                    displayStorageContainer(character_storage_container);
+                    displayStorageContainer(character_storage_container);                    
                     break;
                 case 1:
                     displayStorageContainer(inventory_storage_container);
+                    createInventoryGrid();
                     break;
                 case 2:
                     displayStorageContainer(vault_storage_container);
+                    createVaultGrid();
                     break;
                 case 3:
                     displayStorageContainer(store_storage_container);
+                    createStoreGrid();
                     break;
                 case 4:
                     displayStorageContainer(e_inv_storage_container);
+                    createExtraInventoryGrid();
                     break;                    
             }
         }
