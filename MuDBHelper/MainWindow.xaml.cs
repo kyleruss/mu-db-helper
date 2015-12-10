@@ -481,7 +481,12 @@ namespace MuDBHelper
 
         private void createStoreGrid()
         {
+            createGrid(4, 8, store_storage_container);
+        }
 
+        private void createExtraInventoryGrid()
+        {
+            createGrid(8, 8, e_inv_storage_container);
         }
 
         private void createGrid(int numRows, int numCols, Grid container)

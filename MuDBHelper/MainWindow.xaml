@@ -120,7 +120,12 @@
                 </Grid>
                 
                 <!-- PERSONAL STORE CONTAINER -->
-                <Grid Name="store_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="300" Width="429" Margin="10,92,0,0">
+                <Grid Name="store_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="300" Width="429" Margin="10,92,0,0" Visibility="Hidden">
+                    <Border BorderBrush="Black" BorderThickness="1" />
+                </Grid>
+                
+                <!-- EXTRA INVENTORY CONTAINER -->
+                <Grid Name="e_inv_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="374" Width="429" Margin="10,105,0,0">
                     <Border BorderBrush="Black" BorderThickness="1" />
                 </Grid>
 
