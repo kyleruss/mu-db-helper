@@ -106,15 +106,22 @@
 
 
                 </Grid>
+                
+                <!-- INVENTORY CONTAINER -->
                 <Grid Name="inventory_storage_container" HorizontalAlignment="Left" Height="374" Margin="10,92,0,0" VerticalAlignment="Top" Width="429" Visibility="Hidden">
                     <Border BorderBrush="Black" BorderThickness="1">
-                        <Grid Name="inventory_grid" HorizontalAlignment="Left" Height="282" Margin="9,9,0,0" VerticalAlignment="Top" Width="409">
-                        </Grid>
+                        <Grid Name="inventory_grid" HorizontalAlignment="Left" Height="282" Margin="9,9,0,0" VerticalAlignment="Top" Width="409" />
                     </Border>
                 </Grid>
-                
-                <Grid Name="vault_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="552" Width="429" Margin="10,92,0,0">
+
+                <!-- VAULT CONTAINER -->
+                <Grid Name="vault_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="552" Width="429" Margin="10,92,0,0" Visibility="Hidden">
                     <Border BorderThickness="1" BorderBrush="Black" />
+                </Grid>
+                
+                <!-- PERSONAL STORE CONTAINER -->
+                <Grid Name="store_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="300" Width="429" Margin="10,92,0,0">
+                    <Border BorderBrush="Black" BorderThickness="1" />
                 </Grid>
 
                 <Grid Name="character_storage_container" Visibility="Hidden" HorizontalAlignment="Left" Height="461" Margin="10,92,0,0" VerticalAlignment="Top" Width="429">
