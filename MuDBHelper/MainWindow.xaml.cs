@@ -491,7 +491,10 @@ namespace MuDBHelper
 
         private void displayStorageContainer(Grid container)
         {
+            foreach(Grid other in storage_containers.Children.Cast<UIElement>().Where(x => x != container))            
+                other.Visibility = Visibility.Hidden;
 
+            container.Visibility = Visibility.Visible;
         }
 
         private void createGrid(int numRows, int numCols, Grid container)
