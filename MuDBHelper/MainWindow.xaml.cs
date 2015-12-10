@@ -502,17 +502,24 @@ namespace MuDBHelper
             int colWidth = 35;
             int rowHeight = 35;
 
+            GridLength gridLength = new GridLength(1, GridUnitType.Auto);
+
             for (int row = 0; row < numRows; row++)
-            {
-                GridLength gridLength = new GridLength(1, GridUnitType.Auto);
+            {                
                 RowDefinition rowDef = new RowDefinition();
                 rowDef.Height = gridLength;
                 container.RowDefinitions.Add(rowDef);
+            }
 
+            for (int col = 0; col < numCols; col++)
+            {
                 ColumnDefinition colDef = new ColumnDefinition();
                 colDef.Width = gridLength;
                 container.ColumnDefinitions.Add(colDef);
+            }
 
+            for (int row = 0; row < numRows; row++)
+            {
                 for (int col = 0; col < numCols; col++)
                 {
                     int leftThick = 1;
