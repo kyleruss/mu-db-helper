@@ -95,7 +95,7 @@
                     <!-- CHARACTER LIST -->
                     <ComboBox Text="Select character" x:Name="character_list" IsEditable="True" Grid.Column="1" HorizontalAlignment="Left" Margin="16,3,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="22" DropDownOpened="CharacterListOnOpen" KeyUp="CharacterSearchKeyUp" SelectionChanged="CharacterListOnSelect"/>
                     <!-- STORAGE LIST -->
-                    <ComboBox SelectedIndex="0" x:Name="storage_list" Grid.Column="2" HorizontalAlignment="Left" Margin="7,3,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="22">
+                    <ComboBox SelectedIndex="0" x:Name="storage_list" Grid.Column="2" HorizontalAlignment="Left" Margin="7,3,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="22" SelectionChanged="OnStorageChange">
                         <ComboBoxItem Content="Person" />
                         <ComboBoxItem Content="Inventory"/>
                         <ComboBoxItem Content="Vault" />
@@ -107,44 +107,47 @@
 
                 </Grid>
                 
-                <!-- INVENTORY CONTAINER -->
-                <Grid Name="inventory_storage_container" HorizontalAlignment="Left" Height="374" Margin="10,92,0,0" VerticalAlignment="Top" Width="429" Visibility="Hidden">
-                    <Border BorderBrush="Black" BorderThickness="1">
-                        <Grid Name="inventory_grid" HorizontalAlignment="Left" Height="282" Margin="9,9,0,0" VerticalAlignment="Top" Width="409" />
-                    </Border>
-                </Grid>
+                <Grid Name="storage_containers">
+                    <!-- INVENTORY CONTAINER -->
+                    <Grid Name="inventory_storage_container" HorizontalAlignment="Left" Height="374" Margin="10,92,0,0" VerticalAlignment="Top" Width="429" Visibility="Hidden">
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <Grid Name="inventory_grid" HorizontalAlignment="Left" Height="282" Margin="9,9,0,0" VerticalAlignment="Top" Width="409" />
+                        </Border>
+                    </Grid>
 
-                <!-- VAULT CONTAINER -->
-                <Grid Name="vault_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="552" Width="429" Margin="10,92,0,0" Visibility="Hidden">
-                    <Border BorderThickness="1" BorderBrush="Black" />
-                </Grid>
+                    <!-- VAULT CONTAINER -->
+                    <Grid Name="vault_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="552" Width="429" Margin="10,92,0,0" Visibility="Hidden">
+                        <Border BorderThickness="1" BorderBrush="Black" />
+                    </Grid>
                 
-                <!-- PERSONAL STORE CONTAINER -->
-                <Grid Name="store_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="300" Width="429" Margin="10,92,0,0" Visibility="Hidden">
-                    <Border BorderBrush="Black" BorderThickness="1" />
-                </Grid>
+                    <!-- PERSONAL STORE CONTAINER -->
+                    <Grid Name="store_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="300" Width="429" Margin="10,92,0,0" Visibility="Hidden">
+                        <Border BorderBrush="Black" BorderThickness="1" />
+                    </Grid>
                 
-                <!-- EXTRA INVENTORY CONTAINER -->
-                <Grid Name="e_inv_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="374" Width="429" Margin="10,105,0,0">
-                    <Border BorderBrush="Black" BorderThickness="1" />
-                </Grid>
+                    <!-- EXTRA INVENTORY CONTAINER -->
+                    <Grid Name="e_inv_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="374" Width="429" Margin="10,105,0,0" Visibility="Hidden">
+                        <Border BorderBrush="Black" BorderThickness="1" />
+                    </Grid>
 
-                <Grid Name="character_storage_container" Visibility="Hidden" HorizontalAlignment="Left" Height="461" Margin="10,92,0,0" VerticalAlignment="Top" Width="429">
-                    <Border BorderBrush="Black" BorderThickness="1">
-                        <Image Margin="31,-1,36,-1" Source="images/interface/character.png" />
-                    </Border>
-                    <Button Content="Helm" x:Name="slot_helm" HorizontalAlignment="Left" Margin="176,119,0,0" VerticalAlignment="Top" Width="75" Height="63" Foreground="White" FontWeight="Bold" FontSize="16" Background="{x:Null}" Click="CharacterSlotOnClick" />
-                    <Button Content="Chest" x:Name="slot_chest" HorizontalAlignment="Left" Margin="176,187,0,0" VerticalAlignment="Top" Width="75" Height="95" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
-                    <Button Content="LWeapon" x:Name="slot_lweapon" HorizontalAlignment="Left" Margin="50,187,0,0" VerticalAlignment="Top" Width="75" Height="95" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
-                    <Button Content="RWeapon" x:Name="slot_rweapon" HorizontalAlignment="Left" Margin="297,187,0,0" VerticalAlignment="Top" Width="75" Height="95" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
-                    <Button Content="Legs" x:Name="slot_legs" HorizontalAlignment="Left" Margin="176,287,0,0" VerticalAlignment="Top" Width="75" Height="66" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
-                    <Button Content="Boots" x:Name="slot_boots" HorizontalAlignment="Left" Margin="297,287,0,0" VerticalAlignment="Top" Width="75" Height="66" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
-                    <Button Content="Gloves" x:Name="slot_gloves" HorizontalAlignment="Left" Margin="50,287,0,0" VerticalAlignment="Top" Width="75" Height="66" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
-                    <Button Content="Wings" x:Name="slot_wings" HorizontalAlignment="Left" Margin="256,119,0,0" VerticalAlignment="Top" Width="116" Height="63" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
-                    <Button Content="LRing" x:Name="slot_lring" HorizontalAlignment="Left" Margin="130,314,0,0" VerticalAlignment="Top" Width="41" Height="39" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
-                    <Button Content="RRing" x:Name="slot_rring" HorizontalAlignment="Left" Margin="252,314,0,0" VerticalAlignment="Top" Width="45" Height="39" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
-                    <Button Content="Pen" x:Name="slot_pen" HorizontalAlignment="Left" Margin="130,144,0,0" VerticalAlignment="Top" Width="41" Height="38" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
-                    <Button Content="Pet" x:Name="slot_pet" HorizontalAlignment="Left" Margin="55,120,0,0" VerticalAlignment="Top" Width="70" Height="62" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
+                    <!-- CHARACTER STORAGE CONTAINER -->
+                    <Grid Name="character_storage_container" Visibility="Hidden" HorizontalAlignment="Left" Height="461" Margin="10,92,0,0" VerticalAlignment="Top" Width="429">
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <Image Margin="31,-1,36,-1" Source="images/interface/character.png" />
+                        </Border>
+                        <Button Content="Helm" x:Name="slot_helm" HorizontalAlignment="Left" Margin="176,119,0,0" VerticalAlignment="Top" Width="75" Height="63" Foreground="White" FontWeight="Bold" FontSize="16" Background="{x:Null}" Click="CharacterSlotOnClick" />
+                        <Button Content="Chest" x:Name="slot_chest" HorizontalAlignment="Left" Margin="176,187,0,0" VerticalAlignment="Top" Width="75" Height="95" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
+                        <Button Content="LWeapon" x:Name="slot_lweapon" HorizontalAlignment="Left" Margin="50,187,0,0" VerticalAlignment="Top" Width="75" Height="95" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
+                        <Button Content="RWeapon" x:Name="slot_rweapon" HorizontalAlignment="Left" Margin="297,187,0,0" VerticalAlignment="Top" Width="75" Height="95" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
+                        <Button Content="Legs" x:Name="slot_legs" HorizontalAlignment="Left" Margin="176,287,0,0" VerticalAlignment="Top" Width="75" Height="66" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
+                        <Button Content="Boots" x:Name="slot_boots" HorizontalAlignment="Left" Margin="297,287,0,0" VerticalAlignment="Top" Width="75" Height="66" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
+                        <Button Content="Gloves" x:Name="slot_gloves" HorizontalAlignment="Left" Margin="50,287,0,0" VerticalAlignment="Top" Width="75" Height="66" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
+                        <Button Content="Wings" x:Name="slot_wings" HorizontalAlignment="Left" Margin="256,119,0,0" VerticalAlignment="Top" Width="116" Height="63" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
+                        <Button Content="LRing" x:Name="slot_lring" HorizontalAlignment="Left" Margin="130,314,0,0" VerticalAlignment="Top" Width="41" Height="39" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
+                        <Button Content="RRing" x:Name="slot_rring" HorizontalAlignment="Left" Margin="252,314,0,0" VerticalAlignment="Top" Width="45" Height="39" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
+                        <Button Content="Pen" x:Name="slot_pen" HorizontalAlignment="Left" Margin="130,144,0,0" VerticalAlignment="Top" Width="41" Height="38" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
+                        <Button Content="Pet" x:Name="slot_pet" HorizontalAlignment="Left" Margin="55,120,0,0" VerticalAlignment="Top" Width="70" Height="62" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
+                    </Grid>
                 </Grid>
 
                 <!-- STORAGE CONTROLS -->

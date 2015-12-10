@@ -489,6 +489,11 @@ namespace MuDBHelper
             createGrid(8, 8, e_inv_storage_container);
         }
 
+        private void displayStorageContainer(Grid container)
+        {
+
+        }
+
         private void createGrid(int numRows, int numCols, Grid container)
         {
             int colWidth = 35;
@@ -747,6 +752,28 @@ namespace MuDBHelper
         private void OnAdvancedPropertiesChanged(object sender, SelectionChangedEventArgs e)
         {
             displaySelectedTabOptions();
+        }
+
+        private void OnStorageChange(object sender, SelectionChangedEventArgs e)
+        {
+            switch(storage_list.SelectedIndex)
+            {
+                case 0:
+                    displayStorageContainer(character_storage_container);
+                    break;
+                case 1:
+                    displayStorageContainer(inventory_storage_container);
+                    break;
+                case 2:
+                    displayStorageContainer(vault_storage_container);
+                    break;
+                case 3:
+                    displayStorageContainer(store_storage_container);
+                    break;
+                case 4:
+                    displayStorageContainer(e_inv_storage_container);
+                    break;
+            }
         }
     }
 }
