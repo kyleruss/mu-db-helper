@@ -476,17 +476,17 @@ namespace MuDBHelper
 
         private void createVaultGrid()
         {
-            createGrid(15, 8, vault_storage_container);
+            createGrid(15, 8, vault_grid);
         }
 
         private void createStoreGrid()
         {
-            createGrid(4, 8, store_storage_container);
+            createGrid(4, 8, store_grid);
         }
 
         private void createExtraInventoryGrid()
         {
-            createGrid(8, 8, e_inv_storage_container);
+            createGrid(8, 8, e_inv_grid);
         }
 
         private void displayStorageContainer(Grid container)
@@ -494,7 +494,7 @@ namespace MuDBHelper
             foreach(var other in storage_containers.Children.Cast<UIElement>().Where(x => x != container))            
                 other.Visibility = Visibility.Hidden;
 
-            container.Visibility = Visibility.Visible; 
+            container.Visibility = Visibility.Visible;     
         }
 
         private void createGrid(int numRows, int numCols, Grid container)
