@@ -1,0 +1,11 @@
+USE [MuOnline]
+GO
+CREATE TABLE DBHelper_SocketTypes
+(
+	id int IDENTITY(0, 1) PRIMARY KEY,
+	level1_value varchar(80),
+	level2_value varchar(80),
+	level3_value varchar(80),
+	level4_value varchar(80),
+	level5_value varchar(80)
+);
