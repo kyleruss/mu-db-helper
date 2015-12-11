@@ -28,6 +28,8 @@ namespace MuDBHelper
 
         public Table<DBItemType> itemTypes;
 
+        public Table<DBSocketTypes> socketTypes;
+
         public DBConnection() : base("Server=.\\SQLEXPRESS;Database=MuOnline;Integrated Security=true") { }
     }
 }

@@ -303,6 +303,14 @@ namespace MuDBHelper
             }
         }
 
+        private void displaySocketOptions()
+        {
+            using(DBConnection conn = new DBConnection())
+            {
+                //var socketOptions = 
+            }
+        }
+
         private void displayAncientOptions()
         {
             if (current_item == null || (current_item.set1 == -1 && current_item.set2 == -1 && current_item.set3 == -1))
@@ -406,6 +414,8 @@ namespace MuDBHelper
             exc_opt5.IsChecked = excOpts.isExcellent(4);
             exc_opt6.IsChecked = excOpts.isExcellent(5);
         }
+
+
 
         private void initItemOptions(Item item)
         {
