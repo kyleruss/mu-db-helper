@@ -78,9 +78,9 @@ namespace MuDBHelper
             setDurability(durability);
             initExcOptsFromObject(excellent_options.getCode(), excellent_options);
             initExcOptsToItem();
-            changeHarmoneyOption(harm_opt);
-            changeHarmoneyLevel(harm_lvl);
-            changeRefine(refine_id);
+            //changeHarmoneyOption(harm_opt);
+            //changeHarmoneyLevel(harm_lvl);
+            //changeRefine(refine_id);
             updateHex();
         }
 

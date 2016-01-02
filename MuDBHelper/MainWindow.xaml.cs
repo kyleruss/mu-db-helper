@@ -42,6 +42,7 @@ namespace MuDBHelper
             displayExcOptions();
 
             storage_items = new Dictionary<Button, Item>();
+            storage_list.IsEnabled = false;
         }
 
         private void fillCategories()
@@ -186,6 +187,21 @@ namespace MuDBHelper
             }
         }
 
+        private void enableAccountStorage(bool enable)
+        {
+            ((ComboBoxItem)storage_list.Items[1]).IsEnabled = enable;
+        }
+
+        private void enableCharacterStorage(bool enable)
+        {
+            int[] storageIndexes = new int[] { 0, 1, 3, 4 };
+            foreach(int i in storageIndexes)
+            {
+                ComboBoxItem cItem = (ComboBoxItem)storage_list.Items[i];
+                cItem.IsEnabled = enable;
+            }
+        }
+
         private void AccountListOnOpen(object sender, EventArgs e)
         {
             showAccounts(null);
@@ -194,6 +210,12 @@ namespace MuDBHelper
         private void CharacterListOnOpen(object sender, EventArgs e)
         {
             showCharacters(null);
+        }
+
+        private void StorageListOnOpen(object sender, EventArgs e)
+        {
+            enableAccountStorage(account_list.SelectedItem != null);
+            enableCharacterStorage(character_list.SelectedItem != null);
         }
 
         private void AccountSearchKeyUp(object sender, KeyEventArgs e)
@@ -750,6 +772,8 @@ namespace MuDBHelper
         {
             string usernameSelected = (string) character_list.SelectedItem;
             initCharacter(usernameSelected);
+            enableCharacterStorage(true);
+            enableAccountStorage(true);
         }
         
 
@@ -818,6 +842,16 @@ namespace MuDBHelper
                     createExtraInventoryGrid();
                     break;                    
             }
+        }
+
+        private void OnAccountListChange(object sender, SelectionChangedEventArgs e)
+        {
+            storage_list.IsEnabled = true;
+        }
+
+        private void OnCharacterListChange(object sender, SizeChangedEventArgs e)
+        {
+
         }
     }
 }
