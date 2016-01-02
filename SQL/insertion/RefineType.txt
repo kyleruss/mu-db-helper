@@ -1,4 +1,4 @@
 USE [MuOnline]
 GO
-INSERT INTO DBHelper_RefineTypes (name)
-VALUES ('no_option');
+INSERT INTO DBHelper_RefineTypes (name, typeID, option1, option2)
+VALUES ('no_option', 0, 'No option', 'No option');

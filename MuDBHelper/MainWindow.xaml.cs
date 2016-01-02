@@ -114,8 +114,7 @@ namespace MuDBHelper
                     current_category =  (DBItemCategories)items_list.SelectedItems[0];
                     category_label.Content = current_category.name;
                     getItemList(current_category.ID);
-
-                    displayExcOptions();
+                    updateTabOptions();
 
                     categoryBackButton.Visibility = Visibility.Visible;
                 }
@@ -266,8 +265,9 @@ namespace MuDBHelper
 
         private void displayRefineOptions()
         {
-            if(current_item == null || current_item.itemType == null || current_item.itemType > 1)
+            if (current_category == null)
             {
+                Debug.WriteLine("null!!");
                 ref_grid.Visibility = Visibility.Hidden;
                 no_ref_label.Visibility = Visibility.Visible;
             }
@@ -276,9 +276,10 @@ namespace MuDBHelper
             {
                 using(DBConnection conn = new DBConnection())
                 {
-                    var refineOpt = conn.refineOpts.Where(x => x.typeID == current_item.itemType).FirstOrDefault();
+                    var refineOpt = conn.refineOpts.Where(x => x.typeID == current_category.ID).FirstOrDefault();
                     if (refineOpt != null)
                     {
+                        Debug.WriteLine("add Refine opts");
                         ref_opt_check.Content = refineOpt;
                         if (refineOpt.option1 != null)
                             ref_opt1.Content = "+ " + refineOpt.option1;
@@ -296,7 +297,8 @@ namespace MuDBHelper
 
                     else
                     {
-                        ref_grid.Visibility = Visibility.Hidden; ;
+                        Debug.WriteLine("No ref opts");
+                        ref_grid.Visibility = Visibility.Hidden;
                         no_ref_label.Visibility = Visibility.Visible;
                     }
                 }
@@ -307,7 +309,8 @@ namespace MuDBHelper
         {
             using(DBConnection conn = new DBConnection())
             {
-                //var socketOptions = 
+                var socketOptions = conn.socketTypes;
+                sock1_list.ItemsSource = socketOptions;
             }
         }
 
@@ -383,14 +386,18 @@ namespace MuDBHelper
                 int dur = int.Parse(dur_field.Text);
                 bool luck = (bool) luck_field.IsChecked;
                 bool skill = (bool) skill_field.IsChecked;
-                DBSets set = getSelectedAncient();
-                int setID = (set != null)? (int) set.ID : -1;
-                int harm_opt = ((DBHarmoneyOpts)harm_opt_list.SelectedValue).ID;
                 int harm_lvl = (int) harm_opt_lvl.Value;
-                int refID = ((DBRefineOpts)ref_opt_check.Content).ID;
+
+                DBSets set = getSelectedAncient();
+                int setID = (set != null) ? (int) set.ID : -1;
+
+                DBHarmoneyOpts selectedHarm = ((DBHarmoneyOpts) harm_opt_list.SelectedValue);
+                int harm_opt = (selectedHarm != null) ? selectedHarm.ID : 0;
+
+                DBRefineOpts selectedRef = (DBRefineOpts) ref_opt_check.Content;
+                int refID = (selectedRef != null) ? selectedRef.ID : 0;
 
                 ExcOpts excOpts = getExcOpts();
-
                 return new Item(index, category, skill, luck, level, add_level, dur, setID, harm_opt, harm_lvl, refID, excOpts);
             }
         }
@@ -759,6 +766,9 @@ namespace MuDBHelper
 
         private void displaySelectedTabOptions()
         {
+            if (tab_exc.IsSelected)
+                displayExcOptions();
+
             if (tab_anc.IsSelected)
                 displayAncientOptions();
 
@@ -767,6 +777,14 @@ namespace MuDBHelper
 
             else if (tab_ref.IsSelected)
                 displayRefineOptions();
+        }
+
+        private void updateTabOptions()
+        {
+            displayExcOptions();
+            displayAncientOptions();
+            showHarmoneyOptions();
+            displayRefineOptions();
         }
 
         private void OnAdvancedPropertiesChanged(object sender, SelectionChangedEventArgs e)

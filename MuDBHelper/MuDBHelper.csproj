@@ -64,6 +64,7 @@
     <Compile Include="DBItemType.cs" />
     <Compile Include="DBRefineOpts.cs" />
     <Compile Include="DBSets.cs" />
+    <Compile Include="DBSocketTypes.cs" />
     <Compile Include="ExpInventorySpace.cs" />
     <Compile Include="InventoryStorage.cs" />
     <Compile Include="PShopSpace.cs" />
