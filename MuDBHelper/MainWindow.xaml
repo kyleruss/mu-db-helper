@@ -91,9 +91,9 @@
                     <Label Content="Storage" FontFamily="Segoe UI Light" FontSize="12pt" Grid.Column="2" HorizontalAlignment="Left" Margin="38,1,0,0" VerticalAlignment="Top" Height="33" Width="73" Grid.RowSpan="2"/>
 
                     <!-- ACCOUNT LIST -->
-                    <ComboBox Text="Select account" x:Name="account_list" IsEditable="True" HorizontalAlignment="Left" Margin="16,3,0,0" VerticalAlignment="Top" Width="120" Grid.Row="1" Height="22" DropDownOpened="AccountListOnOpen" KeyUp="AccountSearchKeyUp" SelectionChanged="OnAccountListChange" SizeChanged="OnCharacterListChange"/>
+                    <ComboBox Text="Select account" x:Name="account_list" IsEditable="True" HorizontalAlignment="Left" Margin="16,3,0,0" VerticalAlignment="Top" Width="120" Grid.Row="1" Height="22" DropDownOpened="AccountListOnOpen" KeyUp="AccountSearchKeyUp" SelectionChanged="OnAccountListChange"/>
                     <!-- CHARACTER LIST -->
-                    <ComboBox Text="Select character" x:Name="character_list" IsEditable="True" Grid.Column="1" HorizontalAlignment="Left" Margin="16,3,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="22" DropDownOpened="CharacterListOnOpen" KeyUp="CharacterSearchKeyUp" SelectionChanged="CharacterListOnSelect"/>
+                    <ComboBox Text="Select character" x:Name="character_list" IsEditable="True" Grid.Column="1" HorizontalAlignment="Left" Margin="16,3,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="22" DropDownOpened="CharacterListOnOpen" KeyUp="CharacterSearchKeyUp" SelectionChanged="OnCharacterListChange"/>
                     <!-- STORAGE LIST -->
                     <ComboBox x:Name="storage_list" Grid.Column="2" HorizontalAlignment="Left" Margin="7,3,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="22" SelectionChanged="OnStorageChange" IsReadOnly="True" IsEditable="True" Text="Select storage" DropDownOpened="StorageListOnOpen">
                         <ComboBoxItem Content="Person" />

@@ -162,9 +162,9 @@ namespace MuDBHelper
                     var list = conn.characters;
 
                     if (searchCharacter != null)
-                        character_list.ItemsSource = list.Where(character => character.Name.Contains(searchCharacter)).Select(character => character.Name);
+                        character_list.ItemsSource = list.Where(character => character.Name.Contains(searchCharacter));
                     else
-                        character_list.ItemsSource = list.Select(character => character.Name);
+                        character_list.ItemsSource = list;
                 }
 
                 else
@@ -173,15 +173,15 @@ namespace MuDBHelper
                     {
                         character_list.ItemsSource = conn.characters
                                                     .Where(character => character.AccountID == account_list.SelectedItem)
-                                                    .Where(character => character.Name.Contains(searchCharacter))
-                                                    .Select(character => character.Name);
+                                                    .Where(character => character.Name.Contains(searchCharacter));
+                                                    //.Select(character => character.Name);
                     }
 
                     else
                     {
                         character_list.ItemsSource = conn.characters
-                            .Where(character => character.AccountID == account_list.SelectedItem)
-                            .Select(character => character.Name);
+                            .Where(character => character.AccountID == account_list.SelectedItem);
+                            //.Select(character => character.Name);
                     }
                 }
             }
@@ -770,8 +770,8 @@ namespace MuDBHelper
 
         private void CharacterListOnSelect(object sender, SelectionChangedEventArgs e)
         {
-            string usernameSelected = (string) character_list.SelectedItem;
-            initCharacter(usernameSelected);
+            //string usernameSelected = ((DBCharacter) character_list.SelectedItem).Name;
+           // initCharacter(usernameSelected);
             enableCharacterStorage(true);
             enableAccountStorage(true);
         }
@@ -849,9 +849,14 @@ namespace MuDBHelper
             storage_list.IsEnabled = true;
         }
 
-        private void OnCharacterListChange(object sender, SizeChangedEventArgs e)
+        private void OnCharacterListChange(object sender, SelectionChangedEventArgs e)
         {
-
+            if (character_list.SelectedValue != null)
+            {
+                string charAccount = ((DBCharacter)character_list.SelectedValue).AccountID;
+                account_list.SelectedValue = charAccount;
+                account_list.Text = charAccount;
+            }
         }
     }
 }
