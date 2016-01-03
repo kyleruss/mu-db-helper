@@ -690,7 +690,7 @@ namespace MuDBHelper
             int numCols = inventory_grid.ColumnDefinitions.Count;
             int index = (Grid.GetRow((Button) sender) * numCols) + Grid.GetColumn((Button) sender);
 
-            if (storage_items.ContainsKey((Button)sender))
+            if (storage_items.ContainsKey((Button) sender))
             {
                 current_item_index = index;
                 initItemOptions(storage_items[(Button)sender]);
@@ -699,14 +699,21 @@ namespace MuDBHelper
                 category_label.Content = current_category.name;
                 categoryBackButton.Visibility = Visibility.Visible;
 
-                foreach(Button btn in inventory_grid.Children.Cast<UIElement>().Where(c => Grid.GetColumn(c) > 0 && Grid.GetRow(c) > 0))
+                foreach(Button btn in inventory_grid.Children.Cast<UIElement>())
                 {
-                    btn.BorderThickness = new Thickness(0, 0, 1, 1);
+                    btn.BorderThickness = new Thickness
+                    (
+                        Grid.GetColumn(btn) > 0 ? 0 : 1, //left edge case
+                        Grid.GetRow(btn) > 0 ? 0 : 1, //top edge case
+                        1, 
+                        1
+                    );
+
                     btn.BorderBrush = Brushes.Black;
                 }
 
-                ((Button)sender).BorderThickness = new Thickness(1, 1, 1, 1);
-                ((Button)sender).BorderBrush = Brushes.White;
+                ((Button) sender).BorderThickness = new Thickness(1, 1, 1, 1);
+                ((Button) sender).BorderBrush = Brushes.White;
             }
 
             else
