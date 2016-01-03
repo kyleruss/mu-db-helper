@@ -38,8 +38,8 @@ namespace MuDBHelper
             fillLevelList();
             fillAddLevelList();
             initSlotIndexes();
-            createInventoryGrid();
             displayExcOptions();
+            initGrids();
 
             storage_items = new Dictionary<Button, Item>();
             storage_list.IsEnabled = false;
@@ -74,6 +74,14 @@ namespace MuDBHelper
 
             add_level_field.ItemsSource = addLevels;
             add_level_field.SelectedIndex = 0;
+        }
+
+        private void initGrids()
+        {
+            createInventoryGrid();
+            createVaultGrid();
+            createStoreGrid();
+            createExtraInventoryGrid();
         }
 
         private void initSlotIndexes()
@@ -671,8 +679,8 @@ namespace MuDBHelper
 
             ((Button)slot).Width = (width + 1) * cellDim;
             ((Button)slot).Height = (height + 1) * cellDim;
-            Grid.SetColumnSpan((Button)slot, width + 1);
-            Grid.SetRowSpan((Button)slot, height + 1);
+            Grid.SetColumnSpan((Button) slot, width + 1);
+            Grid.SetRowSpan((Button) slot, height + 1);
 
             changeSlotBackground(new Uri(@"images/items/" + item.image_path, UriKind.Relative), (Button)slot);
         }
@@ -819,19 +827,16 @@ namespace MuDBHelper
                     break;
                 case 1:
                     displayStorageContainer(inventory_storage_container);
-                    createInventoryGrid();
+                    initInventoryDisplay();
                     break;
                 case 2:
                     displayStorageContainer(vault_storage_container);
-                    createVaultGrid();
                     break;
                 case 3:
                     displayStorageContainer(store_storage_container);
-                    createStoreGrid();
                     break;
                 case 4:
                     displayStorageContainer(e_inv_storage_container);
-                    createExtraInventoryGrid();
                     break;                    
             }
         }
