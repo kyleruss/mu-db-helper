@@ -298,7 +298,6 @@ namespace MuDBHelper
         {
             if (current_category == null)
             {
-                Debug.WriteLine("null!!");
                 ref_grid.Visibility = Visibility.Hidden;
                 no_ref_label.Visibility = Visibility.Visible;
             }
@@ -310,7 +309,6 @@ namespace MuDBHelper
                     var refineOpt = conn.refineOpts.Where(x => x.typeID == current_category.ID).FirstOrDefault();
                     if (refineOpt != null)
                     {
-                        Debug.WriteLine("add Refine opts");
                         ref_opt_check.Content = refineOpt;
                         if (refineOpt.option1 != null)
                             ref_opt1.Content = "+ " + refineOpt.option1;
@@ -425,8 +423,9 @@ namespace MuDBHelper
                 DBHarmoneyOpts selectedHarm = ((DBHarmoneyOpts) harm_opt_list.SelectedValue);
                 int harm_opt = (selectedHarm != null) ? selectedHarm.ID : 0;
 
-                DBRefineOpts selectedRef = (DBRefineOpts) ref_opt_check.Content;
-                int refID = (selectedRef != null) ? selectedRef.ID : 0;
+                //DBRefineOpts selectedRef = (DBRefineOpts) ref_opt_check.Content;
+                //int refID = (selectedRef != null) ? selectedRef.ID : 0;
+                int refID = 0;
 
                 ExcOpts excOpts = getExcOpts();
                 return new Item(index, category, skill, luck, level, add_level, dur, setID, harm_opt, harm_lvl, refID, excOpts);
@@ -620,10 +619,15 @@ namespace MuDBHelper
 
         private void initCharacter(string characterName)
         {
+            string hex;
             using(DBConnection conn = new DBConnection())
             {
                 currentCharacter = conn.characters.Single(c => c.Name == characterName);
-                string hex = BitConverter.ToString(currentCharacter.Inventory).Replace("-", "");
+                hex = BitConverter.ToString(currentCharacter.Inventory).Replace("-", "");
+            }
+
+            if (hex != null)
+            {
                 currentInventory = new InventoryStorage(hex);
                 initCharacterDisplay();
                 initInventoryDisplay();
@@ -737,7 +741,7 @@ namespace MuDBHelper
                 DBItems storedItem = DBItems.findItem(current.category, current.index);
 
                 if (storedItem != null)
-                {                    
+                {
                     storage_items.Add(slot, current);
                     displayItemInInventory(storedItem, slot);
                 }

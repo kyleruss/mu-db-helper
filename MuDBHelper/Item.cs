@@ -350,7 +350,7 @@ namespace MuDBHelper
             else
             {
                 index = (int)hexToDec(hex.Substring(0, 2));
-                category = (int)hexToDec(hex.Substring(17, 2));
+                category = (int)hexToDec(hex.Substring(18, 1));
                 ancientID = (int)hexToDec(hex.Substring(16, 2));
                 harmoney_opt = (int)hexToDec(hex.Substring(20, 1));
                 harmoney_lvl = (int)hexToDec(hex.Substring(21, 1));

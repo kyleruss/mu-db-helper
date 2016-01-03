@@ -90,7 +90,6 @@ namespace MuDBHelper
         public void saveCharacterInventory(string characterName)
         {
             string inventoryHex = getBuiltHex();
-            Debug.WriteLine(inventoryHex);
             using(DBConnection conn = new DBConnection())
             {
                 try
@@ -101,7 +100,7 @@ namespace MuDBHelper
 
                 catch(Exception e)
                 {
-                    Debug.WriteLine("sql excp: " + e.Message);
+                    Debug.WriteLine("[SQL Exception] " + e.Message);
                 }
             }
         }

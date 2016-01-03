@@ -56,6 +56,7 @@ namespace MuDBHelper
 
         public void saveItem(Item item, int index)
         {
+            Debug.WriteLine("ITEM HEX: " + item.getHexString());
             items[index] = item;
             buildSpaceHex();
         }
