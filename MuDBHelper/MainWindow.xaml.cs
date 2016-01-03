@@ -24,6 +24,7 @@ namespace MuDBHelper
         private Dictionary<object, int> slot_indexes;
         private Dictionary<Button, Item> storage_items;
         private int current_item_index;
+        private Button selectedItem;
         private DBCharacter currentCharacter;
         private DBAccount currentAccount;
         private InventoryStorage currentInventory;
@@ -692,6 +693,7 @@ namespace MuDBHelper
 
             if (storage_items.ContainsKey((Button) sender))
             {
+                selectedItem = (Button) sender;
                 current_item_index = index;
                 initItemOptions(storage_items[(Button)sender]);
                 storage_ctrls_container.Visibility = Visibility.Visible;
@@ -699,21 +701,7 @@ namespace MuDBHelper
                 category_label.Content = current_category.name;
                 categoryBackButton.Visibility = Visibility.Visible;
 
-                foreach(Button btn in inventory_grid.Children.Cast<UIElement>())
-                {
-                    btn.BorderThickness = new Thickness
-                    (
-                        Grid.GetColumn(btn) > 0 ? 0 : 1, //left edge case
-                        Grid.GetRow(btn) > 0 ? 0 : 1, //top edge case
-                        1, 
-                        1
-                    );
-
-                    btn.BorderBrush = Brushes.Black;
-                }
-
-                ((Button) sender).BorderThickness = new Thickness(1, 1, 1, 1);
-                ((Button) sender).BorderBrush = Brushes.White;
+                selectBtn((Button)sender, true);
             }
 
             else
@@ -783,6 +771,27 @@ namespace MuDBHelper
             }
         }
         
+        private void selectBtn(Button btn, bool select)
+        {
+            foreach(Button current in inventory_grid.Children.Cast<UIElement>())
+            {
+                current.BorderThickness = new Thickness
+                (
+                    Grid.GetColumn(current) > 0 ? 0 : 1, //left edge case
+                    Grid.GetRow(current) > 0 ? 0 : 1, //top edge case
+                    1, 
+                    1
+                );
+
+                current.BorderBrush = Brushes.Black;
+            }
+
+            if (select)
+            {
+                btn.BorderThickness = new Thickness(1, 1, 1, 1);
+                btn.BorderBrush = Brushes.White;
+            }
+        }
 
         private void OnStorageSaveClick(object sender, RoutedEventArgs e)
         {
@@ -793,6 +802,8 @@ namespace MuDBHelper
         {
             removeFromSpace(current_item_index, currentInventory.inventory);
             storage_ctrls_container.Visibility = Visibility.Hidden;
+            selectBtn(selectedItem, false);
+            selectedItem = null;
         }
 
         private void displaySelectedTabOptions()
