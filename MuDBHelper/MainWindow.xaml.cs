@@ -767,14 +767,6 @@ namespace MuDBHelper
                 harm_grid.Visibility = Visibility.Visible;                
             }
         }
-
-        private void CharacterListOnSelect(object sender, SelectionChangedEventArgs e)
-        {
-            //string usernameSelected = ((DBCharacter) character_list.SelectedItem).Name;
-           // initCharacter(usernameSelected);
-            enableCharacterStorage(true);
-            enableAccountStorage(true);
-        }
         
 
         private void OnStorageSaveClick(object sender, RoutedEventArgs e)
@@ -851,11 +843,15 @@ namespace MuDBHelper
 
         private void OnCharacterListChange(object sender, SelectionChangedEventArgs e)
         {
+            storage_list.IsEnabled = true;
             if (character_list.SelectedValue != null)
             {
                 string charAccount = ((DBCharacter)character_list.SelectedValue).AccountID;
                 account_list.SelectedValue = charAccount;
                 account_list.Text = charAccount;
+
+                string usernameSelected = ((DBCharacter)character_list.SelectedValue).Name;
+                initCharacter(usernameSelected);
             }
         }
     }
