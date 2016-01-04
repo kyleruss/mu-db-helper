@@ -106,15 +106,16 @@
 
                 </Grid>
 
-                <Canvas Name="storage_containers">
-                    <Grid x:Name="item_hover_grid" HorizontalAlignment="Left" Height="100" Width="100" VerticalAlignment="Top" Margin="75,185,0,0" Background="White" Visibility="Hidden">
-                        
-                    </Grid>
+                <Grid Name="storage_containers">
                     <!-- INVENTORY CONTAINER -->
                     <Grid Name="inventory_storage_container" HorizontalAlignment="Left" Height="374" Margin="10,92,0,0" VerticalAlignment="Top" Width="429" Visibility="Hidden">
-                        <Border BorderBrush="Black" BorderThickness="1">
+                        <Canvas x:Name="inventory_canvas">
+                            <Grid x:Name="item_hover_grid" HorizontalAlignment="Left" Height="100" Width="100" VerticalAlignment="Top" Background="White" Visibility="Hidden" />
+
+                            <Border BorderBrush="Black" BorderThickness="1">
                             <Grid Name="inventory_grid" HorizontalAlignment="Left" Height="282" Margin="9,9,0,0" VerticalAlignment="Top" Width="409" />
                         </Border>
+                        </Canvas>
                     </Grid>
 
                     <!-- VAULT CONTAINER -->
@@ -156,7 +157,7 @@
                         <Button Content="Pen" x:Name="slot_pen" HorizontalAlignment="Left" Margin="130,144,0,0" VerticalAlignment="Top" Width="41" Height="38" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
                         <Button Content="Pet" x:Name="slot_pet" HorizontalAlignment="Left" Margin="55,120,0,0" VerticalAlignment="Top" Width="70" Height="62" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontSize="14" Click="CharacterSlotOnClick"/>
                     </Grid>
-                </Canvas>
+                </Grid>
 
                 <!-- STORAGE CONTROLS -->
                 <Grid x:Name="storage_ctrls_container" HorizontalAlignment="Left" Height="69" Margin="10,484,0,0" VerticalAlignment="Top" Width="429" Visibility="Hidden">
