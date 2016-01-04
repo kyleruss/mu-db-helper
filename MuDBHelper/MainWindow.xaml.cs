@@ -180,15 +180,13 @@ namespace MuDBHelper
                     {
                         character_list.ItemsSource = conn.characters
                                                     .Where(character => character.AccountID == account_list.SelectedItem)
-                                                    .Where(character => character.Name.Contains(searchCharacter));
-                                                    //.Select(character => character.Name);
+                                                    .Where(character => character.Name.Contains(searchCharacter));                                                    
                     }
 
                     else
                     {
                         character_list.ItemsSource = conn.characters
-                            .Where(character => character.AccountID == account_list.SelectedItem);
-                            //.Select(character => character.Name);
+                            .Where(character => character.AccountID == account_list.SelectedItem);                            
                     }
                 }
             }
@@ -323,8 +321,7 @@ namespace MuDBHelper
                     }
 
                     else
-                    {
-                        Debug.WriteLine("No ref opts");
+                    {                        
                         ref_grid.Visibility = Visibility.Hidden;
                         no_ref_label.Visibility = Visibility.Visible;
                     }
@@ -583,6 +580,7 @@ namespace MuDBHelper
                     inventorySlot.VerticalAlignment = VerticalAlignment.Top;
                     inventorySlot.Width = colWidth;
                     inventorySlot.Height = rowHeight;
+                    inventorySlot.MouseEnter += OnItemEnter;
 
                     inventorySlot.Background = Brushes.Transparent;
                     inventorySlot.Click += new RoutedEventHandler(inventorySlotOnClick);
@@ -918,6 +916,12 @@ namespace MuDBHelper
 
             if (src == item_load_btn)
                 loadItems();
+        }
+
+        private void OnItemEnter(object sender, MouseEventArgs e)
+        {
+            Button src = (Button) sender;
+            
         }
     }
 }

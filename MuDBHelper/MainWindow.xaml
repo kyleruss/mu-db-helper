@@ -107,6 +107,9 @@
                 </Grid>
 
                 <Grid Name="storage_containers">
+                    <Grid x:Name="item_hover_grid" HorizontalAlignment="Left" Height="100" Width="100" VerticalAlignment="Top" Margin="75,185,0,0" Background="White" Visibility="Hidden">
+                        
+                    </Grid>
                     <!-- INVENTORY CONTAINER -->
                     <Grid Name="inventory_storage_container" HorizontalAlignment="Left" Height="374" Margin="10,92,0,0" VerticalAlignment="Top" Width="429" Visibility="Hidden">
                         <Border BorderBrush="Black" BorderThickness="1">
