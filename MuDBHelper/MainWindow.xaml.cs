@@ -23,7 +23,6 @@ namespace MuDBHelper
         private DBItemCategories current_category;
         private Dictionary<object, int> slot_indexes;
         private Dictionary<Button, Item> storage_items;
-        private int current_item_index;
         private HashSet<Button> selectedItems;
         private DBCharacter currentCharacter;
         private DBAccount currentAccount;
@@ -688,15 +687,19 @@ namespace MuDBHelper
             changeSlotBackground(new Uri(@"images/items/" + item.image_path, UriKind.Relative), (Button)slot);
         }
 
-        public void inventorySlotOnClick(object sender, RoutedEventArgs e)
+        private int getButtonIndex(Button btn)
         {
             int numCols = inventory_grid.ColumnDefinitions.Count;
-            int index = (Grid.GetRow((Button) sender) * numCols) + Grid.GetColumn((Button) sender);
+            return (Grid.GetRow((Button) btn) * numCols) + Grid.GetColumn((Button) btn);
+        }
 
-            if (storage_items.ContainsKey((Button) sender))
+        public void inventorySlotOnClick(object sender, RoutedEventArgs e)
+        {
+            Button btn  =   (Button) sender;
+
+            if (storage_items.ContainsKey(btn))
             {
-                current_item_index = index;
-                initItemOptions(storage_items[(Button)sender]);
+                initItemOptions(storage_items[btn]);
                 storage_ctrls_container.Visibility = Visibility.Visible;
                 displaySelectedTabOptions();
                 category_label.Content = current_category.name;
@@ -705,16 +708,18 @@ namespace MuDBHelper
                 if(Keyboard.Modifiers != ModifierKeys.Control)
                     selectedItems.Clear();
 
-                selectedItems.Add((Button)sender);
+                selectedItems.Add(btn);
                 selectBtn(true);
             }
 
             else
             {
-                if (current_item != null && isInsideBoundaries(current_item, (Button)sender))
+                if (current_item != null && isInsideBoundaries(current_item, btn))
                 {
-                    storage_items.Add((Button)sender, getItem());
-                    displayItemInInventory(current_item, (Button)sender);                                        
+                    storage_items.Add(btn, getItem());
+                    displayItemInInventory(current_item, btn);
+
+                    int index = getButtonIndex(btn);
                     updateSpace(index, currentInventory.inventory);
                 }
             }
@@ -803,13 +808,21 @@ namespace MuDBHelper
 
         private void OnStorageSaveClick(object sender, RoutedEventArgs e)
         {
-            updateSpace(current_item_index, currentInventory.inventory);
+            foreach (Button item in selectedItems)
+            {
+                int index = getButtonIndex(item);
+                updateSpace(index, currentInventory.inventory);
+            }
         }
 
         private void OnStorageRemoveClick(object sender, RoutedEventArgs e)
         {
-            removeFromSpace(current_item_index, currentInventory.inventory);
-            storage_ctrls_container.Visibility = Visibility.Hidden;
+            foreach (Button item in selectedItems)
+            {
+                int index = getButtonIndex(item);
+                removeFromSpace(index, currentInventory.inventory);
+                storage_ctrls_container.Visibility = Visibility.Hidden;
+            }
 
             selectedItems.Clear();
             selectBtn(false);
