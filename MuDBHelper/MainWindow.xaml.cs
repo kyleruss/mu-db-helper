@@ -24,16 +24,13 @@ namespace MuDBHelper
         private Dictionary<object, int> slot_indexes;
         private Dictionary<Button, Item> storage_items;
         private int current_item_index;
-        private Button selectedItem;
+        private HashSet<Button> selectedItems;
         private DBCharacter currentCharacter;
         private DBAccount currentAccount;
         private InventoryStorage currentInventory;
 
         public MainWindow()
         {
-            //DBLoader.buildDBItems("Item.txt");
-            //DBLoader.UpdateItemImages(false);
-
             InitializeComponent();
             fillCategories();
             fillLevelList();
@@ -42,6 +39,7 @@ namespace MuDBHelper
             displayExcOptions();
             initGrids();
 
+            selectedItems = new HashSet<Button>();
             storage_items = new Dictionary<Button, Item>();
             storage_list.IsEnabled = false;
         }
@@ -697,15 +695,18 @@ namespace MuDBHelper
 
             if (storage_items.ContainsKey((Button) sender))
             {
-                selectedItem = (Button) sender;
                 current_item_index = index;
                 initItemOptions(storage_items[(Button)sender]);
                 storage_ctrls_container.Visibility = Visibility.Visible;
                 displaySelectedTabOptions();
                 category_label.Content = current_category.name;
-                categoryBackButton.Visibility = Visibility.Visible;
+                categoryBackButton.Visibility = Visibility.Visible;                
 
-                selectBtn((Button)sender, true);
+                if(Keyboard.Modifiers != ModifierKeys.Control)
+                    selectedItems.Clear();
+
+                selectedItems.Add((Button)sender);
+                selectBtn(true);
             }
 
             else
@@ -775,7 +776,7 @@ namespace MuDBHelper
             }
         }
         
-        private void selectBtn(Button btn, bool select)
+        private void selectBtn(bool select)
         {
             foreach(Button current in inventory_grid.Children.Cast<UIElement>())
             {
@@ -792,8 +793,11 @@ namespace MuDBHelper
 
             if (select)
             {
-                btn.BorderThickness = new Thickness(1, 1, 1, 1);
-                btn.BorderBrush = Brushes.White;
+                foreach (Button btn in selectedItems)
+                {
+                    btn.BorderThickness = new Thickness(1, 1, 1, 1);
+                    btn.BorderBrush = Brushes.White;
+                }
             }
         }
 
@@ -806,8 +810,9 @@ namespace MuDBHelper
         {
             removeFromSpace(current_item_index, currentInventory.inventory);
             storage_ctrls_container.Visibility = Visibility.Hidden;
-            selectBtn(selectedItem, false);
-            selectedItem = null;
+
+            selectedItems.Clear();
+            selectBtn(false);
         }
 
         private void displaySelectedTabOptions()
