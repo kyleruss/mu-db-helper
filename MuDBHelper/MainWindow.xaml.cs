@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -898,6 +899,25 @@ namespace MuDBHelper
                 string usernameSelected = ((DBCharacter)character_list.SelectedValue).Name;
                 initCharacter(usernameSelected);
             }
+        }
+
+        private void loadItems()
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            
+            if(dialog.ShowDialog() == true)
+            {
+                string fileName = dialog.FileName;
+                DBLoader.buildDBItems(fileName);
+            }
+        }
+
+        private void OnClick(object sender, RoutedEventArgs e)
+        {
+            object src = e.Source;
+
+            if (src == item_load_btn)
+                loadItems();
         }
     }
 }

@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         Title="MainWindow" Height="833.75" Width="1116.25"
-        
         ResizeMode="NoResize">
 
     <Grid>
@@ -289,8 +288,8 @@
 
                 <Grid HorizontalAlignment="Left" Height="117" Margin="10,581,0,0" VerticalAlignment="Top" Width="306">
                     <Border BorderBrush="#FF8D8A8A" BorderThickness="1" HorizontalAlignment="Left" Height="117" VerticalAlignment="Top" Width="306"/>
-                    <Button x:Name="item_load_btn" Content="Load Items" HorizontalAlignment="Left" Margin="47,62,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}" Foreground="White"/>
-                    <Button x:Name="item_settings_btn" Content="Settings" HorizontalAlignment="Left" Margin="164,62,0,0" VerticalAlignment="Top" Width="74" Background="{x:Null}" Foreground="White"/>
+                    <Button x:Name="item_load_btn" Content="Load Items" HorizontalAlignment="Left" Margin="47,62,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}" Foreground="White" Click="OnClick"/>
+                    <Button x:Name="item_settings_btn" Content="Settings" HorizontalAlignment="Left" Margin="164,62,0,0" VerticalAlignment="Top" Width="74" Background="{x:Null}" Foreground="White" Click="OnClick"/>
 
 
                 </Grid>
