@@ -922,15 +922,18 @@ namespace MuDBHelper
         private void OnItemEnter(object sender, MouseEventArgs e)
         {
             Button src = (Button) sender;
-            double x = Grid.GetColumn(src) * src.Width;
-            double y = Grid.GetRow(src) * src.Height;
-            const double padX = 20;
-            const double padY = 10;
+            if (storage_items.ContainsKey(src))
+            {
+                double x = Grid.GetColumn(src) * src.Width;
+                double y = Grid.GetRow(src) * src.Height;
+                const double padX = 20;
+                const double padY = 10;
 
-            Point pos = e.GetPosition(inventory_canvas);
-            Canvas.SetLeft(item_hover_grid, x + src.Width + padX);
-            Canvas.SetTop(item_hover_grid, y + padY);
-            item_hover_grid.Visibility = Visibility.Visible;
+                Point pos = e.GetPosition(inventory_canvas);
+                Canvas.SetLeft(item_hover_grid, x + src.Width + padX);
+                Canvas.SetTop(item_hover_grid, y + padY);
+                item_hover_grid.Visibility = Visibility.Visible;
+            }
         }
 
         private void OnItemLeave(object sender, MouseEventArgs e)

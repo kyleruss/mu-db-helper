@@ -108,9 +108,15 @@
 
                 <Grid Name="storage_containers">
                     <!-- INVENTORY CONTAINER -->
-                    <Grid Name="inventory_storage_container" HorizontalAlignment="Left" Height="374" Margin="10,92,0,0" VerticalAlignment="Top" Width="429" Visibility="Hidden">
+                    <Grid Name="inventory_storage_container" HorizontalAlignment="Left" Height="374" Margin="10,92,0,0" VerticalAlignment="Top" Width="429" Visibility="Visible">
                         <Canvas x:Name="inventory_canvas">
-                            <Grid x:Name="item_hover_grid" HorizontalAlignment="Left" Height="100" Width="100" VerticalAlignment="Top" Background="White" Visibility="Hidden" />
+                            <Grid x:Name="item_hover_grid" HorizontalAlignment="Left" Height="200" Width="180" VerticalAlignment="Top" Background="White" Visibility="Visible">
+                                <Label x:Name="item_hover_name" Content="Name" HorizontalAlignment="Left" Margin="71,3,0,0" VerticalAlignment="Top"/>
+                                <Label x:Name="item_hover_level" Content="Level: " HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top"/>
+                                <Label x:Name="item_hover_alevel" Content="ALevel:" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
+                                <CheckBox x:Name="item_hover_luck" Content="Luck" HorizontalAlignment="Left" Margin="13,56,0,0" VerticalAlignment="Top"/>
+                                <CheckBox x:Name="item_hover_skill" Content="Skill" HorizontalAlignment="Left" Margin="97,56,0,0" VerticalAlignment="Top"/>
+                            </Grid>
 
                             <Border BorderBrush="Black" BorderThickness="1">
                             <Grid Name="inventory_grid" HorizontalAlignment="Left" Height="282" Margin="9,9,0,0" VerticalAlignment="Top" Width="409" />
