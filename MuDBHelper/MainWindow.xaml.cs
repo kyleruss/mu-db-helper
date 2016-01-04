@@ -581,6 +581,7 @@ namespace MuDBHelper
                     inventorySlot.Width = colWidth;
                     inventorySlot.Height = rowHeight;
                     inventorySlot.MouseEnter += OnItemEnter;
+                    inventorySlot.MouseLeave += OnItemLeave;
 
                     inventorySlot.Background = Brushes.Transparent;
                     inventorySlot.Click += new RoutedEventHandler(inventorySlotOnClick);
@@ -920,8 +921,16 @@ namespace MuDBHelper
 
         private void OnItemEnter(object sender, MouseEventArgs e)
         {
-            Button src = (Button) sender;
-            
+            Button src = (Button) sender;            
+            Point pos = e.GetPosition(storage_containers);
+            Canvas.SetLeft(item_hover_grid, pos.X);
+            Canvas.SetTop(item_hover_grid, pos.Y);
+            item_hover_grid.Visibility = Visibility.Visible;
+        }
+
+        private void OnItemLeave(object sender, MouseEventArgs e)
+        {
+            item_hover_grid.Visibility = Visibility.Hidden;
         }
     }
 }
