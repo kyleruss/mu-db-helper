@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MuDBHelper
 {
-    class ExcOpts
+    public class ExcOpts
     {
         public const int E1 = 1;
         public const int E2 = 2;

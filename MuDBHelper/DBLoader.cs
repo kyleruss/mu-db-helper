@@ -74,7 +74,7 @@ namespace MuDBHelper
                                         command.Parameters.Add("@y", SqlDbType.Int).Value = int.Parse(item[4]);
                                         command.Parameters.Add("@dur", SqlDbType.Int).Value = (current_category == 14) ? 1 : int.Parse(item[13]);
                                         command.Parameters.Add("@slot", SqlDbType.Int).Value = int.Parse(item[1]);
-                                        command.Parameters.Add("@item_type", SqlDbType.Int).Value = getItemType(current_category, index);
+                                        command.Parameters.Add("@item_type", SqlDbType.Int).Value = Item.getItemType(current_category, index);
                                         command.Parameters.Add("@skill", SqlDbType.Bit).Value = (int.Parse(item[2]) != 0) ? 1 : 0;
                                         command.Parameters.Add("@allow_opt", SqlDbType.Bit).Value = int.Parse(item[6]);
                                         command.Parameters.Add("@allow_sock", SqlDbType.Bit).Value = 0;
@@ -113,30 +113,6 @@ namespace MuDBHelper
 
                 }
             }
-        }
-
-        public static int getItemType(int category, int index)
-        {
-            //misc or invalid item
-            if (category < 0 || category > 16) return 4;
-
-            //weapons
-            else if (category < 7) return 0;
-
-            //armour
-            else if (category < 12) return 1;
-
-            //wings
-            else if (category == 12 && (index < 7 || (index >= 36 && index <= 43) || (index >= 49 && index <= 50) || (index >= 130 && index <= 135) || (index >= 262 && index <= 267)))
-                return 2;
-
-            //scrolls
-            else if (category == 15)
-                return 3;
-
-            //misc
-            else
-                return 4;
         }
 
         public static string calcItemImage(int theid, int type, int ExclAnci, int lvl)

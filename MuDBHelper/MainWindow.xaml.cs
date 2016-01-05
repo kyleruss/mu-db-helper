@@ -939,6 +939,7 @@ namespace MuDBHelper
                 control.setItemAddLevel(item.addLevel);
                 control.setItemLuck(item.luck);
                 control.setItemSkill(item.skill);
+                control.setItemExc(item);
 
                 DBItems dbItem = DBItems.findItem(item.category, item.index);
                 if (dbItem != null)

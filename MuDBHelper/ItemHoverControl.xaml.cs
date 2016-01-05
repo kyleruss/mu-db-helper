@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,6 +49,43 @@ namespace MuDBHelper
         public void setItemSkill(bool hasSkill)
         {
             item_hover_skill.IsChecked = hasSkill;
+        }
+
+        public void setItemExc(Item item)
+        {
+            Dictionary<string, bool> opts = item.excellent_options.getOpts();
+            DBExcOpts exOpts = null;
+
+            using(DBConnection conn = new DBConnection())
+            {
+                exOpts = conn.excOptions.Where(c => c.ID == item.getItemType()).First();
+            }
+
+            int index = 0;
+
+            foreach(Label label in exc_opts_grid.Children.Cast<Label>())
+            {
+                if (opts.ElementAt(index).Value)
+                {
+                    if(exOpts != null)
+                    {
+                        switch(index)
+                        {
+                            case 0: label.Content = exOpts.option1; break;
+                            case 1: label.Content = exOpts.option2; break;
+                            case 2: label.Content = exOpts.option3; break;
+                            case 3: label.Content = exOpts.option4; break;
+                            case 4: label.Content = exOpts.option5; break;
+                        }
+                    }
+
+                    label.Visibility = Visibility.Visible;
+                }
+                else
+                    label.Visibility = Visibility.Hidden;
+
+                index++;
+            }
         }
     }
 }

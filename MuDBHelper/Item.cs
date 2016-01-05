@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MuDBHelper
 {
-    class Item
+    public class Item
     {
         public string EMPTY = new string('F', 32);
         public string EMPTY_LARGE = new string('F', 64);
@@ -455,6 +455,35 @@ namespace MuDBHelper
             if(path == null) path = "default.gif";
 
             return path;
+        }
+
+        public int getItemType()
+        {
+            return getItemType(category, index);
+        }
+
+        public static int getItemType(int category, int index)
+        {
+            //misc or invalid item
+            if (category < 0 || category > 16) return 4;
+
+            //weapons
+            else if (category < 7) return 0;
+
+            //armour
+            else if (category < 12) return 1;
+
+            //wings
+            else if (category == 12 && (index < 7 || (index >= 36 && index <= 43) || (index >= 49 && index <= 50) || (index >= 130 && index <= 135) || (index >= 262 && index <= 267)))
+                return 2;
+
+            //scrolls
+            else if (category == 15)
+                return 3;
+
+            //misc
+            else
+                return 4;
         }
     }
 }
