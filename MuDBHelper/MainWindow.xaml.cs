@@ -930,15 +930,15 @@ namespace MuDBHelper
                 const double padY = 10;
 
                 Point pos = e.GetPosition(inventory_canvas);
-                Canvas.SetLeft(item_hover_grid, x + src.Width + padX);
-                Canvas.SetTop(item_hover_grid, y + padY);
-                item_hover_grid.Visibility = Visibility.Visible;
+                Canvas.SetLeft(item_hover_ctrl, x + src.Width + padX);
+                Canvas.SetTop(item_hover_ctrl, y + padY);
+                item_hover_ctrl.Visibility = Visibility.Visible;
             }
         }
 
         private void OnItemLeave(object sender, MouseEventArgs e)
         {
-            item_hover_grid.Visibility = Visibility.Hidden;
+            item_hover_ctrl.Visibility = Visibility.Hidden;
         }
     }
 }
