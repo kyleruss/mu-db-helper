@@ -7,7 +7,7 @@
              d:DesignHeight="200" d:DesignWidth="180">
     
     <Grid Background="White">
-        <Label x:Name="item_hover_name" Content="Name" HorizontalAlignment="Left" Margin="71,3,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="item_hover_name" Content="Name" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
         <Label x:Name="item_hover_level" Content="Level: " HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top"/>
         <Label x:Name="item_hover_alevel" Content="ALevel:" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="item_hover_luck" Content="Luck" HorizontalAlignment="Left" Margin="13,56,0,0" VerticalAlignment="Top"/>

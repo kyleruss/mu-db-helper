@@ -111,7 +111,7 @@
                     <!-- INVENTORY CONTAINER -->
                     <Grid Name="inventory_storage_container" HorizontalAlignment="Left" Height="374" Margin="10,92,0,0" VerticalAlignment="Top" Width="429" Visibility="Visible">
                         <Canvas x:Name="inventory_canvas">
-                            <control:ItemHoverControl Height="200" Width="180" x:Name="item_hover_ctrl"/>
+                            <control:ItemHoverControl Height="200" Width="180" x:Name="item_hover_ctrl" Visibility="Hidden"/>
 
                             <Border BorderBrush="Black" BorderThickness="1">
                                 <Grid Name="inventory_grid" HorizontalAlignment="Left" Height="282" Margin="9,9,0,0" VerticalAlignment="Top" Width="409" />

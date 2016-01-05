@@ -932,6 +932,18 @@ namespace MuDBHelper
                 Point pos = e.GetPosition(inventory_canvas);
                 Canvas.SetLeft(item_hover_ctrl, x + src.Width + padX);
                 Canvas.SetTop(item_hover_ctrl, y + padY);
+
+                Item item = storage_items[src];
+                ItemHoverControl control = (ItemHoverControl)item_hover_ctrl;
+                control.setItemLevel(item.level);
+                control.setItemAddLevel(item.addLevel);
+                control.setItemLuck(item.luck);
+                control.setItemSkill(item.skill);
+
+                DBItems dbItem = DBItems.findItem(item.category, item.index);
+                if (dbItem != null)
+                    control.setItemName(dbItem.name);
+
                 item_hover_ctrl.Visibility = Visibility.Visible;
             }
         }

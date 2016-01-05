@@ -32,12 +32,12 @@ namespace MuDBHelper
 
         public void setItemLevel(int level)
         {
-            item_hover_level.Content = level;
+            item_hover_level.Content = "Level: +" + level;
         }
 
         public void setItemAddLevel(int addLevel)
         {
-            item_hover_alevel.Content = addLevel;
+            item_hover_alevel.Content = "Add Level: +" + addLevel;
         }
 
         public void setItemLuck(bool hasLuck)
