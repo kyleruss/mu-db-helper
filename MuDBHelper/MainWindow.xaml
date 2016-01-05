@@ -293,8 +293,9 @@
 
                 <Grid HorizontalAlignment="Left" Height="117" Margin="10,581,0,0" VerticalAlignment="Top" Width="306">
                     <Border BorderBrush="#FF8D8A8A" BorderThickness="1" HorizontalAlignment="Left" Height="117" VerticalAlignment="Top" Width="306"/>
-                    <Button x:Name="item_load_btn" Content="Load Items" HorizontalAlignment="Left" Margin="47,62,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}" Foreground="White" Click="OnClick"/>
-                    <Button x:Name="item_settings_btn" Content="Settings" HorizontalAlignment="Left" Margin="164,62,0,0" VerticalAlignment="Top" Width="74" Background="{x:Null}" Foreground="White" Click="OnClick"/>
+                    <Button x:Name="item_load_btn" Content="Load Items" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}" Foreground="White" Click="OnClick"/>
+                    <Button x:Name="image_load_btn" Content="Load Images" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" Margin="116,62,0,0" Foreground="White" Width="76"/>
+                    <Button x:Name="item_settings_btn" Content="Settings" HorizontalAlignment="Left" Margin="222,62,0,0" VerticalAlignment="Top" Width="74" Background="{x:Null}" Foreground="White" Click="OnClick"/>
 
 
                 </Grid>

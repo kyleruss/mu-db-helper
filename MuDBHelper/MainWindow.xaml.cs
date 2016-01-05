@@ -911,12 +911,20 @@ namespace MuDBHelper
             }
         }
 
+        private void loadImages()
+        {
+            DBLoader.UpdateItemImages(false);
+        }
+
         private void OnClick(object sender, RoutedEventArgs e)
         {
             object src = e.Source;
 
             if (src == item_load_btn)
                 loadItems();
+
+            else if (src == image_load_btn)
+                loadImages();
         }
 
         private void OnItemEnter(object sender, MouseEventArgs e)
