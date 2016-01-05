@@ -12,5 +12,11 @@
         <Label x:Name="item_hover_alevel" Content="ALevel:" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="item_hover_luck" Content="Luck" HorizontalAlignment="Left" Margin="13,56,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="item_hover_skill" Content="Skill" HorizontalAlignment="Left" Margin="97,56,0,0" VerticalAlignment="Top"/>
+        
+        <Label x:Name="item_hover_exc1" VerticalAlignment="Top" HorizontalContentAlignment="Center" Content="Option one" RenderTransformOrigin="0.589,4.346" Margin="0,80,0,0" />
+        <Label x:Name="item_hover_exc2" VerticalAlignment="Top" HorizontalContentAlignment="Center" Content="Option one" RenderTransformOrigin="0.589,4.346" Margin="0,100,0,0" />
+        <Label x:Name="item_hover_exc3" VerticalAlignment="Top" HorizontalContentAlignment="Center" Content="Option one" RenderTransformOrigin="0.589,4.346" Margin="0,120,0,0" />
+        <Label x:Name="item_hover_exc4" VerticalAlignment="Top" HorizontalContentAlignment="Center" Content="Option one" RenderTransformOrigin="0.589,4.346" Margin="0,140,0,0" />
+        <Label x:Name="item_hover_exc5" VerticalAlignment="Top" HorizontalContentAlignment="Center" Content="Option one" RenderTransformOrigin="0.589,4.346" Margin="0,160,0,0" />
     </Grid>
 </UserControl>
