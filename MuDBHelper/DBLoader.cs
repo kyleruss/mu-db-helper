@@ -160,6 +160,7 @@ namespace MuDBHelper
             string itype_new = itype.ToString("X2");
             string output="";
 
+
             if (File.Exists("images/items/" + tnpl + itype_new + tipaj + nxt + ".gif"))
                 output = "" + tnpl + itype_new + tipaj + nxt + ".gif";
 
@@ -185,9 +186,14 @@ namespace MuDBHelper
                     {
                         DBItems item_temp = item;
                         string path = calcItemImage((int)item.ID, (int)item.category_ID, 0, 0);
-                        if (path == null) continue;
+                        if (path == null)
+                        {
+                            Debug.WriteLine("Null path: " + item.ID + " cat: " + item.category_ID);
+                            continue;
+                        }
                         else
                         {
+                            Debug.WriteLine("Update DB");
                             item_temp.image_path = path;
                             conn.SubmitChanges();
                         }

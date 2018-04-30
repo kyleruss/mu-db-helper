@@ -10,15 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <!-- <Grid Background="#FF4CD879" HorizontalAlignment="Left" Height="92" VerticalAlignment="Top" Width="1231">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="53*"/>
-                <ColumnDefinition Width="355*"/>
-            </Grid.ColumnDefinitions>
-            <Button Content="Button" HorizontalAlignment="Left" Margin="42,36,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.45,4.08"/>
-            <Border BorderBrush="White" BorderThickness="0,0,0.8,0" HorizontalAlignment="Left" Height="92" VerticalAlignment="Top" Width="159"/> 
-            <Border BorderBrush="Black" BorderThickness="0,0,0,1" HorizontalAlignment="Left" Height="92" VerticalAlignment="Top" Width="1231" Grid.ColumnSpan="2"/>
-        </Grid> -->
+
         <Grid HorizontalAlignment="Left" Height="708" Margin="0,92,0,0" VerticalAlignment="Top" Width="1100">
             <Grid HorizontalAlignment="Left" Height="485" VerticalAlignment="Top" Width="325" Margin="0,223,0,0">
                 <Grid HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="325" Background="#CC000000">
@@ -59,7 +51,7 @@
             </Grid>
 
             <!-- CURRENT ITEM IMAGE PANEL -->
-            <Grid HorizontalAlignment="Left" Height="223" VerticalAlignment="Top" Width="325" Background="#FFDFF2FF">
+            <Grid HorizontalAlignment="Left" Height="223" VerticalAlignment="Top" Width="325" Background="#FFF">
                 <Border BorderBrush="Black" BorderThickness="0,0,1,1" HorizontalAlignment="Left" Height="223" VerticalAlignment="Top" Width="325"/>
                 <Grid HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Width="325" Background="#CC000000"/>
 
@@ -109,7 +101,7 @@
 
                 <Grid Name="storage_containers">
                     <!-- INVENTORY CONTAINER -->
-                    <Grid Name="inventory_storage_container" HorizontalAlignment="Left" Height="374" Margin="10,92,0,0" VerticalAlignment="Top" Width="429" Visibility="Visible">
+                    <Grid Name="inventory_storage_container" HorizontalAlignment="Left" Height="374" Margin="10,92,0,0" VerticalAlignment="Top" Width="429" Visibility="Hidden">
                         <Canvas x:Name="inventory_canvas">
                             <control:ItemHoverControl Height="200" Width="180" x:Name="item_hover_ctrl" Visibility="Hidden"/>
 
@@ -120,7 +112,7 @@
                     </Grid>
 
                     <!-- VAULT CONTAINER -->
-                    <Grid Name="vault_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="552" Width="429" Margin="10,92,0,0" Visibility="Hidden">
+                    <Grid Name="vault_storage_container" HorizontalAlignment="Left" VerticalAlignment="Top" Height="552" Width="419" Margin="10,92,0,0" Visibility="Visible">
                         <Border BorderThickness="1" BorderBrush="Black">
                             <Grid Name="vault_grid" HorizontalAlignment="Left" VerticalAlignment="Top" />
                         </Border>
@@ -294,7 +286,7 @@
                 <Grid HorizontalAlignment="Left" Height="117" Margin="10,581,0,0" VerticalAlignment="Top" Width="306">
                     <Border BorderBrush="#FF8D8A8A" BorderThickness="1" HorizontalAlignment="Left" Height="117" VerticalAlignment="Top" Width="306"/>
                     <Button x:Name="item_load_btn" Content="Load Items" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}" Foreground="White" Click="OnClick"/>
-                    <Button x:Name="image_load_btn" Content="Load Images" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" Margin="116,62,0,0" Foreground="White" Width="76"/>
+                    <Button x:Name="image_load_btn" Content="Load Images" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" Margin="116,62,0,0" Foreground="White" Width="76" Click="OnClick"/>
                     <Button x:Name="item_settings_btn" Content="Settings" HorizontalAlignment="Left" Margin="222,62,0,0" VerticalAlignment="Top" Width="74" Background="{x:Null}" Foreground="White" Click="OnClick"/>
 
 

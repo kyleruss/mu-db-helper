@@ -518,7 +518,7 @@ namespace MuDBHelper
 
         private void createVaultGrid()
         {
-            createGrid(15, 8, vault_grid);
+            createGrid(16, 12, vault_grid);
         }
 
         private void createStoreGrid()
@@ -913,7 +913,7 @@ namespace MuDBHelper
 
         private void loadImages()
         {
-            DBLoader.UpdateItemImages(false);
+            DBLoader.UpdateItemImages(true);
         }
 
         private void OnClick(object sender, RoutedEventArgs e)
